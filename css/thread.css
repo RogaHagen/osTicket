@@ -404,7 +404,8 @@
  * be shown with the ususal monospace font
  */
 .thread-body > div > pre:first-child {
-    font-family: sans-serif;
+    #font-family: sans-serif;
+    font-family: monospace;
 }
 
 /* Avoid extra padding at the bottom of the thread body element */
@@ -432,6 +433,8 @@
     background-color: rgba(0,0,0,0.05);
     border-radius: 5px;
     padding: 0.5em;
+    font-family: monospace;
+    color:green;
 }
 
 .thread-body iframe,
