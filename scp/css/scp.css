@@ -6,7 +6,7 @@ body {
           font-smoothing:antialiased;
 }
 body, html {
-    background:#eee;
+    background:#ccc;
     color:#000;
     font-size:14px;
     margin:0;
@@ -125,12 +125,15 @@ a time {
 
 
 #container {
-    width:960px;
+    width:1060px;
     margin:0 auto 20px auto;
+    margin-top:20px;
+    margin-bottom:0;
 }
 
 #header {
     height:76px;
+    border-top:1px solid #aaa;
     border-left:1px solid #aaa;
     border-right:1px solid #aaa;
     background-color: rgb(248,248,248);
@@ -512,9 +515,13 @@ table.dashboard-stats tbody:nth-child(2) tr:hover th {
     color:#000;
 }
 
-table { vertical-align:top; }
+table { 
+    vertical-align:top;
+    width:100%;
+ }
 
 table.list {
+    width:100%;
     clear:both;
     background:#ccc;
     margin: 2px 0;
@@ -690,6 +697,7 @@ a.print {
 }
 
 .form_table {
+    width:100%;
     margin-top:3px;
     border-left:1px solid #ddd;
     border-right:1px solid #ddd;
@@ -788,6 +796,7 @@ div.section-break h3 {
 }
 
 .settings_table {
+    width:100%;
     margin-top:2px;
     border-left:1px solid #ddd;
     border-right:1px solid #ddd;
@@ -866,6 +875,7 @@ h3 {
 }
 
 .ticket_info {
+    width:100%;
     background:#F4FAFF;
 }
 
