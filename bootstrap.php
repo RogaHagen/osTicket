@@ -165,7 +165,7 @@ class Bootstrap {
             define('SECRET_SALT',md5(TABLE_PREFIX.ADMIN_EMAIL));
         #Session related
         define('SESSION_SECRET', MD5(SECRET_SALT)); //Not that useful anymore...
-        define('SESSION_TTL', 86400); // Default 24 hours
+        define('SESSION_TTL', ini_get("session.gc_maxlifetime")); // Default 24 hours
     }
 
     function connect() {
