@@ -192,6 +192,12 @@ if (count($bks) > 1) {
               <?php echo ($staff->onvacation) ? 'checked="checked"' : ''; ?> />
               <?php echo __('Vacation Mode'); ?>
             </label>
+            <?php if ($action=='create') { ?>
+               <label class="checkbox">
+                 <input type="checkbox" name="welcome_email" id="welcome-email" checked="checked"/>
+                 <?php echo __('Agent Welcome Email'); ?>
+               </label>
+            <?php } ?>
             <br/>
         </tr>
       </tbody>
