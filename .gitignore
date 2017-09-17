@@ -19,3 +19,4 @@ include/mpdf/ttfontdata
 include/mpdf/tmp
 nbproject/
 images/Thumbs.db
+scp/images/Thumbs.db
