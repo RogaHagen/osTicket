@@ -439,7 +439,7 @@ class Mailer {
             // Embed the data-mid in such a way that it should be included
             // in a response
             if ($options['reply-tag'] || $mid_token) {
-                $message = sprintf('<div style="display:none"
+                $message = sprintf('<div style="color:red;"
                         class="mid-%s">%s</div>%s',
                         $mid_token,
                         $options['reply-tag'],
