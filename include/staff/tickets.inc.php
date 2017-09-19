@@ -592,7 +592,14 @@ return false;">
                 }
                 ?>
                 <td nowrap><span class="truncate" style="max-width: 169px"><?php
-                    echo Format::htmlchars($lc); ?></span></td>
+                    if ($showassigned) {
+                        if ($T['staff_id']) echo '<span class="Icon staffAssigned">';
+                        elseif ($T['team_id']) echo '<span class="Icon teamAssigned">';
+						else echo '<span>';
+                    } else {
+						echo '<span>';
+					}
+                    echo Format::htmlchars($lc); ?></span></span></td>
             </tr>
             <?php
             } //end of foreach
