@@ -83,6 +83,10 @@ if ($count) { ?>
             $assigned=sprintf('<span class="Icon staffAssigned">%s</span>',
                     Format::truncate($task->staff->getName(),40));
 
+        elseif ($task->getAssigned())
+            $assigned=sprintf('<span class="Icon teamAssigned">%s</span>',
+                    Format::truncate($task->getAssigned(),40));
+
         $status = $task->isOpen() ? '<strong>open</strong>': 'closed';
 
         $title = Format::htmlchars(Format::truncate($task->getTitle(),40));
