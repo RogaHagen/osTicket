@@ -404,7 +404,6 @@
  * be shown with the ususal monospace font
  */
 .thread-body > div > pre:first-child {
-    #font-family: sans-serif;
     font-family: monospace;
 }
 
