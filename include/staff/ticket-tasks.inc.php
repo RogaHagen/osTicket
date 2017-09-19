@@ -79,9 +79,13 @@ if ($count) { ?>
         $id = $task->getId();
         $access = $task->checkStaffPerm($thisstaff);
         $assigned='';
-        if ($task->staff)
+		if ($task->staff)
             $assigned=sprintf('<span class="Icon staffAssigned">%s</span>',
                     Format::truncate($task->staff->getName(),40));
+
+        elseif ($task->getAssigned())
+            $assigned=sprintf('<span class="Icon teamAssigned">%s</span>',
+                    Format::truncate($task->getAssigned(),40));
 
         $status = $task->isOpen() ? '<strong>'.__('Open').'</strong>': __('Closed');
 
