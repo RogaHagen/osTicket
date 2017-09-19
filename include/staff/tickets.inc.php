@@ -595,9 +595,9 @@ return false;">
                     if ($showassigned) {
                         if ($T['staff_id']) echo '<span class="Icon staffAssigned">';
                         elseif ($T['team_id']) echo '<span class="Icon teamAssigned">';
-						else echo '<span>';
+                        else echo '<span>';
                     } else {
-						echo '<span>';
+                        echo '<span>';
 					}
                     echo Format::htmlchars($lc); ?></span></span></td>
             </tr>
