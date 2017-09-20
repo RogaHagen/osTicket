@@ -595,10 +595,17 @@ return false;">
                     if ($showassigned) {
                         if ($T['staff_id']) echo '<span class="Icon staffAssigned">';
                         elseif ($T['team_id']) echo '<span class="Icon teamAssigned">';
-                        else echo '<span>';
+                        else {
+                            if (!strcasecmp($status,'closed')) {
+                                echo '<span class="Icon systemAssigned">'                              
+                                $lc =  __('System');                                            
+                            } else {
+                                echo '<span>';
+                            }                               
+                        }
                     } else {
                         echo '<span>';
-					}
+                    }
                     echo Format::htmlchars($lc); ?></span></span></td>
             </tr>
             <?php

@@ -438,6 +438,7 @@ a.Icon:hover {
 .Icon.lockedTicket { background:url(../images/icons/locked_ticket.gif) 0 0 no-repeat; }
 .Icon.editTicket { background-image: url(../images/icons/edit_ticket.png); }
 
+.Icon.systemAssigned { background-image: url(../images/icons/settings.gif); }
 .Icon.staffAssigned { background-image: url(../images/icons/user.gif); }
 .Icon.teamAssigned { background-image: url(../images/icons/teams.png); }
 .Icon.newCategory { background-image: url(../images/icons/new_category.png); }
