@@ -36,40 +36,40 @@ $sort_options = array(
 
 $queue_columns = array(
         'number' => array(
-            'width' => '7.4%',
+            'width' => '5%',
             'heading' => __('Number'),
             ),
         'date' => array(
-            'width' => '14.6%',
+            'width' => '10%',
             'heading' => __('Date Created'),
             'sort_col' => 'created',
             ),
         'subject' => array(
-            'width' => '29.8%',
+            'width' => '40%',
             'heading' => __('Subject'),
             'sort_col' => 'cdata__subject',
             ),
         'name' => array(
-            'width' => '18.1%',
+            'width' => '15%',
             'heading' => __('From'),
             'sort_col' =>  'user__name',
             ),
         'status' => array(
-            'width' => '8.4%',
+            'width' => '5%',
             'heading' => __('Status'),
             'sort_col' => 'status_id',
             ),
         'priority' => array(
-            'width' => '8.4%',
+            'width' => '5%',
             'heading' => __('Priority'),
             'sort_col' => 'cdata__:priority__priority_urgency',
             ),
         'assignee' => array(
-            'width' => '16%',
+            'width' => '15%',
             'heading' => __('Agent'),
             ),
         'dept' => array(
-            'width' => '16%',
+            'width' => '15%',
             'heading' => __('Department'),
             'sort_col'  => 'dept__name',
             ),
@@ -549,7 +549,7 @@ return false;">
                     ><?php echo $tid; ?></a></td>
                 <td align="center" nowrap><?php echo Format::datetime($T[$date_col ?: 'lastupdate']) ?: $date_fallback; ?></td>
                 <td><div style="max-width: <?php
-                    $base = 330;
+                    $base = 440;
                     // Make room for the paperclip and some extra
                     if ($T['attachment_count']) $base -= 18;
                     // Assume about 8px per digit character

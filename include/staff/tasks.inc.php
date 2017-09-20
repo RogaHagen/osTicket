@@ -31,26 +31,26 @@ $sort_options = array(
 
 $queue_columns = array(
         'number' => array(
-            'width' => '8%',
+            'width' => '5%',
             'heading' => __('Number'),
             ),
         'date' => array(
-            'width' => '20%',
+            'width' => '10%',
             'heading' => __('Date Created'),
             'sort_col' => 'created',
             ),
         'title' => array(
-            'width' => '38%',
+            'width' => '53%',
             'heading' => __('Title'),
             'sort_col' => 'cdata__title',
             ),
         'dept' => array(
-            'width' => '16%',
+            'width' => '15%',
             'heading' => __('Department'),
             'sort_col'  => 'dept__name',
             ),
         'assignee' => array(
-            'width' => '16%',
+            'width' => '15%',
             'heading' => __('Agent'),
             ),
         );
@@ -335,7 +335,7 @@ if ($thisstaff->hasPerm(Task::PERM_DELETE, false)) {
     <thead>
         <tr>
             <?php if ($thisstaff->canManageTickets()) { ?>
-	        <th width="4%">&nbsp;</th>
+	        <th width="2%">&nbsp;</th>
             <?php } ?>
 
             <?php
@@ -390,7 +390,7 @@ if ($thisstaff->hasPerm(Task::PERM_DELETE, false)) {
             if ($T['isopen'])
                 $number = sprintf('<b>%s</b>', $number);
 
-            $title = Format::truncate($title_field->display($title_field->to_php($T['cdata__title'])), 40);
+            $title = Format::truncate($title_field->display($title_field->to_php($T['cdata__title'])), 60);
             ?>
             <tr id="<?php echo $T['id']; ?>">
                 <?php
