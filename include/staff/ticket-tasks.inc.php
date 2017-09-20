@@ -70,7 +70,7 @@ if ($count) { ?>
             <th width="10%"><?php echo __('Status'); ?></th>
             <th width="45%"><?php echo __('Title'); ?></th>
             <th width="10%"><?php echo __('Department'); ?></th>
-            <th width="15%"><?php echo __('Assignee'); ?></        
+            <th width="15%"><?php echo __('Assignee'); ?></th>        
         </tr>
     </thead>
     <tbody class="tasks">
