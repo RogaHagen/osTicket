@@ -597,7 +597,7 @@ return false;">
                         elseif ($T['team_id']) echo '<span class="Icon teamAssigned">';
                         else {
                             if (!strcasecmp($status,'closed')) {
-                                echo '<span class="Icon systemAssigned">'                              
+                                echo '<span class="Icon systemAssigned">';                             
                                 $lc =  __('System');                                            
                             } else {
                                 echo '<span>';
