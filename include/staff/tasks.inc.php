@@ -158,7 +158,7 @@ $tasks->annotate(array(
     ),
 ));
 
-$tasks->values('id', 'number', 'created', 'staff_id', 'team_id',
+$tasks->values('id', 'number', 'object_id', 'object_type', 'created', 'staff_id', 'team_id',
         'staff__firstname', 'staff__lastname', 'team__name',
         'dept__name', 'cdata__title', 'flags');
 // Apply requested quick filter
@@ -298,8 +298,8 @@ if ($thisstaff->hasPerm(Task::PERM_DELETE, false)) {
         <input type="hidden" name="search-type" value=""/>
         <div class="attached input">
             <input type="text" class="basic-search" data-url="ajax.php/tasks/lookup" name="query"
-                   autofocus size="30" value="<?php echo Format::htmlchars($_REQUEST['query'], true); ?>"
-                   autocomplete="off" autocorrect="off" autocapitalize="off">
+                    autofocus size="30" value="<?php echo Format::htmlchars($_REQUEST['query'], true); ?>"
+                    autocomplete="off" autocorrect="off" autocapitalize="off">
             <button type="submit" class="attached button"><i class="icon-search"></i>
             </button>
         </div>
@@ -308,7 +308,7 @@ if ($thisstaff->hasPerm(Task::PERM_DELETE, false)) {
 </div>
 <!-- SEARCH FORM END -->
 <div class="clear"></div>
-<div style="margin-bottom:20px; padding-top:5px;">
+<div style="margin-bottom:0px; padding-top:5px;">
 <div class="sticky bar opaque">
     <div class="content">
         <div class="pull-left flush-left">
@@ -379,7 +379,7 @@ if ($thisstaff->hasPerm(Task::PERM_DELETE, false)) {
             if ($T['staff_id']) {
                 $staff =  new AgentsName($T['staff__firstname'].' '.$T['staff__lastname']);
                 $assignee = sprintf('<span class="Icon staffAssigned">%s</span>',
-                        Format::truncate((string) $staff, 40));
+                    Format::truncate((string) $staff, 40));
             } elseif($T['team_id']) {
                 $assignee = sprintf('<span class="Icon teamAssigned">%s</span>',
                     Format::truncate(Team::getLocalById($T['team_id'], 'name', $T['team__name']),40));
@@ -409,9 +409,18 @@ if ($thisstaff->hasPerm(Task::PERM_DELETE, false)) {
                     href="tasks.php?id=<?php echo $T['id']; ?>"
                     data-preview="#tasks/<?php echo $T['id']; ?>/preview"
                     ><?php echo $number; ?></a></td>
-                <td align="center" nowrap><?php echo
+                    <td align="center" nowrap><?php echo
                 Format::datetime($T[$date_col ?: 'created']); ?></td>
-                <td><a <?php if ($flag) { ?> class="Icon <?php echo $flag; ?>Ticket" title="<?php echo ucfirst($flag); ?> Ticket" <?php } ?>
+                <td>
+                <?php if($T['object_id'] && $T['object_type'] == 'T') {?>
+                    <span title="<?php echo $T['user__default_email__address']; ?>"             
+                    <a class="Icon <?php echo strtolower($T['ticket__source']); ?>Ticket preview"
+                    title="Preview Ticket"
+                    href="tickets.php?id=<?php echo $T['object_id']; ?>"
+                    data-preview="#tickets/<?php echo $T['object_id']; ?>/preview"
+                    ></a></span>
+                <?php } ?>
+                <a <?php if ($flag) { ?> class="Icon <?php echo $flag; ?>Ticket" title="<?php echo ucfirst($flag); ?> Ticket" <?php } ?>
                     href="tasks.php?id=<?php echo $T['id']; ?>"><?php
                     echo $title; ?></a>
                      <?php
