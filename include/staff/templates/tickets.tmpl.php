@@ -112,20 +112,20 @@ if ($total) { ?>
         <tr>
             <?php
             if (0) {?>
-            <th width="4%">&nbsp;</th>
+            <th width="2%">&nbsp;</th>
             <?php
             } ?>
-            <th width="10%"><?php echo __('Ticket'); ?></th>
-            <th width="18%"><?php echo __('Last Updated'); ?></th>
+            <th width="8%"><?php echo __('Ticket'); ?></th>
+            <th width="12%"><?php echo __('Last Updated'); ?></th>
             <th width="8%"><?php echo __('Status'); ?></th>
-            <th width="30%"><?php echo __('Subject'); ?></th>
+            <th width="40%"><?php echo __('Subject'); ?></th>
             <?php
             if ($user) { ?>
-            <th width="15%"><?php echo __('Department'); ?></th>
+            <th width="10%"><?php echo __('Department'); ?></th>
             <th width="15%"><?php echo __('Assignee'); ?></th>
             <?php
             } else { ?>
-            <th width="30%"><?php echo __('User'); ?></th>
+            <th width="25%"><?php echo __('User'); ?></th>
             <?php
             } ?>
         </tr>
@@ -181,7 +181,7 @@ if ($total) { ?>
             <td nowrap><?php echo Format::datetime($T['lastupdate']); ?></td>
             <td><?php echo $status; ?></td>
             <td><a class="truncate <?php if ($flag) { ?> Icon <?php echo $flag; ?>Ticket" title="<?php echo ucfirst($flag); ?> Ticket<?php } ?>"
-                style="max-width: 230px;"
+                style="max-width: 390px;"
                 href="tickets.php?id=<?php echo $T['ticket_id']; ?>"><?php echo $subject; ?></a>
                  <?php
                     if ($T['attachment_count'])
@@ -207,7 +207,7 @@ if ($total) { ?>
                 echo Format::htmlchars($assigned); ?></span></td>
             <?php
             } else { ?>
-            <td><a class="truncate" style="max-width:250px" href="users.php?id="<?php
+            <td><a class="truncate" style="max-width:300px" href="users.php?id="<?php
                 echo $T['user_id']; ?>><?php echo Format::htmlchars($T['user__name']);
                     ?> <em>&lt;<?php echo Format::htmlchars($T['user__default_email__address']);
                 ?>&gt;</em></a>

@@ -65,9 +65,9 @@ if ($count) { ?>
             <th width="2%">&nbsp;</th>
             <?php
             } ?>
-            <th width="5%"><?php echo __('Number'); ?></th>
+            <th width="3%"><?php echo __('Number'); ?></th>
             <th width="10%"><?php echo __('Date'); ?></th>
-            <th width="10%"><?php echo __('Status'); ?></th>
+            <th width="8%"><?php echo __('Status'); ?></th>
             <th width="45%"><?php echo __('Title'); ?></th>
             <th width="10%"><?php echo __('Department'); ?></th>
             <th width="15%"><?php echo __('Assignee'); ?></th>        
@@ -89,7 +89,7 @@ if ($count) { ?>
 
         $status = $task->isOpen() ? '<strong>'.__('Open').'</strong>': __('Closed');
 
-        $title = Format::htmlchars(Format::truncate($task->getTitle(),40));
+        $title = Format::htmlchars(Format::truncate($task->getTitle(),60));
         $threadcount = $task->getThread() ?
             $task->getThread()->getNumEntries() : 0;
 
@@ -105,7 +105,7 @@ if ($count) { ?>
                 value="<?php echo $id; ?>" <?php echo $sel?'checked="checked"':''; ?>>
             </td>
             <td align="center" nowrap>
-              <a class="Icon no-pjax preview"
+              <a class="no-pjax preview"
                 title="<?php echo __('Preview Task'); ?>"
                 href="<?php echo $viewhref; ?>"
                 data-preview="#tasks/<?php echo $id; ?>/preview"

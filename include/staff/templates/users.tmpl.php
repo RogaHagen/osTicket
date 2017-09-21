@@ -79,11 +79,11 @@ if ($num) { ?>
  <table class="list" border="0" cellspacing="1" cellpadding="0" width="940">
     <thead>
         <tr>
-            <th width="4%">&nbsp;</th>
-            <th width="38%"><?php echo __('Name'); ?></th>
+            <th width="2%">&nbsp;</th>
+            <th width="35%"><?php echo __('Name'); ?></th>
             <th width="35%"><?php echo __('Email'); ?></th>
-            <th width="8%"><?php echo __('Status'); ?></th>
-            <th width="15%"><?php echo __('Created'); ?></th>
+            <th width="10%"><?php echo __('Status'); ?></th>
+            <th width="10%"><?php echo __('Created'); ?></th>
         </tr>
     </thead>
     <tbody>
