@@ -2938,15 +2938,15 @@ a.attachment {
 .select2-search__field{-webkit-appearance: textfield;}
 
 th.checkbox {width: 3%;}
-th.datelong {width: 13%;}
-th.dateshort {width: 10%;}
-th.department {width: 10%;}
+th.datelong {width: 12%;}
+th.dateshort {width: 8%;}
+th.department {width: 8%;}
 th.agent {width: 15%;}
-th.user {width: 13%;}
+th.user {width: 15%;}
 th.email {width: auto;}
 th.usercount {width: 5%;}
 th.task {width: 5%;}
-th.ticket {width: 5%;}
+th.ticket {width: 9%;}
 th.priority {width: 5%;}
-th.status {width: 5%;}
+th.status {width: 11%;}
 th.title {width: auto;}
