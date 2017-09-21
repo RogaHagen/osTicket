@@ -121,9 +121,9 @@ implements AuthenticatedUser, EmailContact, TemplateVariable {
     function getVar($tag) {
         switch ($tag) {
         case 'mobile':
-            return Format::phone($this->ht['mobile']);
+            return Format::htmlchars($this->ht['mobile']);
         case 'phone':
-            return Format::phone($this->ht['phone']);
+            return Format::htmlchars($this->ht['phone']);
         }
     }
 
@@ -655,9 +655,9 @@ implements AuthenticatedUser, EmailContact, TemplateVariable {
         $this->firstname = $vars['firstname'];
         $this->lastname = $vars['lastname'];
         $this->email = $vars['email'];
-        $this->phone = Format::phone($vars['phone']);
+        $this->phone = Format::htmlchars($vars['phone']);
         $this->phone_ext = $vars['phone_ext'];
-        $this->mobile = Format::phone($vars['mobile']);
+        $this->mobile = Format::htmlchars($vars['mobile']);
         $this->signature = Format::sanitize($vars['signature']);
         $this->timezone = $vars['timezone'];
         $this->locale = $vars['locale'];

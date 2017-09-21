@@ -2950,3 +2950,6 @@ th.ticket {width: 9%;}
 th.priority {width: 5%;}
 th.status {width: 11%;}
 th.title {width: auto;}
+th.phone {width: 15%;}
+th.phoneext {width: 10%;}
+th.mobile {width: 15%;}
