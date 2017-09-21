@@ -112,20 +112,20 @@ if ($total) { ?>
         <tr>
             <?php
             if (0) {?>
-            <th width="2%">&nbsp;</th>
+            <th class="checkbox">&nbsp;</th>
             <?php
             } ?>
-            <th width="8%"><?php echo __('Ticket'); ?></th>
-            <th width="12%"><?php echo __('Last Updated'); ?></th>
-            <th width="8%"><?php echo __('Status'); ?></th>
-            <th width="40%"><?php echo __('Subject'); ?></th>
+            <th class="ticket"><?php echo __('Ticket'); ?></th>
+            <th class="datelong"><?php echo __('Last Updated'); ?></th>
+            <th class="status"><?php echo __('Status'); ?></th>
+            <th class="title"><?php echo __('Subject'); ?></th>
             <?php
             if ($user) { ?>
-            <th width="10%"><?php echo __('Department'); ?></th>
-            <th width="15%"><?php echo __('Assignee'); ?></th>
+            <th class="department"><?php echo __('Department'); ?></th>
+            <th class="agent"><?php echo __('Assignee'); ?></th>
             <?php
             } else { ?>
-            <th width="25%"><?php echo __('User'); ?></th>
+            <th class="user"><?php echo __('User'); ?></th>
             <?php
             } ?>
         </tr>

@@ -62,15 +62,15 @@ if ($count) { ?>
         <tr>
             <?php
             if (1) {?>
-            <th width="2%">&nbsp;</th>
+            <th class="checkbox">&nbsp;</th>
             <?php
             } ?>
-            <th width="3%"><?php echo __('Number'); ?></th>
-            <th width="10%"><?php echo __('Date'); ?></th>
-            <th width="8%"><?php echo __('Status'); ?></th>
-            <th width="45%"><?php echo __('Title'); ?></th>
-            <th width="10%"><?php echo __('Department'); ?></th>
-            <th width="15%"><?php echo __('Assignee'); ?></th>        
+            <th class="task"><?php echo __('Number'); ?></th>
+            <th class="datelong"><?php echo __('Date'); ?></th>
+            <th class="status"><?php echo __('Status'); ?></th>
+            <th class="title"><?php echo __('Title'); ?></th>
+            <th class="department"><?php echo __('Department'); ?></th>
+            <th class="agent"><?php echo __('Assignee'); ?></th>        
         </tr>
     </thead>
     <tbody class="tasks">

@@ -31,26 +31,26 @@ $sort_options = array(
 
 $queue_columns = array(
         'number' => array(
-            'width' => '5%',
+            'class' => 'task',
             'heading' => __('Number'),
             ),
         'date' => array(
-            'width' => '10%',
+            'class' => 'datelong',
             'heading' => __('Date Created'),
             'sort_col' => 'created',
             ),
         'title' => array(
-            'width' => '53%',
+            'class' => 'title',
             'heading' => __('Title'),
             'sort_col' => 'cdata__title',
             ),
         'dept' => array(
-            'width' => '15%',
+            'class' => 'department',
             'heading' => __('Department'),
             'sort_col'  => 'dept__name',
             ),
         'assignee' => array(
-            'width' => '15%',
+            'class' => 'agent',
             'heading' => __('Agent'),
             ),
         );
@@ -335,7 +335,7 @@ if ($thisstaff->hasPerm(Task::PERM_DELETE, false)) {
     <thead>
         <tr>
             <?php if ($thisstaff->canManageTickets()) { ?>
-	        <th width="2%">&nbsp;</th>
+	        <th class="checkbox" offwidth="2%">&nbsp;</th>
             <?php } ?>
 
             <?php
@@ -344,9 +344,9 @@ if ($thisstaff->hasPerm(Task::PERM_DELETE, false)) {
             $qstr = Http::build_query($args);
             // Show headers
             foreach ($queue_columns as $k => $column) {
-                echo sprintf( '<th width="%s"><a href="?sort=%s&dir=%s&%s"
+                echo sprintf( '<th class="%s"><a href="?sort=%s&dir=%s&%s"
                         class="%s">%s</a></th>',
-                        $column['width'],
+                        $column['class'],
                         $column['sort'] ?: $k,
                         $column['sort_dir'] ? 0 : 1,
                         $qstr,
