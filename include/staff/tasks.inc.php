@@ -335,7 +335,7 @@ if ($thisstaff->hasPerm(Task::PERM_DELETE, false)) {
     <thead>
         <tr>
             <?php if ($thisstaff->canManageTickets()) { ?>
-	        <th class="checkbox" offwidth="2%">&nbsp;</th>
+	        <th class="checkbox">&nbsp;</th>
             <?php } ?>
 
             <?php
