@@ -548,16 +548,16 @@ return false;">
                     data-preview="#tickets/<?php echo $T['ticket_id']; ?>/preview"
                     ><?php echo $tid; ?></a></td>
                 <td align="center" nowrap><?php echo Format::datetime($T[$date_col ?: 'lastupdate']) ?: $date_fallback; ?></td>
-                <td><div style="max-width: <?php
-                    $base = 440;
+                <td><div style="--delta: <?php
+                    $delta = 0;
                     // Make room for the paperclip and some extra
-                    if ($T['attachment_count']) $base -= 18;
+                    if ($T['attachment_count']) $delta += 18;
                     // Assume about 8px per digit character
-                    if ($threadcount > 1) $base -= 20 + ((int) log($threadcount, 10) + 1) * 8;
+                    if ($threadcount > 1) $delta += 20 + ((int) log($threadcount, 10) + 1) * 8;
                     // Make room for overdue flag and friends
-                    if ($flag) $base -= 20;
-                    echo $base; ?>px; max-height: 1.2em"
-                    class="<?php if ($flag) { ?>Icon <?php echo $flag; ?>Ticket <?php } ?>link truncate"
+                    if ($flag) $delta += 20;
+                    echo $delta; ?>px; max-height: 1.2em"
+                    class="<?php if ($flag) { ?>Icon <?php echo $flag; ?>Ticket <?php } ?>tc-title-main link truncate"
                     <?php if ($flag) { ?> title="<?php echo ucfirst($flag); ?> Ticket" <?php } ?>
                     href="tickets.php?id=<?php echo $T['ticket_id']; ?>"><?php echo $subject; ?></div>
 <?php               if ($T['attachment_count'])
@@ -573,8 +573,8 @@ return false;">
                     if ($T['collab_count'])
                         echo '<span class="pull-right faded-more" data-toggle="tooltip" title="'
                             .$T['collab_count'].'"><i class="icon-group"></i></span>';
-                    ?><span class="truncate" style="max-width:<?php
-                        echo $T['collab_count'] ? '150px' : '170px'; ?>"><?php
+                    ?><span class="tc-user-main truncate" style="--delta:<?php
+                        echo $T['collab_count'] ? '20px' : '0px'; ?>"><?php
                     $un = new UsersName($T['user__name']);
                         echo Format::htmlchars($un);
                     ?></span></div></td>
@@ -591,7 +591,7 @@ return false;">
                 <?php
                 }
                 ?>
-                <td nowrap><span class="truncate" style="max-width: 169px"><?php
+                <td nowrap><span class="tc-agent truncate"><?php
                     if ($showassigned) {
                         if ($T['staff_id']) echo '<span class="Icon staffAssigned">';
                         elseif ($T['team_id']) echo '<span class="Icon teamAssigned">';

@@ -180,8 +180,7 @@ if ($total) { ?>
             ?></td>
             <td nowrap><?php echo Format::datetime($T['lastupdate']); ?></td>
             <td><?php echo $status; ?></td>
-            <td><a class="truncate <?php if ($flag) { ?> Icon <?php echo $flag; ?>Ticket" title="<?php echo ucfirst($flag); ?> Ticket<?php } ?>"
-                style="max-width: 390px;"
+            <td><a class="tc-title truncate <?php if ($flag) { ?> Icon <?php echo $flag; ?>Ticket" title="<?php echo ucfirst($flag); ?> Ticket<?php } ?>"
                 href="tickets.php?id=<?php echo $T['ticket_id']; ?>"><?php echo $subject; ?></a>
                  <?php
                     if ($T['attachment_count'])
@@ -201,13 +200,13 @@ if ($total) { ?>
             <?php
             if ($user) {
                 $dept = Dept::getLocalById($T['dept_id'], 'name', $T['dept__name']); ?>
-            <td><span class="truncate" style="max-wdith:125px"><?php
+            <td><span class="tc-department truncate"><?php
                 echo Format::htmlchars($dept); ?></span></td>
-            <td><span class="truncate" style="max-width:125px"><?php
+            <td><span class="tc-agent truncate"><?php
                 echo Format::htmlchars($assigned); ?></span></td>
             <?php
             } else { ?>
-            <td><a class="truncate" style="max-width:300px" href="users.php?id="<?php
+            <td><a class="tc-user truncate" href="users.php?id="<?php
                 echo $T['user_id']; ?>><?php echo Format::htmlchars($T['user__name']);
                     ?> <em>&lt;<?php echo Format::htmlchars($T['user__default_email__address']);
                 ?>&gt;</em></a>

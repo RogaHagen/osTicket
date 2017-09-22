@@ -2949,7 +2949,7 @@ th.email {width: auto;}
 th.usercount {width: 5%;}
 th.task {width: 5%;}
 th.ticket {width: 80px;} /* 9% */
-th.status {width: 11%;}
+th.status {width: 90px;} /* 11% */
 th.priority {width: 70px;} /* 5% */
 th.title {width: auto;}
 th.phone {width: 15%;}
@@ -2973,16 +2973,19 @@ td.phone {text-align: left; white-space:nowrap}
 td.phoneext {text-align: left; white-space:nowrap}
 td.mobile {text-align: left; white-space:nowrap}
 
-.tc-title {
+.tc-title-main {
 	max-width: 430px;
 	--delta: 0px;
 	--width: 430px;
 	max-width: calc(var(--width) - var(--delta));
 }
-.tc-user {
+.tc-user-main {
 	max-width: 155px;
 	--delta: 0px;
 	--width: 155px;
 	max-width: calc(var(--width) - var(--delta));
 }
-.tc-agent { max-width: 155px; }
+.tc-title {max-width: 390px; }
+.tc-user {max-width: 310px; }
+.tc-agent {max-width: 155px; }
+.tc-department {max-width: 155px; }
