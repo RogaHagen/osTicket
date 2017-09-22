@@ -2979,6 +2979,12 @@ td.mobile {text-align: left; white-space:nowrap}
 	--width: 430px;
 	max-width: calc(var(--width) - var(--delta));
 }
+.tc-title-search {
+	max-width: 410px;
+	--delta: 0px;
+	--width: 410px;
+	max-width: calc(var(--width) - var(--delta));
+}
 .tc-user-main {
 	max-width: 155px;
 	--delta: 0px;

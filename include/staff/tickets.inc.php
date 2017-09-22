@@ -556,11 +556,14 @@ return false;">
                     if ($threadcount > 1) $delta += 20 + ((int) log($threadcount, 10) + 1) * 8;
                     // Make room for overdue flag and friends
                     if ($flag) $delta += 20;
+                    $tctitle = '';
+                    ($search && !$status) ? $tctitle = 'tc-title-main' : $tctitle = 'tc-title-search'; 
                     echo $delta; ?>px; max-height: 1.2em"
-                    class="<?php if ($flag) { ?>Icon <?php echo $flag; ?>Ticket <?php } ?>tc-title-main link truncate"
+                    class="<?php echo ($search && !$status) ? 'tc-title-search' : 'tc-title-main'; ?> link truncate
+                    <?php if ($flag) { ?>Icon <?php echo $flag; ?>Ticket <?php } ?>"
                     <?php if ($flag) { ?> title="<?php echo ucfirst($flag); ?> Ticket" <?php } ?>
                     href="tickets.php?id=<?php echo $T['ticket_id']; ?>"><?php echo $subject; ?></div>
-<?php               if ($T['attachment_count'])
+                    <?php if ($T['attachment_count'])
                         echo '<i class="small icon-paperclip icon-flip-horizontal" data-toggle="tooltip" title="'
                             .$T['attachment_count'].'"></i>';
                     if ($threadcount > 1) { ?>
