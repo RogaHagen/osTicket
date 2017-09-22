@@ -556,8 +556,6 @@ return false;">
                     if ($threadcount > 1) $delta += 20 + ((int) log($threadcount, 10) + 1) * 8;
                     // Make room for overdue flag and friends
                     if ($flag) $delta += 20;
-                    $tctitle = '';
-                    ($search && !$status) ? $tctitle = 'tc-title-main' : $tctitle = 'tc-title-search'; 
                     echo $delta; ?>px; max-height: 1.2em"
                     class="<?php echo ($search && !$status) ? 'tc-title-search' : 'tc-title-main'; ?> link truncate
                     <?php if ($flag) { ?>Icon <?php echo $flag; ?>Ticket <?php } ?>"
