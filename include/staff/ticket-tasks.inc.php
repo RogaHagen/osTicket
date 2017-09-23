@@ -80,14 +80,17 @@ if ($count) { ?>
         $access = $task->checkStaffPerm($thisstaff);
         $assigned='';
         if ($task->staff)
-            $assigned=sprintf('<span class="Icon staffAssigned">%s</span>',
+            $assigned=sprintf('<i class="icon-center faded-more icon-fixed-width icon-user"></i><span>%s</span>',
                     Format::truncate($task->staff->getName(),40));
 
         elseif ($task->getAssigned())
-            $assigned=sprintf('<span class="Icon teamAssigned">%s</span>',
+            $assigned=sprintf('<i class="icon-center faded-more icon-fixed-width icon-group"></i><span>%s</span>',
                     Format::truncate($task->getAssigned(),40));
 
-        $status = $task->isOpen() ? '<strong>'.__('Open').'</strong>': __('Closed');
+        $status = $task->isOpen() ? '<i class="icon-center faded-more icon-fixed-width icon-unchecked"
+                            data-toggle="tooltip" title data-original-title="Die Aufgabe ist offen"></i><span><strong>'.__('Open').'</strong></span>'
+                            : '<i class="icon-center faded-more icon-fixed-width icon-check"
+                            data-toggle="tooltip" title data-original-title="Die Aufgabe ist erledigt"></i><span>'.__('Closed').'</span>';
 
         $title = Format::htmlchars(Format::truncate($task->getTitle(),60));
         $threadcount = $task->getThread() ?
@@ -125,15 +128,17 @@ if ($count) { ?>
                      echo $title;
                 }
                     if ($threadcount>1)
-                        echo "<small>($threadcount)</small>&nbsp;".'<i
-                            class="icon-fixed-width icon-comments-alt"></i>&nbsp;';
+                        echo '<i class="faded-more icon-fixed-width icon-comments"
+                            data-toggle="tooltip" title="'.$threadcount.' Vorgänge"></i>';
                     if ($row['collaborators'])
-                        echo '<i class="icon-fixed-width icon-group faded"></i>&nbsp;';
+                        echo '<i class="faded-more icon-fixed-width icon-group"
+                            data-toggle="tooltip" title="'.$row['collaborators'].' beteiligte Personen"></i>';
                     if ($row['attachments'])
-                        echo '<i class="icon-fixed-width icon-paperclip"></i>&nbsp;';
+                        echo '<i class="faded-more icon-fixed-width icon-file-text"
+                            data-toggle="tooltip" title="'.$row['attachments'].' Dateianhänge"></i>';
                 ?>
             </td>
-            <td><?php echo Format::truncate($task->dept->getName(), 40); ?></td>
+            <td><?php echo '<i class="icon-center faded-more icon-fixed-width icon-suitcase"></i>'.Format::truncate($task->dept->getName(), 40); ?></td>
             <td>&nbsp;<?php echo $assigned; ?></td>
         </tr>
    <?php

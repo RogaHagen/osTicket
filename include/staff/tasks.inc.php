@@ -378,10 +378,10 @@ if ($thisstaff->hasPerm(Task::PERM_DELETE, false)) {
             $assinee ='';
             if ($T['staff_id']) {
                 $staff =  new AgentsName($T['staff__firstname'].' '.$T['staff__lastname']);
-                $assignee = sprintf('<span class="Icon staffAssigned">%s</span>',
+                $assignee = sprintf('<i class="icon-center faded-more icon-fixed-width icon-user"></i><span>%s</span>',
                     Format::truncate((string) $staff, 40));
             } elseif($T['team_id']) {
-                $assignee = sprintf('<span class="Icon teamAssigned">%s</span>',
+                $assignee = sprintf('<i class="icon-center faded-more icon-fixed-width icon-group"></i><span>%s</span>',
                     Format::truncate(Team::getLocalById($T['team_id'], 'name', $T['team__name']),40));
             }
 
@@ -422,18 +422,20 @@ if ($thisstaff->hasPerm(Task::PERM_DELETE, false)) {
                 <?php } ?>
                 <a <?php if ($flag) { ?> class="Icon <?php echo $flag; ?>Ticket" title="<?php echo ucfirst($flag); ?> Ticket" <?php } ?>
                     href="tasks.php?id=<?php echo $T['id']; ?>"><?php
-                    echo $title; ?></a>
+                    echo $title; ?></a><span class="pull-right">
                      <?php
                         if ($threadcount>1)
-                            echo "<small>($threadcount)</small>&nbsp;".'<i
-                                class="icon-fixed-width icon-comments-alt"></i>&nbsp;';
+                            echo '<i class="faded-more icon-fixed-width icon-comments"
+                                data-toggle="tooltip" title="'.$threadcount.' Vorgänge"></i>';
                         if ($T['collab_count'])
-                            echo '<i class="icon-fixed-width icon-group faded"></i>&nbsp;';
+                            echo '<i class="faded-more icon-fixed-width icon-group"
+                                data-toggle="tooltip" title="'.$T['collab_count'].' beteiligte Personen"></i>';
                         if ($T['attachment_count'])
-                            echo '<i class="icon-fixed-width icon-paperclip"></i>&nbsp;';
-                    ?>
+                            echo '<i class="faded-more icon-fixed-width icon-file-text"
+                                data-toggle="tooltip" title="'.$T['attachment_count'].' Dateianhänge"></i>';
+                    ?></span>
                 </td>
-                <td nowrap>&nbsp;<?php echo Format::truncate($dept, 40); ?></td>
+                <td nowrap>&nbsp;<?php echo '<i class="icon-center faded-more icon-fixed-width icon-suitcase"></i>'.Format::truncate($dept, 40); ?></td>
                 <td nowrap>&nbsp;<?php echo $assignee; ?></td>
             </tr>
             <?php

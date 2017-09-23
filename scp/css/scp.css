@@ -67,10 +67,15 @@ div#header a {
     color: #444;
     color: rgba(0,0,0,0.6);
 }
+
 .faded-more {
     color: #aaa;
-    color: rgba(0,0,0,0.35);
+    color: rgba(0,0,0,0.4);
 }
+.icon-center{
+    text-align: center !important;
+}
+
 time[title]:hover {
     text-decoration: underline;
 }
@@ -427,7 +432,7 @@ a.Icon:hover {
 .Icon.newstaff { background:url(../images/icons/new_user.gif) 0 0 no-repeat; }
 .Icon.newteam { background:url(../images/icons/new_team.gif) 0 0 no-repeat; }
 
-.Icon.Ticket { background:url(../images/icons/ticket.gif) 0 2px no-repeat; }
+.Icon.Ticket { background:url(../images/icons/ticket_source_other.gif) 0 0 no-repeat; }
 .Icon.webTicket { background:url(../images/icons/ticket_source_web.gif) 0 0 no-repeat; }
 .Icon.emailTicket { background:url(../images/icons/ticket_source_email.gif) 0 0 no-repeat; }
 .Icon.phoneTicket { background:url(../images/icons/ticket_source_phone.gif) 0 0 no-repeat; }
@@ -2939,7 +2944,10 @@ a.attachment {
 
 /* formating of data tables like tasks, tickets, users, staff, companies */
 
-th.checkbox {width: 25px;} /* 3% */
+th.checkbox {
+    text-align: center !important;
+    width: 25px; /* 3% */
+}
 th.datelong {width: 140px;} /* 12% */
 th.dateshort {width: 8%;}
 th.department {width: 155px;} /* 15% */
@@ -2949,7 +2957,7 @@ th.email {width: auto;}
 th.usercount {width: 5%;}
 th.task {width: 5%;}
 th.ticket {width: 80px;} /* 9% */
-th.status {width: 90px;} /* 11% */
+th.status {width: 110px;} /* 11% */
 th.priority {width: 70px;} /* 5% */
 th.title {width: auto;}
 th.phone {width: 15%;}
@@ -2974,15 +2982,15 @@ td.phoneext {text-align: left; white-space:nowrap}
 td.mobile {text-align: left; white-space:nowrap}
 
 .tc-title-main {
-	max-width: 430px;
+	max-width: 427px;
 	--delta: 0px;
-	--width: 430px;
+	--width: 427px;
 	max-width: calc(var(--width) - var(--delta));
 }
 .tc-title-search {
-	max-width: 410px;
+	max-width: 384px;
 	--delta: 0px;
-	--width: 410px;
+	--width: 384px;
 	max-width: calc(var(--width) - var(--delta));
 }
 .tc-user-main {
@@ -2995,3 +3003,5 @@ td.mobile {text-align: left; white-space:nowrap}
 .tc-user {max-width: 310px; }
 .tc-agent {max-width: 155px; }
 .tc-department {max-width: 155px; }
+
+.icon-red{color:red;}

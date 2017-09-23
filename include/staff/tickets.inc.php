@@ -374,7 +374,7 @@ TicketForm::ensureDynamicDataView();
 // ------------------------------------------------------------
 $tickets->values('lock__staff_id', 'staff_id', 'isoverdue', 'team_id',
 'ticket_id', 'number', 'cdata__subject', 'user__default_email__address',
-'source', 'cdata__:priority__priority_color', 'cdata__:priority__priority_desc', 'status_id', 'status__name', 'status__state', 'dept_id', 'dept__name', 'user__name', 'lastupdate', 'isanswered', 'staff__firstname', 'staff__lastname', 'team__name');
+'source', 'cdata__:priority__priority_color', 'cdata__:priority__priority_desc', 'cdata__:priority__priority_icon', 'status_id', 'status__name', 'status__state', 'dept_id', 'dept__name', 'user__name', 'lastupdate', 'isanswered', 'staff__firstname', 'staff__lastname', 'team__name');
 
 // Add in annotations
 $tickets->annotate(array(
@@ -459,7 +459,7 @@ return false;">
         <tr>
             <?php
             if ($thisstaff->canManageTickets()) { ?>
-	        <th class="checkbox">&nbsp;</th>
+	        <th class="checkbox"><i class="icon-fixed-width icon-check-sign" data-toggle="tooltip" title=""></i>&nbsp;</th>
             <?php } ?>
 
             <?php
@@ -505,13 +505,14 @@ return false;">
         $ids=($errors && $_POST['tids'] && is_array($_POST['tids']))?$_POST['tids']:null;
         foreach ($tickets as $T) {
             $total += 1;
+                $ticket_source=$T['source'];
                 $tag=$T['staff_id']?'assigned':'openticket';
                 $flag=null;
                 if($T['lock__staff_id'] && $T['lock__staff_id'] != $thisstaff->getId())
                     $flag='locked';
                 elseif($T['isoverdue'])
                     $flag='overdue';
-
+                $displaystatus=TicketStatus::getLocalById($T['status_id'], 'value', $T['status__name']);
                 $lc='';
                 if ($showassigned) {
                     if ($T['staff_id'])
@@ -536,78 +537,146 @@ return false;">
                     if($ids && in_array($T['ticket_id'], $ids))
                         $sel=true;
                     ?>
+                <!-- Checkbox###################################################################### -->
                 <td align="center" class="nohover">
                     <input class="ckb" type="checkbox" name="tids[]"
                         value="<?php echo $T['ticket_id']; ?>" <?php echo $sel?'checked="checked"':''; ?>>
                 </td>
                 <?php } ?>
-                <td title="<?php echo $T['user__default_email__address']; ?>" nowrap>
-                  <a class="Icon <?php echo strtolower($T['source']); ?>Ticket preview"
-                    title="Preview Ticket"
+                <!-- Ticket######################################################################## -->
+                <td nowrap>
+                    <?php
+                    if (!strcasecmp($ticket_source,'web')) {
+                        echo '<i class="icon-center faded-more icon-fixed-width icon-globe"
+                        data-toggle="tooltip" title="Das Ticket wurde über die Website eingeliefert"></i>';
+                    }elseif (!strcasecmp($ticket_source,'email')) {
+                        echo '<i class="icon-center faded-more icon-fixed-width icon-envelope"
+                        data-toggle="tooltip" title="Das Ticket wurde per E-Mail eingeliefert"></i>';
+                    }elseif (!strcasecmp($ticket_source,'phone')) {
+                        echo '<i class="icon-center faded-more icon-fixed-width icon-phone"
+                        data-toggle="tooltip" title="Das Ticket wurde nach einem Telefonat erfasst"></i>';
+                    }elseif (!strcasecmp($ticket_source,'api')) {
+                        echo '<i class="icon-center faded-more icon-fixed-width icon-gear"
+                        data-toggle="tooltip" title="Das Ticket wurde durch die API eingeliefert"></i>';
+                    }elseif (!strcasecmp($ticket_source,'other')) {
+                        echo '<i class="icon-center faded-more icon-fixed-width icon-pencil"
+                        data-toggle="tooltip" title="Das Ticket wurde durch eine andere Quelle eingericht"></i>';
+                    }
+                    ?>
+                    <a class="preview" title="Preview Ticket"
                     href="tickets.php?id=<?php echo $T['ticket_id']; ?>"
                     data-preview="#tickets/<?php echo $T['ticket_id']; ?>/preview"
                     ><?php echo $tid; ?></a></td>
-                <td align="center" nowrap><?php echo Format::datetime($T[$date_col ?: 'lastupdate']) ?: $date_fallback; ?></td>
+                <!-- Date########################################################################## -->
+                <td align="left" nowrap <?php if ($flag == 'locked') echo 'style="background-color:#FEE7E7;"';?>>
+                    <?php
+                    if ($status == 'closed'){
+                        if (!strcasecmp($displaystatus,'gelöst')) {
+                            echo '<i class="icon-center faded-more icon-fixed-width icon-check"
+                            data-toggle="tooltip" title="Das Ticket ist gelöst"></i>';
+                        }elseif (!strcasecmp($displaystatus,'geschlossen')){
+                            echo '<i class="icon-center faded-more icon-fixed-width icon-lock"
+                                data-toggle="tooltip" title="Das Ticket ist geschlossen"></i>';
+                        }
+                    }elseif (($status == 'closed') or ($displaystatus == 'Offen')){
+                        if ($flag == 'overdue'){
+                            echo '<i class="icon-center icon-fixed-width icon-warning-sign"
+                            data-toggle="tooltip" title="Das Ticket ist überfällig"></i>';
+                        }elseif ($flag == 'locked'){
+                            echo '<i class="icon-center icon-red icon-fixed-width icon-key"
+                            data-toggle="tooltip" title="Das Ticket ist momentan gesperrt"></i>';
+                        }elseif (!$T['isanswered']) {
+                            echo '<i class="icon-center faded-more icon-fixed-width icon-folder-close"
+                            data-toggle="tooltip" title="Das Ticket ist offen und unbeantwortet"></i>';
+                        }elseif ($T['isanswered']) {
+                            echo '<i class="icon-center faded-more icon-fixed-width icon-folder-open"
+                            data-toggle="tooltip" title="Das Ticket ist offen und beantwortet"></i>';
+                        }
+                    }
+                    echo Format::datetime($T[$date_col ?: 'lastupdate']) ?: $date_fallback;
+                    ?>
+                </td>
+                <!-- Title######################################################################### -->
                 <td><div style="--delta: <?php
                     $delta = 0;
-                    // Make room for the paperclip and some extra
-                    if ($T['attachment_count']) $delta += 18;
-                    // Assume about 8px per digit character
-                    if ($threadcount > 1) $delta += 20 + ((int) log($threadcount, 10) + 1) * 8;
-                    // Make room for overdue flag and friends
-                    if ($flag) $delta += 20;
+                    if ($T['attachment_count']) $delta += 20;
+                    if ($T['collab_count']) $delta += 20;
+                    if ($threadcount > 1) $delta += 20;
                     echo $delta; ?>px; max-height: 1.2em"
-                    class="<?php echo ($search && !$status) ? 'tc-title-search' : 'tc-title-main'; ?> link truncate
-                    <?php if ($flag) { ?>Icon <?php echo $flag; ?>Ticket <?php } ?>"
-                    <?php if ($flag) { ?> title="<?php echo ucfirst($flag); ?> Ticket" <?php } ?>
-                    href="tickets.php?id=<?php echo $T['ticket_id']; ?>"><?php echo $subject; ?></div>
-                    <?php if ($T['attachment_count'])
-                        echo '<i class="small icon-paperclip icon-flip-horizontal" data-toggle="tooltip" title="'
-                            .$T['attachment_count'].'"></i>';
-                    if ($threadcount > 1) { ?>
-                        <span class="pull-right faded-more"><i class="icon-comments-alt"></i>
-                            <small><?php echo $threadcount; ?></small>
-                        </span>
-                    <?php } ?>
-                </td>
-                <td nowrap><div><?php
+                    class="<?php echo ($search && !$status) ? 'tc-title-search' : 'tc-title-main'; ?> link truncate"
+                    href="tickets.php?id=<?php echo $T['ticket_id']; ?>">
+                    <?php echo $subject; ?>
+                    </div>
+                    <span class="pull-right faded-more">
+                    <?php
+                    if ($T['attachment_count'])
+                        echo '<i class="faded-more icon-fixed-width icon-file-text"
+                            data-toggle="tooltip" title="'.$T['attachment_count'].' Dateianhänge"></i>';
+                    if ($threadcount > 1)
+                        echo '<i class="faded-more icon-fixed-width icon-comments"
+                            data-toggle="tooltip" title="'.$threadcount.' Vorgänge"></i>';
                     if ($T['collab_count'])
-                        echo '<span class="pull-right faded-more" data-toggle="tooltip" title="'
-                            .$T['collab_count'].'"><i class="icon-group"></i></span>';
-                    ?><span class="tc-user-main truncate" style="--delta:<?php
+                        echo '<i class="faded-more icon-fixed-width icon-group"
+                            data-toggle="tooltip" title="'.$T['collab_count'].' beteiligte Personen"></i>';
+                    ?>
+                    </span>
+                </td>
+                <!-- User######################################################################### -->
+                <td nowrap><div>
+                    <span class="tc-user-main truncate" style="--delta:<?php
                         echo $T['collab_count'] ? '20px' : '0px'; ?>"><?php
-                    $un = new UsersName($T['user__name']);
+                        $un = new UsersName($T['user__name']);
+                        echo '<i class="faded-more icon-fixed-width icon-envelope"
+                            data-toggle="tooltip" title="Eingereicht von '.$un.' ('.$T['user__default_email__address'].')"></i>';
                         echo Format::htmlchars($un);
                     ?></span></div></td>
                 <?php
                 if($search && !$status){
-                    $displaystatus=TicketStatus::getLocalById($T['status_id'], 'value', $T['status__name']);
-                    if(!strcasecmp($T['status__state'],'open'))
+                    echo "<td>";
+                    if (!strcasecmp($displaystatus,'offen')){
                         $displaystatus="<b>$displaystatus</b>";
-                    echo "<td>$displaystatus</td>";
+                        echo '<i class="icon-center faded-more icon-fixed-width icon-unchecked"
+                            data-toggle="tooltip" title="Das Ticket ist offen"></i>';
+                    }elseif (!strcasecmp($displaystatus,'gelöst')){
+                        echo '<i class="icon-center faded-more icon-fixed-width icon-check"
+                            data-toggle="tooltip" title="Das Ticket ist gelöst"></i>';
+                    }elseif (!strcasecmp($displaystatus,'geschlossen')){
+                        echo '<i class="icon-center faded-more icon-fixed-width icon-lock"
+                            data-toggle="tooltip" title="Das Ticket ist geschlossen"></i>';
+                    }
+                    echo "$displaystatus</td>";
                 } else { ?>
-                <td class="nohover" align="center"
+                <!-- Proirity######################################################################### -->
+                <td class="nohover" align="left"
                     style="background-color:<?php echo $T['cdata__:priority__priority_color']; ?>;">
-                    <?php echo $T['cdata__:priority__priority_desc']; ?></td>
+                    <?php
+                    echo '<i class="faded-more icon-center icon-fixed-width '.$T['cdata__:priority__priority_icon'].'"
+                        data-toggle="tooltip" title=""></i>';
+                    echo $T['cdata__:priority__priority_desc'];
+                    ?></td>
                 <?php
                 }
                 ?>
+                <!-- Agent######################################################################### -->
                 <td nowrap><span class="tc-agent truncate"><?php
                     if ($showassigned) {
-                        if ($T['staff_id']) echo '<span class="Icon staffAssigned">';
-                        elseif ($T['team_id']) echo '<span class="Icon teamAssigned">';
+                        if ($T['staff_id'])
+                            echo '<i class="icon-center faded-more icon-fixed-width icon-user"></i>';
+                        elseif ($T['team_id'])
+                            echo '<i class="icon-center faded-more icon-fixed-width icon-group"></i>';
                         else {
                             if (!strcasecmp($status,'closed')) {
-                                echo '<span class="Icon systemAssigned">';                             
-                                $lc =  __('System');                                            
-                            } else {
-                                echo '<span>';
-                            }                               
+                                echo '<i class="icon-center faded-more icon-fixed-width icon-gear"></i>';
+                                $lc =  __('System');
+                            }else{
+                                echo '<i class="icon-center faded-more icon-fixed-width icon-warning-sign"></i>';
+                                $lc = "nicht zugewiesen";
+                            }
                         }
-                    } else {
-                        echo '<span>';
+                    }else{
+                        echo '<i class="icon-center faded-more icon-fixed-width icon-suitcase"></i>';
                     }
-                    echo Format::htmlchars($lc); ?></span></span></td>
+                    echo Format::htmlchars($lc); ?></span></td>
             </tr>
             <?php
             } //end of foreach
