@@ -523,6 +523,8 @@ return false;">
                 else {
                     $lc = Dept::getLocalById($T['dept_id'], 'name', $T['dept__name']);
                 }
+                //$tasks = Ticket::getNumTasks();
+                //$tasks = $ticket->getNumTasks();
                 $tid=$T['number'];
                 $subject = $subject_field->display($subject_field->to_php($T['cdata__subject']));
                 $threadcount=$T['thread_count'];
@@ -547,20 +549,15 @@ return false;">
                 <td nowrap>
                     <?php
                     if (!strcasecmp($ticket_source,'web')) {
-                        echo '<i class="icon-center faded-more icon-fixed-width icon-globe"
-                        data-toggle="tooltip" title="Das Ticket wurde über die Website eingeliefert"></i>';
+                        echo Misc::icon(ICONWEB, '', 'Das Ticket wurde über die Website eingeliefert');
                     }elseif (!strcasecmp($ticket_source,'email')) {
-                        echo '<i class="icon-center faded-more icon-fixed-width icon-envelope"
-                        data-toggle="tooltip" title="Das Ticket wurde per E-Mail eingeliefert"></i>';
+                        echo Misc::icon(ICONMAIL, '', 'Das Ticket wurde per E-Mail eingeliefert');
                     }elseif (!strcasecmp($ticket_source,'phone')) {
-                        echo '<i class="icon-center faded-more icon-fixed-width icon-phone"
-                        data-toggle="tooltip" title="Das Ticket wurde nach einem Telefonat erfasst"></i>';
+                        echo Misc::icon(ICONPHONE, '', 'Das Ticket wurde nach einem Telefonat erfasst');
                     }elseif (!strcasecmp($ticket_source,'api')) {
-                        echo '<i class="icon-center faded-more icon-fixed-width icon-gear"
-                        data-toggle="tooltip" title="Das Ticket wurde durch die API eingeliefert"></i>';
+                        echo Misc::icon(ICONSYSTEM, '', 'Das Ticket wurde durch die API eingeliefert');
                     }elseif (!strcasecmp($ticket_source,'other')) {
-                        echo '<i class="icon-center faded-more icon-fixed-width icon-pencil"
-                        data-toggle="tooltip" title="Das Ticket wurde durch eine andere Quelle eingericht"></i>';
+                        echo Misc::icon(ICONMISC, '', 'Das Ticket wurde durch eine andere Quelle eingerichtet');
                     }
                     ?>
                     <a class="preview" title="Preview Ticket"
@@ -572,25 +569,19 @@ return false;">
                     <?php
                     if ($status == 'closed'){
                         if (!strcasecmp($displaystatus,'gelöst')) {
-                            echo '<i class="icon-center faded-more icon-fixed-width icon-check"
-                            data-toggle="tooltip" title="Das Ticket ist gelöst"></i>';
+                            echo Misc::icon(ICONSOLVED, '', 'Das Ticket ist gelöst');
                         }elseif (!strcasecmp($displaystatus,'geschlossen')){
-                            echo '<i class="icon-center faded-more icon-fixed-width icon-lock"
-                                data-toggle="tooltip" title="Das Ticket ist geschlossen"></i>';
+                            echo Misc::icon(ICONCLOSED, '', 'Das Ticket ist geschlossen');
                         }
                     }elseif (($status == 'closed') or ($displaystatus == 'Offen')){
                         if ($flag == 'overdue'){
-                            echo '<i class="icon-center icon-fixed-width icon-warning-sign"
-                            data-toggle="tooltip" title="Das Ticket ist überfällig"></i>';
+                            echo Misc::icon(ICONOVERDUE, '', 'Das Ticket ist überfällig');
                         }elseif ($flag == 'locked'){
-                            echo '<i class="icon-center icon-red icon-fixed-width icon-key"
-                            data-toggle="tooltip" title="Das Ticket ist momentan gesperrt"></i>';
+                            echo Misc::icon(ICONLOCKED, 'icon-center icon-red', 'Das Ticket ist momentan gesperrt');
                         }elseif (!$T['isanswered']) {
-                            echo '<i class="icon-center faded-more icon-fixed-width icon-folder-close"
-                            data-toggle="tooltip" title="Das Ticket ist offen und unbeantwortet"></i>';
+                            echo Misc::icon(ICONUNANSWERED, '', 'Das Ticket ist offen und unbeantwortet');
                         }elseif ($T['isanswered']) {
-                            echo '<i class="icon-center faded-more icon-fixed-width icon-folder-open"
-                            data-toggle="tooltip" title="Das Ticket ist offen und beantwortet"></i>';
+                            echo Misc::icon(ICONANSWERED, '', 'Das Ticket ist offen und beantwortet');
                         }
                     }
                     echo Format::datetime($T[$date_col ?: 'lastupdate']) ?: $date_fallback;
@@ -609,15 +600,12 @@ return false;">
                     </div>
                     <span class="pull-right faded-more">
                     <?php
-                    if ($T['attachment_count'])
-                        echo '<i class="faded-more icon-fixed-width icon-file-text"
-                            data-toggle="tooltip" title="'.$T['attachment_count'].' Dateianhänge"></i>';
                     if ($threadcount > 1)
-                        echo '<i class="faded-more icon-fixed-width icon-comments"
-                            data-toggle="tooltip" title="'.$threadcount.' Vorgänge"></i>';
+                        echo Misc::icon(ICONTHREAD, '', $threadcount.' Vorgänge');
+                    if ($T['attachment_count'])
+                        echo Misc::icon(ICONATTACHMENT, '', $T['attachment_count'].' Dateianhänge');
                     if ($T['collab_count'])
-                        echo '<i class="faded-more icon-fixed-width icon-group"
-                            data-toggle="tooltip" title="'.$T['collab_count'].' beteiligte Personen"></i>';
+                        echo Misc::icon(ICONGROUP, '', $T['collab_count'].' beteiligte Personen');
                     ?>
                     </span>
                 </td>
@@ -626,8 +614,7 @@ return false;">
                     <span class="tc-user-main truncate" style="--delta:<?php
                         echo $T['collab_count'] ? '20px' : '0px'; ?>"><?php
                         $un = new UsersName($T['user__name']);
-                        echo '<i class="faded-more icon-fixed-width icon-envelope"
-                            data-toggle="tooltip" title="Eingereicht von '.$un.' ('.$T['user__default_email__address'].')"></i>';
+                        echo Misc::icon(ICONMAIL, '', 'Eingereicht von '.$un.' ('.$T['user__default_email__address'].')');
                         echo Format::htmlchars($un);
                     ?></span></div></td>
                 <?php
@@ -635,14 +622,11 @@ return false;">
                     echo "<td>";
                     if (!strcasecmp($displaystatus,'offen')){
                         $displaystatus="<b>$displaystatus</b>";
-                        echo '<i class="icon-center faded-more icon-fixed-width icon-unchecked"
-                            data-toggle="tooltip" title="Das Ticket ist offen"></i>';
+                        echo Misc::icon(ICONOPEN, '', 'Das Ticket ist offen');
                     }elseif (!strcasecmp($displaystatus,'gelöst')){
-                        echo '<i class="icon-center faded-more icon-fixed-width icon-check"
-                            data-toggle="tooltip" title="Das Ticket ist gelöst"></i>';
+                        echo Misc::icon(ICONSOLVED, '', 'Das Ticket ist gelöst');
                     }elseif (!strcasecmp($displaystatus,'geschlossen')){
-                        echo '<i class="icon-center faded-more icon-fixed-width icon-lock"
-                            data-toggle="tooltip" title="Das Ticket ist geschlossen"></i>';
+                        echo Misc::icon(ICONCLOSED, '', 'Das Ticket ist geschlossen');
                     }
                     echo "$displaystatus</td>";
                 } else { ?>
@@ -650,8 +634,7 @@ return false;">
                 <td class="nohover" align="left"
                     style="background-color:<?php echo $T['cdata__:priority__priority_color']; ?>;">
                     <?php
-                    echo '<i class="faded-more icon-center icon-fixed-width '.$T['cdata__:priority__priority_icon'].'"
-                        data-toggle="tooltip" title=""></i>';
+                    echo Misc::icon($T['cdata__:priority__priority_icon'], '', 'Das Ticket wurde mit der Priorität '.$T['cdata__:priority__priority_desc'].' eingestuft');
                     echo $T['cdata__:priority__priority_desc'];
                     ?></td>
                 <?php
@@ -660,21 +643,26 @@ return false;">
                 <!-- Agent######################################################################### -->
                 <td nowrap><span class="tc-agent truncate"><?php
                     if ($showassigned) {
+                        if ($status == 'open'){
+                            $tooltip = 'Das Ticket wurde dem Betreuer '.$lc.' zur Bearbeitung zugewiesen';
+                        }else{
+                            $tooltip = 'Das Ticket wurde vom Betreuer '.$lc.' geschlossen';
+                        }
                         if ($T['staff_id'])
-                            echo '<i class="icon-center faded-more icon-fixed-width icon-user"></i>';
+                            echo Misc::icon(ICONAGENT, '', $tooltip);
                         elseif ($T['team_id'])
-                            echo '<i class="icon-center faded-more icon-fixed-width icon-group"></i>';
+                            echo Misc::icon(ICONTEAM, '', 'Das Ticket wurde dem Team '.$lc.' zur Bearbeitung zugewiesen');
                         else {
                             if (!strcasecmp($status,'closed')) {
-                                echo '<i class="icon-center faded-more icon-fixed-width icon-gear"></i>';
+                                echo Misc::icon(ICONSYSTEM, '', 'Das Ticket wurde durch das System geschlossen');
                                 $lc =  __('System');
                             }else{
-                                echo '<i class="icon-center faded-more icon-fixed-width icon-warning-sign"></i>';
+                                echo Misc::icon(ICONUNSIGNED, '', 'Das Ticket wurde bisher nicht zugewiesen');
                                 $lc = "nicht zugewiesen";
                             }
                         }
                     }else{
-                        echo '<i class="icon-center faded-more icon-fixed-width icon-suitcase"></i>';
+                        echo Misc::icon(ICONDEPARTMENT, '', 'Das Ticket gehört zu der Abteilung '.$lc);
                     }
                     echo Format::htmlchars($lc); ?></span></td>
             </tr>

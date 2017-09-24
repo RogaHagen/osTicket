@@ -14,8 +14,34 @@
     vim: expandtab sw=4 ts=4 sts=4:
 **********************************************************************/
 
+const ICONWEB           = 'icon-globe';
+const ICONMAIL          = 'icon-envelope';
+const ICONPHONE         = 'icon-phone-sign';
+const ICONMISC          = 'icon-tag';
+const ICONSYSTEM        = 'icon-gear';
+const ICONSOLVED        = 'icon-check';
+const ICONOPEN          = 'icon-unchecked';
+const ICONCLOSED        = 'icon-lock';
+const ICONOVERDUE       = 'icon-warning-sign';
+const ICONUNSIGNED      = 'icon-warning-sign';
+const ICONANSWERED      = 'icon-folder-open';
+const ICONUNANSWERED    = 'icon-folder-close';
+const ICONLOCKED        = 'icon-key';
+const ICONTHREAD        = 'icon-comments';
+const ICONGROUP         = 'icon-group';
+const ICONTEAM          = 'icon-group';
+const ICONAGENT         = 'icon-user';
+const ICONDEPARTMENT    = 'icon-suitcase';
+const ICONATTACHMENT    = 'icon-file-text';
+
 class Misc {
 
+    function icon($icon, $class, $tooltip){
+        if ($class == '') $class = 'icon-center faded-more';
+        $var='<i class="'.$icon.' '.$class.' icon-fixed-width" data-toggle="tooltip" title="'.$tooltip.'"></i>';
+        return $var;
+    }
+    
 	function randCode($len=8, $chars=false) {
         $chars = $chars ?: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890_=';
 
