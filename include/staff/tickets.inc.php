@@ -523,8 +523,6 @@ return false;">
                 else {
                     $lc = Dept::getLocalById($T['dept_id'], 'name', $T['dept__name']);
                 }
-                //$tasks = Ticket::getNumTasks();
-                //$tasks = $ticket->getNumTasks();
                 $tid=$T['number'];
                 $subject = $subject_field->display($subject_field->to_php($T['cdata__subject']));
                 $threadcount=$T['thread_count'];
@@ -558,6 +556,8 @@ return false;">
                         echo Misc::icon(ICONSYSTEM, '', 'Das Ticket wurde durch die API eingeliefert');
                     }elseif (!strcasecmp($ticket_source,'other')) {
                         echo Misc::icon(ICONMISC, '', 'Das Ticket wurde durch eine andere Quelle eingerichtet');
+                    }else {
+                        echo Misc::icon(ICONMISC, '', 'Das Ticket wurde durch eine andere Quelle eingerichtet');
                     }
                     ?>
                     <a class="preview" title="Preview Ticket"
@@ -588,24 +588,26 @@ return false;">
                     ?>
                 </td>
                 <!-- Title######################################################################### -->
-                <td><div style="--delta: <?php
+                <td>
+                    <?php
                     $delta = 0;
                     if ($T['attachment_count']) $delta += 20;
                     if ($T['collab_count']) $delta += 20;
                     if ($threadcount > 1) $delta += 20;
-                    echo $delta; ?>px; max-height: 1.2em"
+                    ?>
+                    <div style="--delta: <?php echo $delta; ?>px; max-height: 1.2em"
                     class="<?php echo ($search && !$status) ? 'tc-title-search' : 'tc-title-main'; ?> link truncate"
                     href="tickets.php?id=<?php echo $T['ticket_id']; ?>">
                     <?php echo $subject; ?>
                     </div>
-                    <span class="pull-right faded-more">
+                    <span class="pull-right">
                     <?php
                     if ($threadcount > 1)
-                        echo Misc::icon(ICONTHREAD, '', $threadcount.' Vorgänge');
+                        echo Misc::icon(ICONTHREAD, '', 'Das Ticket enthält '.$threadcount.' Vorgänge');
                     if ($T['attachment_count'])
-                        echo Misc::icon(ICONATTACHMENT, '', $T['attachment_count'].' Dateianhänge');
+                        echo Misc::icon(ICONATTACHMENT, '', 'Das Ticket enthält '.$T['attachment_count'].' Dateianhänge');
                     if ($T['collab_count'])
-                        echo Misc::icon(ICONGROUP, '', $T['collab_count'].' beteiligte Personen');
+                        echo Misc::icon(ICONCOLLABORATORS, '', 'An dem Ticket sind '.$T['collab_count'].' weitere Personen beteiligt');
                     ?>
                     </span>
                 </td>
