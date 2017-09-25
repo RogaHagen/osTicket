@@ -73,7 +73,7 @@ $tickets->annotate(array(
     ),
 ));
 
-$tickets->values('staff_id', 'staff__firstname', 'staff__lastname', 'team__name', 'team_id', 'lock__lock_id', 'lock__staff_id', 'isoverdue', 'status_id', 'status__name', 'status__state', 'number', 'cdata__subject', 'ticket_id', 'source', 'dept_id', 'dept__name', 'user_id', 'user__default_email__address', 'user__name', 'lastupdate');
+$tickets->values('staff_id', 'staff__firstname', 'staff__lastname', 'team__name', 'team_id', 'lock__lock_id', 'lock__staff_id', 'isoverdue', 'status_id', 'status__name', 'status__state', 'number', 'cdata__subject', 'ticket_id', 'source', 'dept_id', 'dept__name', 'user_id', 'user__default_email__address', 'user__name', 'lastupdate', 'isanswered');
 
 $tickets->order_by('-created');
 
@@ -136,6 +136,8 @@ if ($total) { ?>
     $user_id = $user ? $user->getId() : 0;
     foreach($tickets as $T) {
         $flag=null;
+        $flag = $T['isanswered']?'closed':'opened';
+        if ($T['status__name'] <> 'Offen') $flag = 'done';
         if ($T['lock__lock_id'] && $T['lock__staff_id'] != $thisstaff->getId())
             $flag='locked';
         elseif ($T['isoverdue'])
@@ -152,8 +154,12 @@ if ($total) { ?>
         else
             $assigned=' ';
 
+        $ticket_source = $T['source'];
         $status = TicketStatus::getLocalById($T['status_id'], 'value', $T['status__name']);
         $tid = $T['number'];
+        if(!strcasecmp($T['status__state'],'open') && !$T['isanswered'] && !$T['lock__staff_id']) {
+            $tid=sprintf('<b>%s</b>',$tid);
+        }
         $subject = $subject_field->display($subject_field->to_php($T['cdata__subject']));
         $threadcount = $T['thread_count'];
         ?>
@@ -167,49 +173,42 @@ if ($total) { ?>
             <?php
             } ?>
             <td nowrap>
-              <a class="Icon <?php
-                echo strtolower($T['source']); ?>Ticket preview"
+                <?php echo Misc::icon_source($ticket_source);?>
+                <a class="preview" 
                 title="<?php echo __('Preview Ticket'); ?>"
                 href="tickets.php?id=<?php echo $T['ticket_id']; ?>"
                 data-preview="#tickets/<?php echo $T['ticket_id']; ?>/preview"><?php
                 echo $tid; ?></a>
-               <?php
-                if ($user_id && $user_id != $T['user_id'])
-                    echo '<span class="pull-right faded-more" data-toggle="tooltip" title="'
-                            .__('Collaborator').'"><i class="icon-eye-open"></i></span>';
-            ?></td>
-            <td nowrap><?php echo Format::datetime($T['lastupdate']); ?></td>
-            <td><?php echo $status; ?></td>
-            <td><a class="tc-title truncate <?php if ($flag) { ?> Icon <?php echo $flag; ?>Ticket" title="<?php echo ucfirst($flag); ?> Ticket<?php } ?>"
+            </td>
+            <td nowrap><?php echo Misc::icon_openstate($flag).Format::datetime($T['lastupdate']); ?></td>
+            <td><?php echo Misc::icon_closestate($status).$status; ?></td>
+            <?php
+            if ($user) $trancate = 'tc-title-user';
+            else $trancate = 'tc-title-org';
+            ?>
+            <td><a class="<?php echo $trancate ?> truncate" 
                 href="tickets.php?id=<?php echo $T['ticket_id']; ?>"><?php echo $subject; ?></a>
-                 <?php
-                    if ($T['attachment_count'])
-                        echo '<i class="small icon-paperclip icon-flip-horizontal" data-toggle="tooltip" title="'
-                            .$T['attachment_count'].'"></i>';
-                    if ($threadcount > 1) { ?>
-                            <span class="pull-right faded-more"><i class="icon-comments-alt"></i>
-                            <small><?php echo $threadcount; ?></small></span>
-<?php               }
-                    if ($T['attachments'])
-                        echo '<i class="small icon-paperclip icon-flip-horizontal"></i>';
-                    if ($T['collab_count'])
-                        echo '<span class="faded-more" data-toggle="tooltip" title="'
-                            .$T['collab_count'].'"><i class="icon-group"></i></span>';
-                ?>
+                <?php echo Misc::icon_annotation($threadcount, $T['attachment_count'], $T['collab_count']);?>
             </td>
             <?php
             if ($user) {
                 $dept = Dept::getLocalById($T['dept_id'], 'name', $T['dept__name']); ?>
             <td><span class="tc-department truncate"><?php
+                echo Misc::icon(ICONDEPARTMENT, '', 'Das Ticket gehört zu der Abteilung '.$dept);
                 echo Format::htmlchars($dept); ?></span></td>
             <td><span class="tc-agent truncate"><?php
+                if ($T['staff_id'])
+                    echo Misc::icon(ICONAGENT, '', 'Das Ticket wurde dem Betreuer '.$assigned.' zur Bearbeitung zugewiesen');
+                elseif ($T['team_id'])
+                    echo Misc::icon(ICONTEAM, '', 'Das Ticket wurde dem Team '.$assigned.' zur Bearbeitung zugewiesen');
                 echo Format::htmlchars($assigned); ?></span></td>
             <?php
             } else { ?>
-            <td><a class="tc-user truncate" href="users.php?id="<?php
-                echo $T['user_id']; ?>><?php echo Format::htmlchars($T['user__name']);
-                    ?> <em>&lt;<?php echo Format::htmlchars($T['user__default_email__address']);
-                ?>&gt;</em></a>
+            <td><a class="tc-user truncate" href="users.php?id=<?php echo $T['user_id']; ?>">
+                <?php 
+                echo Misc::icon(ICONMAIL, '', 'Eingereicht von '.$T['user__name'].' ('.$T['user__default_email__address'].')');
+                echo Format::htmlchars($T['user__name']);
+                ?></a>
             </td>
             <?php
             } ?>

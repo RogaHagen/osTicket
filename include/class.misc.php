@@ -19,6 +19,7 @@ const ICONMAIL          = 'icon-envelope';
 const ICONPHONE         = 'icon-phone-sign';
 const ICONMISC          = 'icon-tag';
 const ICONSYSTEM        = 'icon-gear';
+const ICONDONE          = 'icon-check-sign';
 const ICONSOLVED        = 'icon-check';
 const ICONOPEN          = 'icon-unchecked';
 const ICONCLOSED        = 'icon-lock';
@@ -33,16 +34,75 @@ const ICONTEAM          = 'icon-group';
 const ICONAGENT         = 'icon-user';
 const ICONDEPARTMENT    = 'icon-suitcase';
 const ICONATTACHMENT    = 'icon-file-text';
+const ICONUNKNOWN       = 'icon-question-sign';
 
 class Misc {
 
     function icon($icon, $class, $tooltip){
-        if ($class == '') $class = 'icon-center faded-more';
+        if ($class == '') $class = 'icon-center icon-faded';
         $var='<i class="'.$icon.' '.$class.' icon-fixed-width" data-toggle="tooltip" title="'.$tooltip.'"></i>';
         return $var;
     }
     
-	function randCode($len=8, $chars=false) {
+    function icon_closestate($status){
+        if (!strcasecmp($status,'offen')){
+            $var = Misc::icon(ICONOPEN, '', 'Das Ticket ist offen');
+        }elseif (!strcasecmp($status,'gelöst')){
+            $var = Misc::icon(ICONSOLVED, '', 'Das Ticket ist gelöst');
+        }elseif (!strcasecmp($status,'geschlossen')){
+            $var = Misc::icon(ICONCLOSED, '', 'Das Ticket ist geschlossen');
+        }else{
+            $var = Misc::icon(ICONUNKNOWN, '', 'Der Ticketstatus ist unbekannt');       
+        }
+        return $var;
+    }
+
+    function icon_openstate($state){
+        if ($state == 'overdue'){
+            $var = Misc::icon(ICONOVERDUE, 'icon-center icon-red', 'Das Ticket ist überfällig');
+        }elseif ($state == 'locked'){
+            $var = Misc::icon(ICONLOCKED, 'icon-center icon-red', 'Das Ticket ist momentan gesperrt');
+        }elseif ($state == 'opened') {
+            $var = Misc::icon(ICONUNANSWERED, 'icon-center icon-blue', 'Das Ticket ist offen und unbeantwortet');
+        }elseif ($state== 'closed') {
+            $var = Misc::icon(ICONANSWERED, '', 'Das Ticket ist offen und beantwortet');
+        }elseif ($state== 'done') {
+            $var = Misc::icon(ICONDONE, '', 'Das Ticket ist fertig und abgearbeitet');
+        }
+        return $var;
+    }
+ 
+    function icon_annotation($thread, $attachment, $collab){
+        $var = '<span class="pull-right">';
+        if ($thread > 1)
+            $var = $var.Misc::icon(ICONTHREAD, '', 'Das Ticket enthält '.$thread.' Vorgänge');
+        if ($attachment)
+            $var = $var.Misc::icon(ICONATTACHMENT, '', 'Das Ticket enthält '.$attachment.' Dateianhänge');
+        if ($collab)
+            $var = $var.Misc::icon(ICONGROUP, '', 'An dem Ticket sind '.$collab.' weitere Personen beteiligt');
+        $var = $var.'</span>';
+        return $var;
+    }
+    
+    function icon_source($ticket_source){
+        if (!strcasecmp($ticket_source,'web')) {
+            $var = Misc::icon(ICONWEB, '', 'Das Ticket wurde über die Website eingeliefert');
+        }elseif (!strcasecmp($ticket_source,'email')) {
+            $var = Misc::icon(ICONMAIL, '', 'Das Ticket wurde per E-Mail eingeliefert');
+        }elseif (!strcasecmp($ticket_source,'phone')) {
+            $var =  Misc::icon(ICONPHONE, '', 'Das Ticket wurde nach einem Telefonat erfasst');
+        }elseif (!strcasecmp($ticket_source,'api')) {
+            $var =  Misc::icon(ICONSYSTEM, '', 'Das Ticket wurde durch die API eingeliefert');
+        }elseif (!strcasecmp($ticket_source,'other')) {
+            $var =  Misc::icon(ICONMISC, '', 'Das Ticket wurde durch eine andere Quelle eingerichtet');
+        }else {
+            $var =  Misc::icon(ICONMISC, '', 'Das Ticket wurde durch eine andere Quelle eingerichtet');
+        }
+        return $var;
+        
+    }
+    
+    function randCode($len=8, $chars=false) {
         $chars = $chars ?: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890_=';
 
         // Determine the number of bits we need

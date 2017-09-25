@@ -72,10 +72,6 @@ div#header a {
     color: #aaa;
     color: rgba(0,0,0,0.4);
 }
-.icon-center{
-    text-align: center !important;
-}
-
 time[title]:hover {
     text-decoration: underline;
 }
@@ -2974,7 +2970,7 @@ td.email {text-align: left; white-space:nowrap}
 td.usercount {text-align: center;}
 td.task {text-align: center;}
 td.ticket {text-align: center; white-space:nowrap}
-td.priority {text-align: center;}
+td.priority {text-align: left;}
 td.status {text-align: left;}
 td.title {text-align: left; white-space:nowrap}
 td.phone {text-align: left; white-space:nowrap}
@@ -2999,9 +2995,24 @@ td.mobile {text-align: left; white-space:nowrap}
 	--width: 155px;
 	max-width: calc(var(--width) - var(--delta));
 }
-.tc-title {max-width: 390px; }
-.tc-user {max-width: 310px; }
+.tc-title-user {max-width: 425px; }
+.tc-title-org {max-width: 575px; }
+.tc-user {max-width: 155px; }
 .tc-agent {max-width: 155px; }
 .tc-department {max-width: 155px; }
 
+.icon-faded {
+    color: #aaa;
+    color: rgba(0,0,0,0.4);
+}
+.icon-left{
+    text-align: left !important;
+}
+.icon-center{
+    text-align: center !important;
+}
+.icon-right{
+    text-align: right !important;
+}
 .icon-red{color:red;}
+.icon-blue{color:#184E81;}

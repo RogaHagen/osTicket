@@ -391,7 +391,6 @@ $tickets->annotate(array(
         ->aggregate(array('count' => SqlAggregate::COUNT('entries__id'))),
 ));
 
-
 // Make sure we're only getting active locks
 $tickets->constrain(array('lock' => array(
                 'lock__expire__gt' => SqlFunction::NOW())));
@@ -505,14 +504,16 @@ return false;">
         $ids=($errors && $_POST['tids'] && is_array($_POST['tids']))?$_POST['tids']:null;
         foreach ($tickets as $T) {
             $total += 1;
-                $ticket_source=$T['source'];
-                $tag=$T['staff_id']?'assigned':'openticket';
-                $flag=null;
-                if($T['lock__staff_id'] && $T['lock__staff_id'] != $thisstaff->getId())
-                    $flag='locked';
-                elseif($T['isoverdue'])
-                    $flag='overdue';
-                $displaystatus=TicketStatus::getLocalById($T['status_id'], 'value', $T['status__name']);
+                $ticket_source = $T['source'];
+                $tag = $T['staff_id']?'assigned':'openticket';
+                $flag = null;
+                $flag = $T['isanswered']?'closed':'opened';
+                if ($T['status__name'] <> 'Offen') $flag = 'done';
+                if ($T['lock__staff_id'] && $T['lock__staff_id'] != $thisstaff->getId())
+                    $flag = 'locked';
+                elseif ($T['isoverdue'])
+                    $flag = 'overdue';
+                $displaystatus = TicketStatus::getLocalById($T['status_id'], 'value', $T['status__name']);
                 $lc='';
                 if ($showassigned) {
                     if ($T['staff_id'])
@@ -523,9 +524,9 @@ return false;">
                 else {
                     $lc = Dept::getLocalById($T['dept_id'], 'name', $T['dept__name']);
                 }
-                $tid=$T['number'];
+                $tid = $T['number'];
                 $subject = $subject_field->display($subject_field->to_php($T['cdata__subject']));
-                $threadcount=$T['thread_count'];
+                $threadcount = $T['thread_count'];
                 if(!strcasecmp($T['status__state'],'open') && !$T['isanswered'] && !$T['lock__staff_id']) {
                     $tid=sprintf('<b>%s</b>',$tid);
                 }
@@ -538,57 +539,31 @@ return false;">
                         $sel=true;
                     ?>
                 <!-- Checkbox###################################################################### -->
-                <td align="center" class="nohover">
+                <td class="checkbox nohover">
                     <input class="ckb" type="checkbox" name="tids[]"
                         value="<?php echo $T['ticket_id']; ?>" <?php echo $sel?'checked="checked"':''; ?>>
                 </td>
                 <?php } ?>
                 <!-- Ticket######################################################################## -->
-                <td nowrap>
-                    <?php
-                    if (!strcasecmp($ticket_source,'web')) {
-                        echo Misc::icon(ICONWEB, '', 'Das Ticket wurde über die Website eingeliefert');
-                    }elseif (!strcasecmp($ticket_source,'email')) {
-                        echo Misc::icon(ICONMAIL, '', 'Das Ticket wurde per E-Mail eingeliefert');
-                    }elseif (!strcasecmp($ticket_source,'phone')) {
-                        echo Misc::icon(ICONPHONE, '', 'Das Ticket wurde nach einem Telefonat erfasst');
-                    }elseif (!strcasecmp($ticket_source,'api')) {
-                        echo Misc::icon(ICONSYSTEM, '', 'Das Ticket wurde durch die API eingeliefert');
-                    }elseif (!strcasecmp($ticket_source,'other')) {
-                        echo Misc::icon(ICONMISC, '', 'Das Ticket wurde durch eine andere Quelle eingerichtet');
-                    }else {
-                        echo Misc::icon(ICONMISC, '', 'Das Ticket wurde durch eine andere Quelle eingerichtet');
-                    }
-                    ?>
+                <td class="ticket">
+                    <?php echo Misc::icon_source($ticket_source);?>
                     <a class="preview" title="Preview Ticket"
                     href="tickets.php?id=<?php echo $T['ticket_id']; ?>"
                     data-preview="#tickets/<?php echo $T['ticket_id']; ?>/preview"
                     ><?php echo $tid; ?></a></td>
                 <!-- Date########################################################################## -->
-                <td align="left" nowrap <?php if ($flag == 'locked') echo 'style="background-color:#FEE7E7;"';?>>
+                <td class="datelong" <?php if ($flag == 'locked') echo 'style="background-color:#FEE7E7;"';?>>
                     <?php
                     if ($status == 'closed'){
-                        if (!strcasecmp($displaystatus,'gelöst')) {
-                            echo Misc::icon(ICONSOLVED, '', 'Das Ticket ist gelöst');
-                        }elseif (!strcasecmp($displaystatus,'geschlossen')){
-                            echo Misc::icon(ICONCLOSED, '', 'Das Ticket ist geschlossen');
-                        }
-                    }elseif (($status == 'closed') or ($displaystatus == 'Offen')){
-                        if ($flag == 'overdue'){
-                            echo Misc::icon(ICONOVERDUE, '', 'Das Ticket ist überfällig');
-                        }elseif ($flag == 'locked'){
-                            echo Misc::icon(ICONLOCKED, 'icon-center icon-red', 'Das Ticket ist momentan gesperrt');
-                        }elseif (!$T['isanswered']) {
-                            echo Misc::icon(ICONUNANSWERED, '', 'Das Ticket ist offen und unbeantwortet');
-                        }elseif ($T['isanswered']) {
-                            echo Misc::icon(ICONANSWERED, '', 'Das Ticket ist offen und beantwortet');
-                        }
+                        echo Misc::icon_closestate($displaystatus);
+                    }elseif (($status <> 'closed') or ($displaystatus == 'Offen')){
+                        echo Misc::icon_openstate($flag);
                     }
                     echo Format::datetime($T[$date_col ?: 'lastupdate']) ?: $date_fallback;
                     ?>
                 </td>
                 <!-- Title######################################################################### -->
-                <td>
+                <td class="title">
                     <?php
                     $delta = 0;
                     if ($T['attachment_count']) $delta += 20;
@@ -600,19 +575,10 @@ return false;">
                     href="tickets.php?id=<?php echo $T['ticket_id']; ?>">
                     <?php echo $subject; ?>
                     </div>
-                    <span class="pull-right">
-                    <?php
-                    if ($threadcount > 1)
-                        echo Misc::icon(ICONTHREAD, '', 'Das Ticket enthält '.$threadcount.' Vorgänge');
-                    if ($T['attachment_count'])
-                        echo Misc::icon(ICONATTACHMENT, '', 'Das Ticket enthält '.$T['attachment_count'].' Dateianhänge');
-                    if ($T['collab_count'])
-                        echo Misc::icon(ICONCOLLABORATORS, '', 'An dem Ticket sind '.$T['collab_count'].' weitere Personen beteiligt');
-                    ?>
-                    </span>
+                    <?php echo Misc::icon_annotation($threadcount, $T['attachment_count'], $T['collab_count']);?>
                 </td>
                 <!-- User######################################################################### -->
-                <td nowrap><div>
+                <td class="user"><div>
                     <span class="tc-user-main truncate" style="--delta:<?php
                         echo $T['collab_count'] ? '20px' : '0px'; ?>"><?php
                         $un = new UsersName($T['user__name']);
@@ -622,18 +588,12 @@ return false;">
                 <?php
                 if($search && !$status){
                     echo "<td>";
-                    if (!strcasecmp($displaystatus,'offen')){
-                        $displaystatus="<b>$displaystatus</b>";
-                        echo Misc::icon(ICONOPEN, '', 'Das Ticket ist offen');
-                    }elseif (!strcasecmp($displaystatus,'gelöst')){
-                        echo Misc::icon(ICONSOLVED, '', 'Das Ticket ist gelöst');
-                    }elseif (!strcasecmp($displaystatus,'geschlossen')){
-                        echo Misc::icon(ICONCLOSED, '', 'Das Ticket ist geschlossen');
-                    }
+                    echo Misc::icon_closestate($displaystatus);
+                    if (!strcasecmp($displaystatus,'offen'))$displaystatus="<b>$displaystatus</b>";
                     echo "$displaystatus</td>";
                 } else { ?>
                 <!-- Proirity######################################################################### -->
-                <td class="nohover" align="left"
+                <td class="priority nohover"
                     style="background-color:<?php echo $T['cdata__:priority__priority_color']; ?>;">
                     <?php
                     echo Misc::icon($T['cdata__:priority__priority_icon'], '', 'Das Ticket wurde mit der Priorität '.$T['cdata__:priority__priority_desc'].' eingestuft');
@@ -643,7 +603,7 @@ return false;">
                 }
                 ?>
                 <!-- Agent######################################################################### -->
-                <td nowrap><span class="tc-agent truncate"><?php
+                <td class="agent"><span class="tc-agent truncate"><?php
                     if ($showassigned) {
                         if ($status == 'open'){
                             $tooltip = 'Das Ticket wurde dem Betreuer '.$lc.' zur Bearbeitung zugewiesen';
@@ -659,7 +619,7 @@ return false;">
                                 echo Misc::icon(ICONSYSTEM, '', 'Das Ticket wurde durch das System geschlossen');
                                 $lc =  __('System');
                             }else{
-                                echo Misc::icon(ICONUNSIGNED, '', 'Das Ticket wurde bisher nicht zugewiesen');
+                                echo Misc::icon(ICONUNSIGNED, 'icon-center icon-red', 'Das Ticket wurde bisher nicht zugewiesen');
                                 $lc = "nicht zugewiesen";
                             }
                         }
