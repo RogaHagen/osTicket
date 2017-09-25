@@ -174,7 +174,7 @@ if ($total) { ?>
             } ?>
             <td nowrap>
                 <?php echo Misc::icon_source($ticket_source);?>
-                <a class="preview" 
+                <a class="preview <?php if($flag == 'overdue') echo 'ticket-overdue' ?>" 
                 title="<?php echo __('Preview Ticket'); ?>"
                 href="tickets.php?id=<?php echo $T['ticket_id']; ?>"
                 data-preview="#tickets/<?php echo $T['ticket_id']; ?>/preview"><?php
@@ -197,11 +197,15 @@ if ($total) { ?>
                 echo Misc::icon(ICONDEPARTMENT, '', 'Das Ticket gehört zu der Abteilung '.$dept);
                 echo Format::htmlchars($dept); ?></span></td>
             <td><span class="tc-agent truncate"><?php
-                if ($T['staff_id'])
+                if ($T['staff_id']){
                     echo Misc::icon(ICONAGENT, '', 'Das Ticket wurde dem Betreuer '.$assigned.' zur Bearbeitung zugewiesen');
-                elseif ($T['team_id'])
+                }elseif ($T['team_id']){
                     echo Misc::icon(ICONTEAM, '', 'Das Ticket wurde dem Team '.$assigned.' zur Bearbeitung zugewiesen');
-                echo Format::htmlchars($assigned); ?></span></td>
+                }else {
+                    echo Misc::icon(ICONUNSIGNED, 'icon-center icon-red', 'Das Ticket wurde bisher nicht zugewiesen');
+                    $assigned = "nicht zugewiesen";
+                }
+               echo Format::htmlchars($assigned); ?></span></td>
             <?php
             } else { ?>
             <td><a class="tc-user truncate" href="users.php?id=<?php echo $T['user_id']; ?>">

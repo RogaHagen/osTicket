@@ -374,7 +374,7 @@ TicketForm::ensureDynamicDataView();
 // ------------------------------------------------------------
 $tickets->values('lock__staff_id', 'staff_id', 'isoverdue', 'team_id',
 'ticket_id', 'number', 'cdata__subject', 'user__default_email__address',
-'source', 'cdata__:priority__priority_color', 'cdata__:priority__priority_desc', 'cdata__:priority__priority_icon', 'status_id', 'status__name', 'status__state', 'dept_id', 'dept__name', 'user__name', 'lastupdate', 'isanswered', 'staff__firstname', 'staff__lastname', 'team__name');
+'source', 'cdata__:priority__priority_color', 'cdata__:priority__priority_desc', 'cdata__:priority__priority_icon', 'status_id', 'status__name', 'status__state', 'dept_id', 'dept__name', 'user__name', 'lastupdate', 'isanswered', 'staff__firstname', 'staff__lastname', 'team__name', 'user__id');
 
 // Add in annotations
 $tickets->annotate(array(
@@ -547,7 +547,7 @@ return false;">
                 <!-- Ticket######################################################################## -->
                 <td class="ticket">
                     <?php echo Misc::icon_source($ticket_source);?>
-                    <a class="preview" title="Preview Ticket"
+                    <a class="preview <?php if($flag == 'overdue') echo 'ticket-overdue' ?>" title="Preview Ticket"
                     href="tickets.php?id=<?php echo $T['ticket_id']; ?>"
                     data-preview="#tickets/<?php echo $T['ticket_id']; ?>/preview"
                     ><?php echo $tid; ?></a></td>
@@ -580,11 +580,13 @@ return false;">
                 <!-- User######################################################################### -->
                 <td class="user"><div>
                     <span class="tc-user-main truncate" style="--delta:<?php
-                        echo $T['collab_count'] ? '20px' : '0px'; ?>"><?php
+                        echo $T['collab_count'] ? '20px' : '0px'; ?>">
+                        <a href="users.php?id=<?php echo $T['user__id']; ?>">
+                        <?php
                         $un = new UsersName($T['user__name']);
                         echo Misc::icon(ICONMAIL, '', 'Eingereicht von '.$un.' ('.$T['user__default_email__address'].')');
                         echo Format::htmlchars($un);
-                    ?></span></div></td>
+                    ?></a></span></div></td>
                 <?php
                 if($search && !$status){
                     echo "<td>";

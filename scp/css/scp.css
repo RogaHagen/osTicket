@@ -3016,3 +3016,7 @@ td.mobile {text-align: left; white-space:nowrap}
 }
 .icon-red{color:red;}
 .icon-blue{color:#184E81;}
+.ticket-overdue{
+    color:red;
+    font-weight:bold;
+}

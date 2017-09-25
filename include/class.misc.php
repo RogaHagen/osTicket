@@ -16,7 +16,8 @@
 
 const ICONWEB           = 'icon-globe';
 const ICONMAIL          = 'icon-envelope';
-const ICONPHONE         = 'icon-phone-sign';
+const ICONMAIL2         = 'icon-envelope-alt';
+const ICONPHONE         = 'icon-phone';
 const ICONMISC          = 'icon-tag';
 const ICONSYSTEM        = 'icon-gear';
 const ICONDONE          = 'icon-check-sign';
@@ -32,6 +33,7 @@ const ICONTHREAD        = 'icon-comments';
 const ICONGROUP         = 'icon-group';
 const ICONTEAM          = 'icon-group';
 const ICONAGENT         = 'icon-user';
+const ICONUSER          = 'icon-user';
 const ICONDEPARTMENT    = 'icon-suitcase';
 const ICONATTACHMENT    = 'icon-file-text';
 const ICONUNKNOWN       = 'icon-question-sign';
@@ -76,10 +78,14 @@ class Misc {
         $var = '<span class="pull-right">';
         if ($thread > 1)
             $var = $var.Misc::icon(ICONTHREAD, '', 'Das Ticket enthält '.$thread.' Vorgänge');
-        if ($attachment)
+        if ($attachment > 1)
             $var = $var.Misc::icon(ICONATTACHMENT, '', 'Das Ticket enthält '.$attachment.' Dateianhänge');
-        if ($collab)
+        if ($attachment == 1)
+            $var = $var.Misc::icon(ICONATTACHMENT, '', 'Das Ticket enthält '.$attachment.' Dateianhang');
+        if ($collab > 1)
             $var = $var.Misc::icon(ICONGROUP, '', 'An dem Ticket sind '.$collab.' weitere Personen beteiligt');
+        if ($collab == 1)
+            $var = $var.Misc::icon(ICONUSER, '', 'An dem Ticket ist '.$collab.' weitere Person beteiligt');
         $var = $var.'</span>';
         return $var;
     }
