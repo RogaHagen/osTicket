@@ -36,6 +36,7 @@ const ICONAGENT         = 'icon-user';
 const ICONUSER          = 'icon-user';
 const ICONDEPARTMENT    = 'icon-building';
 const ICONATTACHMENT    = 'icon-file-text';
+const ICONTASK          = 'icon-list';
 const ICONUNKNOWN       = 'icon-question-sign';
 
 const TICKETOPEN        = 1;
@@ -86,10 +87,14 @@ class Misc {
         return $var;
     }
  
-    function icon_annotation($thread, $attachment, $collab){
+    function icon_annotation($thread, $attachment, $collab, $tasks){
         $var = '<span class="pull-right">';
         if ($thread > 1)
             $var = $var.Misc::icon(ICONTHREAD, '', 'Das Ticket enthält '.$thread.' Vorgänge');
+        if ($tasks > 1)
+            $var = $var.Misc::icon(ICONTASK, '', 'Das Ticket enthält '.$tasks.' Aufgaben');
+        if ($tasks == 1)
+            $var = $var.Misc::icon(ICONTASK, '', 'Das Ticket enthält '.$tasks.' Aufgabe');
         if ($attachment > 1)
             $var = $var.Misc::icon(ICONATTACHMENT, '', 'Das Ticket enthält '.$attachment.' Dateianhänge');
         if ($attachment == 1)
