@@ -38,6 +38,18 @@ const ICONDEPARTMENT    = 'icon-suitcase';
 const ICONATTACHMENT    = 'icon-file-text';
 const ICONUNKNOWN       = 'icon-question-sign';
 
+const TICKETOPEN        = 1;
+const TICKETSOLVED      = 2;
+const TICKETCLOSED      = 3;
+const TICKETARCHIVED    = 4;
+const TICKETDELETED     = 5;
+
+const TICKETOVERDUED    = 1;
+const TICKETLOCKED      = 2;
+const TICKETANSWERED    = 3;
+const TICKETUNANSWERED  = 4;
+const TICKETFINISHED    = 5;
+
 class Misc {
 
     function icon($icon, $class, $tooltip){

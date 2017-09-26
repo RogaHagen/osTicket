@@ -484,10 +484,12 @@ $tcount = $ticket->getThreadEntries($types)->count();
 ?>
 <ul  class="tabs clean threads" id="ticket_tabs" >
     <li class="active"><a id="ticket-thread-tab" href="#ticket_thread"><?php
+        echo '<i class="icon-comments icon-fixed-width"></i>';
         echo sprintf(__('Ticket Thread (%d)'), $tcount); ?></a></li>
     <li><a id="ticket-tasks-tab" href="#tasks"
             data-url="<?php
         echo sprintf('#tickets/%d/tasks', $ticket->getId()); ?>"><?php
+        echo '<i class="icon-check-sign icon-fixed-width"></i>';
         echo __('Tasks');
         if ($ticket->getNumTasks())
             echo sprintf('&nbsp;(<span id="ticket-tasks-count">%d</span>)', $ticket->getNumTasks());
@@ -528,12 +530,12 @@ if ($errors['err'] && isset($_POST['a'])) {
         if ($role->hasPerm(TicketModel::PERM_REPLY)) { ?>
         <li class="active <?php
             echo isset($errors['reply']) ? 'error' : ''; ?>"><a
-            href="#reply" id="post-reply-tab"><?php echo __('Post Reply');?></a></li>
+            href="#reply" id="post-reply-tab"><i class="icon-pencil icon-fixed-width"></i><?php echo __('Post Reply');?></a></li>
         <?php
         } ?>
         <li><a href="#note" <?php
             echo isset($errors['postnote']) ?  'class="error"' : ''; ?>
-            id="post-note-tab"><?php echo __('Post Internal Note');?></a></li>
+            id="post-note-tab"><i class="icon-pencil icon-fixed-width"></i><?php echo __('Post Internal Note');?></a></li>
     </ul>
     <?php
     if ($role->hasPerm(TicketModel::PERM_REPLY)) { ?>

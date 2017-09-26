@@ -16,10 +16,11 @@ if(($tabs=$nav->getTabs()) && is_array($tabs)){
                     $item['href'] = ROOT_PATH . 'scp/' . $item['href'];
 
                 echo sprintf(
-                    '<li><a class="%s" href="%s" title="%s" id="%s">%s</a></li>',
+                    '<li><a class="off-%s" href="%s" title="%s" id="%s">
+                    <i class="icon-ost-%s icon-center icon-blue icon-fixed-width"></i>%s</a></li>',
                     $item['iconclass'],
                     $item['href'], $item['title'],
-                    $id, $item['desc']);
+                    $id, $item['iconclass'], $item['desc']);
             }
             echo "\n</ul>\n";
         }

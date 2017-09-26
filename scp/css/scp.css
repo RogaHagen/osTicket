@@ -294,7 +294,7 @@ a time {
 #nav .inactive li a {
     background-position: 10px 50%;
     background-repeat: no-repeat;
-    padding: 0 10px 0 34px;
+    padding: 0 10px 0 10px;
 }
 
 #nav .inactive li a:hover {
