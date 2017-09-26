@@ -34,7 +34,7 @@ const ICONGROUP         = 'icon-group';
 const ICONTEAM          = 'icon-group';
 const ICONAGENT         = 'icon-user';
 const ICONUSER          = 'icon-user';
-const ICONDEPARTMENT    = 'icon-suitcase';
+const ICONDEPARTMENT    = 'icon-building';
 const ICONATTACHMENT    = 'icon-file-text';
 const ICONUNKNOWN       = 'icon-question-sign';
 
@@ -77,7 +77,7 @@ class Misc {
         }elseif ($state == 'locked'){
             $var = Misc::icon(ICONLOCKED, 'icon-center icon-red', 'Das Ticket ist momentan gesperrt');
         }elseif ($state == 'opened') {
-            $var = Misc::icon(ICONUNANSWERED, 'icon-center icon-blue', 'Das Ticket ist offen und unbeantwortet');
+            $var = Misc::icon(ICONUNANSWERED, '', 'Das Ticket ist offen und unbeantwortet');
         }elseif ($state== 'closed') {
             $var = Misc::icon(ICONANSWERED, '', 'Das Ticket ist offen und beantwortet');
         }elseif ($state== 'done') {

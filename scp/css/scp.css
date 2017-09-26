@@ -311,7 +311,7 @@ a time {
 
 #sub_nav a {
     display:inline-block;
-    padding:0 10px 0 21px;
+    padding:0 10px 0 10px;
     background-position:0 50%;
     background-repeat:no-repeat;
     color:#000;
@@ -3002,8 +3002,10 @@ td.mobile {text-align: left; white-space:nowrap}
 .tc-department {max-width: 155px; }
 
 .icon-faded {
-    color: #aaa;
+    /*color: #aaa;*/
+    color:#184E81;
     color: rgba(0,0,0,0.4);
+    color: rgba(24,78,129,0.4);
 }
 .icon-left{
     text-align: left !important;
@@ -3016,6 +3018,7 @@ td.mobile {text-align: left; white-space:nowrap}
 }
 .icon-red{color:red;}
 .icon-blue{color:#184E81;}
+.ost-icon-blue{color:#184E81;}
 .ticket-overdue{
     color:red;
     font-weight:bold;

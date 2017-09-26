@@ -547,7 +547,7 @@ return false;">
                 <!-- Ticket######################################################################## -->
                 <td class="ticket">
                     <?php echo Misc::icon_source($ticket_source);?>
-                    <a class="preview <?php if($flag == 'overdue') echo 'ticket-overdue' ?>" title="Preview Ticket"
+                    <a class="preview" title="Preview Ticket"
                     href="tickets.php?id=<?php echo $T['ticket_id']; ?>"
                     data-preview="#tickets/<?php echo $T['ticket_id']; ?>/preview"
                     ><?php echo $tid; ?></a></td>

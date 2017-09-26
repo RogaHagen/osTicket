@@ -13,7 +13,7 @@ if(($subnav=$nav->getSubMenu()) && is_array($subnav)){
                             && in_array(basename($_SERVER['SCRIPT_NAME']),$item['urls'])
                             )
                         )))
-            $class="$class active";
+            $class="$class active ost-icon-blue";
         if (!($id=$item['id']))
             $id="subnav$k";
 
@@ -24,7 +24,7 @@ if(($subnav=$nav->getSubMenu()) && is_array($subnav)){
                 $attr.=  sprintf("%s='%s' ", $name, $value);
 
         echo sprintf('<li><a class="off-%s" href="%s" title="%s" id="%s" %s>
-                <i class="icon-ost-%s icon-blue icon-fixed-width"></i>%s</a></li>',
+                <i class="icon-ost-%s icon-faded icon-fixed-width"></i>%s</a></li>',
                 $class, $item['href'], $item['title'], $id, $attr, $class, $item['desc']);
     }
 }

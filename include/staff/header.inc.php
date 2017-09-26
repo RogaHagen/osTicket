@@ -62,15 +62,15 @@ if ($lang) {
         echo sprintf('<div id="notice_bar">%s</div>', $ost->getNotice());
     ?>
     <div id="header">
-        <p id="info" class="pull-right no-pjax"><?php echo sprintf(__('Welcome, %s.'), '<strong>'.$thisstaff->getFirstName().'</strong>'); ?>
+        <p id="info" class="pull-right no-pjax"><i class="icon-home icon-fixed-width"></i><?php echo sprintf(__('Welcome, %s.'), '<strong>'.$thisstaff->getFirstName().' '.$thisstaff->getLastName().'</strong>'); ?>
            <?php
             if($thisstaff->isAdmin() && !defined('ADMINPAGE')) { ?>
-            | <a href="<?php echo ROOT_PATH ?>scp/admin.php" class="no-pjax"><?php echo __('Admin Panel'); ?></a>
+            | <a href="<?php echo ROOT_PATH ?>scp/admin.php" class="no-pjax"><i class="icon-wrench icon-fixed-width"></i><?php echo __('Admin Panel'); ?></a>
             <?php }else{ ?>
-            | <a href="<?php echo ROOT_PATH ?>scp/index.php" class="no-pjax"><?php echo __('Agent Panel'); ?></a>
+            | <a href="<?php echo ROOT_PATH ?>scp/index.php" class="no-pjax"><i class="icon-group icon-fixed-width"></i><?php echo __('Agent Panel'); ?></a>
             <?php } ?>
-            | <a href="<?php echo ROOT_PATH ?>scp/profile.php"><?php echo __('Profile'); ?></a>
-            | <a href="<?php echo ROOT_PATH ?>scp/logout.php?auth=<?php echo $ost->getLinkToken(); ?>" class="no-pjax"><?php echo __('Log Out'); ?></a>
+            | <a href="<?php echo ROOT_PATH ?>scp/profile.php"><i class="icon-user icon-fixed-width"></i><?php echo __('Profile'); ?></a>
+            | <a href="<?php echo ROOT_PATH ?>scp/logout.php?auth=<?php echo $ost->getLinkToken(); ?>" class="no-pjax"><i class="icon-signout icon-fixed-width"></i><?php echo __('Log Out'); ?></a>
         </p>
         <a href="<?php echo ROOT_PATH ?>scp/index.php" class="no-pjax" id="logo">
             <span class="valign-helper"></span>

@@ -530,12 +530,12 @@ if ($errors['err'] && isset($_POST['a'])) {
         if ($role->hasPerm(TicketModel::PERM_REPLY)) { ?>
         <li class="active <?php
             echo isset($errors['reply']) ? 'error' : ''; ?>"><a
-            href="#reply" id="post-reply-tab"><i class="icon-pencil icon-fixed-width"></i><?php echo __('Post Reply');?></a></li>
+            href="#reply" id="post-reply-tab"><i class="icon-edit icon-fixed-width"></i><?php echo __('Post Reply');?></a></li>
         <?php
         } ?>
         <li><a href="#note" <?php
             echo isset($errors['postnote']) ?  'class="error"' : ''; ?>
-            id="post-note-tab"><i class="icon-pencil icon-fixed-width"></i><?php echo __('Post Internal Note');?></a></li>
+            id="post-note-tab"><i class="icon-edit icon-fixed-width"></i><?php echo __('Post Internal Note');?></a></li>
     </ul>
     <?php
     if ($role->hasPerm(TicketModel::PERM_REPLY)) { ?>
