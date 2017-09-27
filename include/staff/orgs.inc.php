@@ -123,6 +123,7 @@ else
 	        <th class="checkbox"><i class="icon-fixed-width icon-check-sign" data-toggle="tooltip" title=""></i>&nbsp;</th>
             <th class="title"><a <?php echo $name_sort; ?> href="orgs.php?<?php echo $qstr; ?>&sort=name"><?php echo __('Name'); ?></a></th>
             <th class="usercount"><a <?php echo $users_sort; ?> href="orgs.php?<?php echo $qstr; ?>&sort=users"><?php echo __('Users'); ?></a></th>
+            <th class="usercount">Tickets</th>
             <th class="dateshort"><a <?php echo $create_sort; ?> href="orgs.php?<?php echo $qstr; ?>&sort=create"><?php echo __('Created'); ?></a></th>
             <th class="datelong"><a <?php echo $update_sort; ?> href="orgs.php?<?php echo $qstr; ?>&sort=update"><?php echo __('Last Updated'); ?></a></th>
         </tr>
@@ -131,7 +132,7 @@ else
     <?php
         $ids=($errors && is_array($_POST['ids']))?$_POST['ids']:null;
         foreach ($orgs as $org) {
-
+            $org_id = $org['id'];
             $sel=false;
             if($ids && in_array($org['id'], $ids))
                 $sel=true;
@@ -140,6 +141,7 @@ else
             <td class="checkbox"><input type="checkbox" value="<?php echo $org['id']; ?>" class="ckb mass nowarn"/></td>
             <td class="title">&nbsp; <a href="orgs.php?id=<?php echo $org['id']; ?>"><?php echo $org['name']; ?></a></td>
             <td class="usercount">&nbsp;<?php echo $org['user_count']; ?></td>
+            <td class="usercount"><?php echo db_count("select count(O.id) from ost_organization as O, ost_user as U, ost_ticket as T where U.org_id = O.id and T.user_id = U.id and O.id = $org_id"); ?></td>
             <td class="shortdate"><?php echo Format::date($org['created']); ?></td>
             <td class="longdate"><?php echo Format::datetime($org['updated']); ?>&nbsp;</td>
            </tr>
