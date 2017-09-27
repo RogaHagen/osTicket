@@ -335,7 +335,7 @@ if ($thisstaff->hasPerm(Task::PERM_DELETE, false)) {
     <thead>
         <tr>
             <?php if ($thisstaff->canManageTickets()) { ?>
-	        <th class="checkbox">&nbsp;</th>
+	        <th class="checkbox"><i class="icon-fixed-width icon-check-sign" data-toggle="tooltip" title=""></i>&nbsp;</th>
             <?php } ?>
 
             <?php
@@ -378,11 +378,12 @@ if ($thisstaff->hasPerm(Task::PERM_DELETE, false)) {
             $assinee ='';
             if ($T['staff_id']) {
                 $staff =  new AgentsName($T['staff__firstname'].' '.$T['staff__lastname']);
-                $assignee = sprintf('<i class="icon-center faded-more icon-fixed-width icon-user"></i><span>%s</span>',
+                $assignee = sprintf(Misc::icon(ICONAGENT, '', 'Die Aufgabe wurde dem Betreuer '.$staff.' zur Bearbeitung zugewiesen').'<span>%s</span>',
                     Format::truncate((string) $staff, 40));
             } elseif($T['team_id']) {
-                $assignee = sprintf('<i class="icon-center faded-more icon-fixed-width icon-group"></i><span>%s</span>',
-                    Format::truncate(Team::getLocalById($T['team_id'], 'name', $T['team__name']),40));
+                $team = Team::getLocalById($T['team_id'], 'name', $T['team__name']);
+                $assignee = sprintf(Misc::icon(ICONTEAM, '', 'Die Aufgabe wurde dem Team '.$team.' zur Bearbeitung zugewiesen').'<span>%s</span>',
+                    Format::truncate($team, 40));
             }
 
             $threadcount=$T['thread_count'];
@@ -408,34 +409,22 @@ if ($thisstaff->hasPerm(Task::PERM_DELETE, false)) {
                   <a class="preview"
                     href="tasks.php?id=<?php echo $T['id']; ?>"
                     data-preview="#tasks/<?php echo $T['id']; ?>/preview"
-                    ><?php echo $number; ?></a></td>
-                    <td align="center" nowrap><?php echo
-                Format::datetime($T[$date_col ?: 'created']); ?></td>
+                    ><?php echo $number; ?></a>
+                    <?php if($T['object_id'] && $T['object_type'] == 'T') {?>
+                        <span><a class="preview" title="Preview Ticket"
+                        href="tickets.php?id=<?php echo $T['object_id']; ?>"
+                        data-preview="#tickets/<?php echo $T['object_id']; ?>/preview"
+                        ><?php echo Misc::icon(ICONTICKET, '', '');?></a></span>
+                    <?php } ?></td>
+                <td align="center" nowrap><?php echo
+                    Format::datetime($T[$date_col ?: 'created']); ?></td>
                 <td>
-                <?php if($T['object_id'] && $T['object_type'] == 'T') {?>
-                    <span title="<?php echo $T['user__default_email__address']; ?>"             
-                    <a class="Icon <?php echo strtolower($T['ticket__source']); ?>Ticket preview"
-                    title="Preview Ticket"
-                    href="tickets.php?id=<?php echo $T['object_id']; ?>"
-                    data-preview="#tickets/<?php echo $T['object_id']; ?>/preview"
-                    ></a></span>
-                <?php } ?>
-                <a <?php if ($flag) { ?> class="Icon <?php echo $flag; ?>Ticket" title="<?php echo ucfirst($flag); ?> Ticket" <?php } ?>
+                    <a <?php if ($flag) { ?> class="Icon <?php echo $flag; ?>Ticket" title="<?php echo ucfirst($flag); ?> Ticket" <?php } ?>
                     href="tasks.php?id=<?php echo $T['id']; ?>"><?php
                     echo $title; ?></a><span class="pull-right">
-                     <?php
-                        if ($threadcount>1)
-                            echo '<i class="faded-more icon-fixed-width icon-comments"
-                                data-toggle="tooltip" title="'.$threadcount.' Vorgänge"></i>';
-                        if ($T['collab_count'])
-                            echo '<i class="faded-more icon-fixed-width icon-group"
-                                data-toggle="tooltip" title="'.$T['collab_count'].' beteiligte Personen"></i>';
-                        if ($T['attachment_count'])
-                            echo '<i class="faded-more icon-fixed-width icon-file-text"
-                                data-toggle="tooltip" title="'.$T['attachment_count'].' Dateianhänge"></i>';
-                    ?></span>
+                    <?php echo Misc::icon_annotation($threadcount, $T['attachment_count'], $T['collab_count'], 0, 'Aufgabe');?></span>
                 </td>
-                <td nowrap>&nbsp;<?php echo Misc::icon(ICONDEPARTMENT, '', '').Format::truncate($dept, 40); ?></td>
+                <td nowrap>&nbsp;<?php echo Misc::icon(ICONDEPARTMENT, '', 'Die Aufgabe gehört zu der Abteilung '.$dept).Format::truncate($dept, 40); ?></td>
                 <td nowrap>&nbsp;<?php echo $assignee; ?></td>
             </tr>
             <?php

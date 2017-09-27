@@ -79,11 +79,13 @@ if ($num) { ?>
  <table class="list" border="0" cellspacing="1" cellpadding="0" width="940">
     <thead>
         <tr>
-            <th class="checkbox">&nbsp;</th>
+	        <th class="checkbox"><i class="icon-fixed-width icon-check-sign" data-toggle="tooltip" title=""></i>&nbsp;</th>
             <th class="title"><?php echo __('Name'); ?></th>
             <th class="email"><?php echo __('Email'); ?></th>
-            <th class="status"><?php echo __('Status'); ?></th>
+            <th class="ticketcount">Tickets</th>
+            <th class="userstatus"><?php echo __('Status'); ?></th>
             <th class="dateshort"><?php echo __('Created'); ?></th>
+            <th class="datelong"><?php echo __('Updated'); ?></th>
         </tr>
     </thead>
     <tbody>
@@ -93,32 +95,40 @@ if ($num) { ?>
             while ($row = db_fetch_array($res)) {
 
                 $name = new UsersName($row['name']);
-                $status = 'Active';
+                $user_id = $row['id'];
+                $user_status = 0;
+                $status = __('Guest');
+                if (db_count("select count(id) from ost_user_account where status = 1 and user_id = $user_id")){
+                    $status = new UserAccountStatus(1);
+                    $user_status = 1;
+                }elseif (db_count("select count(id) from ost_user_account where status = 2 and user_id = $user_id")){
+                    $status = new UserAccountStatus(2);
+                    $user_status = 2;
+                }elseif (db_count("select count(id) from ost_user_account where status = 3 and user_id = $user_id")){
+                    $status = new UserAccountStatus(3);
+                    $user_status = 3;
+                }
                 $sel=false;
                 if($ids && in_array($row['id'], $ids))
                     $sel=true;
-                ?>
+               ?>
                <tr id="<?php echo $row['id']; ?>">
-                <td align="center">
+                <td class="checkbox">
                   <input type="checkbox" class="ckb" name="ids[]"
                     value="<?php echo $row['id']; ?>" <?php echo $sel?'checked="checked"':''; ?> >
                 </td>
-                <td>&nbsp;
+                <td class"title">&nbsp;
                     <a class="preview"
                         href="users.php?id=<?php echo $row['id']; ?>"
                         data-preview="#users/<?php
                         echo $row['id']; ?>/preview" ><?php
-                        echo Format::htmlchars($name); ?></a>
-                    &nbsp;
-                    <?php
-                    if ($row['tickets'])
-                         echo sprintf('<i class="icon-fixed-width icon-file-text-alt"></i>
-                             <small>(%d)</small>', $row['tickets']);
-                    ?>
+                        echo Format::htmlchars($name); ?></a>&nbsp;
                 </td>
-                <td><?php echo Format::htmlchars($row['email']); ?></td>
-                <td><?php echo $status; ?></td>
-                <td><?php echo Format::date($row['created']); ?></td>
+                <td class="email"><?php echo Format::htmlchars($row['email']); ?></td>
+                <td class="ticketcount"><?php echo $row['tickets']; ?></td>
+                <td class="userstatus"><?php echo Misc::icon_userstate($user_status).$status; ?></td>
+                <td class="dateshort"><?php echo Format::date($row['created']); ?></td>
+                <td class="datelong"><?php echo Format::datetime($row['updated']); ?>&nbsp;</td>
                </tr>
             <?php
             } //end of while.
@@ -126,7 +136,7 @@ if ($num) { ?>
     </tbody>
     <tfoot>
      <tr>
-        <td colspan="5">
+        <td colspan="7">
             <?php
             if ($res && $num) {
                 ?>

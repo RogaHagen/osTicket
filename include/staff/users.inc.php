@@ -152,10 +152,13 @@ else
  <table class="list" border="0" cellspacing="1" cellpadding="0" width="940">
     <thead>
         <tr>
-            <th nowrap class="checkbox">&nbsp;</th>
+	        <th class="checkbox"><i class="icon-fixed-width icon-check-sign" data-toggle="tooltip" title=""></i>&nbsp;</th>
             <th class="title"><a <?php echo $name_sort; ?> href="users.php?<?php
                 echo $qstr; ?>&sort=name"><?php echo __('Name'); ?></a></th>
-            <th class="status"><a  <?php echo $status_sort; ?> href="users.php?<?php
+            <th class="email"><a <?php echo $email_sort; ?> href="users.php?<?php
+                echo $qstr; ?>&sort=email"><?php echo __('Email'); ?></a></th>
+            <th class="ticketcount">Tickets</th>
+            <th class="userstatus"><a  <?php echo $status_sort; ?> href="users.php?<?php
                 echo $qstr; ?>&sort=status"><?php echo __('Status'); ?></a></th>
             <th class="dateshort"><a <?php echo $create_sort; ?> href="users.php?<?php
                 echo $qstr; ?>&sort=create"><?php echo __('Created'); ?></a></th>
@@ -184,30 +187,25 @@ else
                     $sel=true;
                 ?>
                <tr id="<?php echo $U['id']; ?>">
-                <td nowrap align="center">
-                    <input type="checkbox" value="<?php echo $U['id']; ?>" class="ckb mass nowarn"/>
-                </td>
-                <td>&nbsp;
+                <td class="checkbox"><input type="checkbox" value="<?php echo $U['id']; ?>" class="ckb mass nowarn"/></td>
+                <td class="title^">&nbsp;
                     <a class="preview"
                         href="users.php?id=<?php echo $U['id']; ?>"
                         data-preview="#users/<?php echo $U['id']; ?>/preview"><?php
-                        echo Format::htmlchars($name); ?></a>
-                    &nbsp;
-                    <?php
-                    if ($U['ticket_count'])
-                         echo sprintf('<i class="icon-fixed-width icon-file-text-alt"></i>
-                             <small>(%d)</small>', $U['ticket_count']);
-                    ?>
+                        echo Format::htmlchars($name); ?>
+                    </a>&nbsp;
                 </td>
-                <td><?php echo $status; ?></td>
-                <td><?php echo Format::date($U['created']); ?></td>
-                <td><?php echo Format::datetime($U['updated']); ?>&nbsp;</td>
+                <td class="email"><?php echo Format::htmlchars($U['default_email__address']); ?></td>
+                <td class="ticketcount"><?php echo $U['ticket_count'];?></td>
+                <td class="userstatus"><?php echo Misc::icon_userstate($U['account__status']).$status; ?></td>
+                <td class="dateshort"><?php echo Format::date($U['created']); ?></td>
+                <td class="datelong"><?php echo Format::datetime($U['updated']); ?>&nbsp;</td>
                </tr>
 <?php   } //end of foreach. ?>
     </tbody>
     <tfoot>
      <tr>
-        <td colspan="7">
+        <td colspan="8">
             <?php if ($total) { ?>
             <?php echo __('Select');?>:&nbsp;
             <a id="selectAll" href="#ckb"><?php echo __('All');?></a>&nbsp;&nbsp;

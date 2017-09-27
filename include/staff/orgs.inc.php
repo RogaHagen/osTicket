@@ -120,7 +120,7 @@ else
  <table class="list" border="0" cellspacing="1" cellpadding="0" width="940">
     <thead>
         <tr>
-            <th nowrap class="checkbox">&nbsp;</th>
+	        <th class="checkbox"><i class="icon-fixed-width icon-check-sign" data-toggle="tooltip" title=""></i>&nbsp;</th>
             <th class="title"><a <?php echo $name_sort; ?> href="orgs.php?<?php echo $qstr; ?>&sort=name"><?php echo __('Name'); ?></a></th>
             <th class="usercount"><a <?php echo $users_sort; ?> href="orgs.php?<?php echo $qstr; ?>&sort=users"><?php echo __('Users'); ?></a></th>
             <th class="dateshort"><a <?php echo $create_sort; ?> href="orgs.php?<?php echo $qstr; ?>&sort=create"><?php echo __('Created'); ?></a></th>
@@ -137,14 +137,11 @@ else
                 $sel=true;
             ?>
            <tr id="<?php echo $org['id']; ?>">
-            <td nowrap align="center">
-                <input type="checkbox" value="<?php echo $org['id']; ?>" class="ckb mass nowarn"/>
-            </td>
-            <td>&nbsp; <a href="orgs.php?id=<?php echo $org['id']; ?>"><?php
-            echo $org['name']; ?></a> </td>
-            <td>&nbsp;<?php echo $org['user_count']; ?></td>
-            <td><?php echo Format::date($org['created']); ?></td>
-            <td><?php echo Format::datetime($org['updated']); ?>&nbsp;</td>
+            <td class="checkbox"><input type="checkbox" value="<?php echo $org['id']; ?>" class="ckb mass nowarn"/></td>
+            <td class="title">&nbsp; <a href="orgs.php?id=<?php echo $org['id']; ?>"><?php echo $org['name']; ?></a></td>
+            <td class="usercount">&nbsp;<?php echo $org['user_count']; ?></td>
+            <td class="shortdate"><?php echo Format::date($org['created']); ?></td>
+            <td class="longdate"><?php echo Format::datetime($org['updated']); ?>&nbsp;</td>
            </tr>
         <?php
         }

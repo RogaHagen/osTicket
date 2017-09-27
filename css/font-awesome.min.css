@@ -206,7 +206,7 @@ a .icon-rotate-90:before,a .icon-rotate-180:before,a .icon-rotate-270:before,a .
 .icon-wrench:before{content:"\f0ad";}
 .icon-tasks:before{content:"\f0ae";}
 .icon-ost-ticketFilters:before,.icon-filter:before{content:"\f0b0";}
-.icon-briefcase:before{content:"\f0b1";}
+.icon-ost-departments:before,.icon-briefcase:before{content:"\f0b1";}
 .icon-fullscreen:before{content:"\f0b2";}
 .icon-ost-groups:before,.icon-ost-teams:before,.icon-group:before{content:"\f0c0";}
 .icon-link:before{content:"\f0c1";}
@@ -260,7 +260,7 @@ a .icon-rotate-90:before,a .icon-rotate-180:before,a .icon-rotate-270:before,a .
 .icon-coffee:before{content:"\f0f4";}
 .icon-food:before{content:"\f0f5";}
 .icon-file-text-alt:before{content:"\f0f6";}
-.icon-ost-departments:before,.icon-building:before{content:"\f0f7";}
+.icon-building:before{content:"\f0f7";}
 .icon-hospital:before{content:"\f0f8";}
 .icon-ambulance:before{content:"\f0f9";}
 .icon-medkit:before{content:"\f0fa";}

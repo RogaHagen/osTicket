@@ -2950,10 +2950,12 @@ th.department {width: 155px;} /* 15% */
 th.agent {width: 155px;} /* 15% */
 th.user {width: 155px;} /* 15% */
 th.email {width: auto;}
-th.usercount {width: 5%;}
+th.usercount {width: 30px;}
+th.ticketcount {width: 20px;}
 th.task {width: 5%;}
 th.ticket {width: 80px;} /* 9% */
 th.status {width: 110px;} /* 11% */
+th.userstatus {width: 190px;} /* 11% */
 th.priority {width: 70px;} /* 5% */
 th.title {width: auto;}
 th.phone {width: 15%;}
@@ -2967,11 +2969,13 @@ td.department {text-align: left; white-space:nowrap}
 td.agent {text-align: left; white-space:nowrap}
 td.user {text-align: left; white-space:nowrap}
 td.email {text-align: left; white-space:nowrap}
-td.usercount {text-align: center;}
+td.usercount {text-align: right;}
+td.ticketcount {text-align: right;}
 td.task {text-align: center;}
 td.ticket {text-align: center; white-space:nowrap}
 td.priority {text-align: left;}
 td.status {text-align: left;}
+td.userstatus {text-align: left;}
 td.title {text-align: left; white-space:nowrap}
 td.phone {text-align: left; white-space:nowrap}
 td.phoneext {text-align: left; white-space:nowrap}

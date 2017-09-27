@@ -34,9 +34,10 @@ const ICONGROUP         = 'icon-group';
 const ICONTEAM          = 'icon-group';
 const ICONAGENT         = 'icon-user';
 const ICONUSER          = 'icon-user';
-const ICONDEPARTMENT    = 'icon-building';
-const ICONATTACHMENT    = 'icon-file-text';
+const ICONDEPARTMENT    = 'icon-briefcase';
+const ICONATTACHMENT    = 'icon-file';
 const ICONTASK          = 'icon-list';
+const ICONTICKET        = 'icon-list-alt';
 const ICONUNKNOWN       = 'icon-question-sign';
 
 const TICKETOPEN        = 1;
@@ -51,6 +52,10 @@ const TICKETANSWERED    = 3;
 const TICKETUNANSWERED  = 4;
 const TICKETFINISHED    = 5;
 
+const USERGUEST         = 0;
+const USERREGISTERED    = 1;
+const USERLOCKED        = 3;
+
 class Misc {
 
     function icon($icon, $class, $tooltip){
@@ -59,6 +64,19 @@ class Misc {
         return $var;
     }
     
+    function icon_userstate($status){
+        if ($status == USERGUEST){
+            $var = Misc::icon(ICONOPEN, '', 'Der Benutzer ist als Gast tätig');
+        }elseif ($status == USERREGISTERED){
+            $var = Misc::icon(ICONSOLVED, '', 'Der Benutzer ist registriert');
+        }elseif ($status == USERLOCKED){
+            $var = Misc::icon(ICONLOCKED, 'icon-center icon-red', 'Das Benutzer ist momentan gesperrt');
+        }else{
+            $var = Misc::icon(ICONUNKNOWN, '', 'Der Status des Benutzers ist unbekannt');       
+        }
+        return $var;
+    }
+
     function icon_closestate($status){
         if (!strcasecmp($status,'offen')){
             $var = Misc::icon(ICONOPEN, '', 'Das Ticket ist offen');
@@ -87,22 +105,22 @@ class Misc {
         return $var;
     }
  
-    function icon_annotation($thread, $attachment, $collab, $tasks){
+    function icon_annotation($thread, $attachment, $collab, $tasks, $source = 'Ticket'){
         $var = '<span class="pull-right">';
         if ($thread > 1)
-            $var = $var.Misc::icon(ICONTHREAD, '', 'Das Ticket enthält '.$thread.' Vorgänge');
+            $var = $var.Misc::icon(ICONTHREAD, '', 'Das '.$source.' enthält '.$thread.' Vorgänge');
         if ($tasks > 1)
-            $var = $var.Misc::icon(ICONTASK, '', 'Das Ticket enthält '.$tasks.' Aufgaben');
+            $var = $var.Misc::icon(ICONTASK, '', 'Das '.$source.' enthält '.$tasks.' Aufgaben');
         if ($tasks == 1)
-            $var = $var.Misc::icon(ICONTASK, '', 'Das Ticket enthält '.$tasks.' Aufgabe');
+            $var = $var.Misc::icon(ICONTASK, '', 'Das '.$source.' enthält '.$tasks.' Aufgabe');
         if ($attachment > 1)
-            $var = $var.Misc::icon(ICONATTACHMENT, '', 'Das Ticket enthält '.$attachment.' Dateianhänge');
+            $var = $var.Misc::icon(ICONATTACHMENT, '', 'Das '.$source.' enthält '.$attachment.' Dateianhänge');
         if ($attachment == 1)
-            $var = $var.Misc::icon(ICONATTACHMENT, '', 'Das Ticket enthält '.$attachment.' Dateianhang');
+            $var = $var.Misc::icon(ICONATTACHMENT, '', 'Das '.$source.' enthält '.$attachment.' Dateianhang');
         if ($collab > 1)
-            $var = $var.Misc::icon(ICONGROUP, '', 'An dem Ticket sind '.$collab.' weitere Personen beteiligt');
+            $var = $var.Misc::icon(ICONGROUP, '', 'An dem '.$source.' sind '.$collab.' weitere Personen beteiligt');
         if ($collab == 1)
-            $var = $var.Misc::icon(ICONUSER, '', 'An dem Ticket ist '.$collab.' weitere Person beteiligt');
+            $var = $var.Misc::icon(ICONUSER, '', 'An dem '.$source.' ist '.$collab.' weitere Person beteiligt');
         $var = $var.'</span>';
         return $var;
     }

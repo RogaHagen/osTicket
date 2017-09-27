@@ -156,6 +156,8 @@ if ($total) { ?>
 
         $ticket_source = $T['source'];
         $status = TicketStatus::getLocalById($T['status_id'], 'value', $T['status__name']);
+        $displaystatus = $status;
+        if (!strcasecmp($status,'offen'))$displaystatus="<b>$status</b>";        
         $tid = $T['number'];
         if(!strcasecmp($T['status__state'],'open') && !$T['isanswered'] && !$T['lock__staff_id']) {
             $tid=sprintf('<b>%s</b>',$tid);
@@ -181,7 +183,7 @@ if ($total) { ?>
                 echo $tid; ?></a>
             </td>
             <td nowrap><?php echo Misc::icon_openstate($flag).Format::datetime($T['lastupdate']); ?></td>
-            <td><?php echo Misc::icon_closestate($status).$status; ?></td>
+            <td><?php echo Misc::icon_closestate($status).$displaystatus; ?></td>
             <?php
             if ($user) $trancate = 'tc-title-user';
             else $trancate = 'tc-title-org';

@@ -62,7 +62,7 @@ if ($count) { ?>
         <tr>
             <?php
             if (1) {?>
-            <th class="checkbox">&nbsp;</th>
+	        <th class="checkbox"><i class="icon-fixed-width icon-check-sign" data-toggle="tooltip" title=""></i>&nbsp;</th>
             <?php
             } ?>
             <th class="task"><?php echo __('Number'); ?></th>
@@ -80,17 +80,15 @@ if ($count) { ?>
         $access = $task->checkStaffPerm($thisstaff);
         $assigned='';
         if ($task->staff)
-            $assigned=sprintf('<i class="icon-center faded-more icon-fixed-width icon-user"></i><span>%s</span>',
+            $assigned=sprintf(Misc::icon(ICONUSER, '', 'Die Aufgabe wurde dem Betreuer '.$task->staff->getName().' zur Bearbeitung zugewiesen').'<span>%s</span>',
                     Format::truncate($task->staff->getName(),40));
 
         elseif ($task->getAssigned())
-            $assigned=sprintf('<i class="icon-center faded-more icon-fixed-width icon-group"></i><span>%s</span>',
+            $assigned=sprintf(Misc::icon(ICONTEAM, '', 'Die Aufgabe wurde dem Team '.$task->getAssigned().' zur Bearbeitung zugewiesen').'<span>%s</span>',
                     Format::truncate($task->getAssigned(),40));
 
-        $status = $task->isOpen() ? '<i class="icon-center faded-more icon-fixed-width icon-unchecked"
-                            data-toggle="tooltip" title data-original-title="Die Aufgabe ist offen"></i><span><strong>'.__('Open').'</strong></span>'
-                            : '<i class="icon-center faded-more icon-fixed-width icon-check"
-                            data-toggle="tooltip" title data-original-title="Die Aufgabe ist erledigt"></i><span>'.__('Closed').'</span>';
+        $status = $task->isOpen() ? Misc::icon(ICONOPEN, '', 'Die Aufgabe ist offen').'<span><strong>'.__('Open').'</strong></span>'
+                            : Misc::icon(ICONCLOSED, '', 'Die Aufgabe ist erledigt').'<span>'.__('Closed').'</span>';
 
         $title = Format::htmlchars(Format::truncate($task->getTitle(),60));
         $threadcount = $task->getThread() ?
@@ -127,18 +125,10 @@ if ($count) { ?>
                 } else {
                      echo $title;
                 }
-                    if ($threadcount>1)
-                        echo '<i class="faded-more icon-fixed-width icon-comments"
-                            data-toggle="tooltip" title="'.$threadcount.' Vorgänge"></i>';
-                    if ($row['collaborators'])
-                        echo '<i class="faded-more icon-fixed-width icon-group"
-                            data-toggle="tooltip" title="'.$row['collaborators'].' beteiligte Personen"></i>';
-                    if ($row['attachments'])
-                        echo '<i class="faded-more icon-fixed-width icon-file-text"
-                            data-toggle="tooltip" title="'.$row['attachments'].' Dateianhänge"></i>';
+                echo Misc::icon_annotation($threadcount, $row['attachments'], $row['collaborators'], 0, 'Aufgabe');
                 ?>
             </td>
-            <td><?php echo '<i class="icon-center faded-more icon-fixed-width icon-suitcase"></i>'.Format::truncate($task->dept->getName(), 40); ?></td>
+            <td><?php echo Misc::icon(ICONDEPARTMENT, '', 'Die Aufgabe gehört zu der Abteilung '.$task->dept->getName()).Format::truncate($task->dept->getName(), 40); ?></td>
             <td>&nbsp;<?php echo $assigned; ?></td>
         </tr>
    <?php
@@ -205,5 +195,6 @@ $(function() {
     });
 
     $('#ticket-tasks-count').html(<?php echo $count; ?>);
+    $('[data-toggle=tooltip]').tooltip();
 });
 </script>
