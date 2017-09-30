@@ -65,6 +65,8 @@ POT-Creation-Date:
   'Closed by system' => 'Geschlossen durch das System',
   'Ticket not assigned' => 'Das Ticket wurde bisher nicht zugewiesen',
   'Ticket priority:' => 'Ticket Priorität:',
+  'All Rights Reserved' => 'Alle Rechte vorbehalten',
+  'Portions Powered by' => 'Teile mit Unterstützung von',
   // Nachträge Übersetzungen (Ende)
   '"1" is recommended if AJAX is not working' => '"1" wird empfohlen, wenn AJAX nicht funktioniert',
   '%1$d - %2$d of %3$d' => '%1$d - %2$d von %3$d',

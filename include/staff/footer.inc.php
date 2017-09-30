@@ -2,7 +2,11 @@
 </div>
 <?php if (!isset($_SERVER['HTTP_X_PJAX'])) { ?>
     <div id="footer">
-        Copyright &copy; 2006-<?php echo date('Y'); ?>&nbsp;<?php echo (string) $ost->company ?: 'osTicket.com'; ?>&nbsp;.All Rights Reserved. <?php echo THIS_VERSION ?>
+        Copyright &copy; <?php echo date('Y').' '; echo (string) $ost->company ?: 'osTicket.com'; ?>.
+        <?php echo __('All Rights Reserved') ;?>.<br> 
+        <?php echo __('Powered by'); ?> <a href="http://www.osticket.com" target="_blank">osTicket</a>.
+        Version <a href="https://github.com/ropaha/helpdesk"><?php echo THIS_VERSION ?></a>.
+        <?php echo __('Portions Powered by'); ?> Roga Hagen (<a href="mailto:roga@hagen.me">roga@hagen.me</a>)
     </div>
 <?php
 if(is_object($thisstaff) && $thisstaff->isStaff()) { ?>
