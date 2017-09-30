@@ -854,7 +854,8 @@ class TextDomain {
     }
 }
 
-require_once INCLUDE_DIR . 'class.orm.php';
+//require_once INCLUDE_DIR . 'class.orm.php';
+require_once 'class.orm.php';
 class CustomDataTranslation extends VerySimpleModel {
 
     static $meta = array(

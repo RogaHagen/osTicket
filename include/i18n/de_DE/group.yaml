@@ -1,0 +1,33 @@
+---
+- 
+  id: 1
+  role_id: 1
+  flags: 1
+  name: Löwenbändiger
+  notes: Oberherren des Systems. Diese Leute haben (zunächst) die volle Kontrolle über alle Abteilungen, zu denen sie Zugang haben.
+  depts:
+    - 1
+    - 2
+    - 3
+- 
+  id: 2
+  role_id: 2
+  flags: 1
+  name: Elefantenführer
+  notes: |
+    Bewohner des Elfenbeinturms
+  depts:
+    - 1
+    - 2
+    - 3
+- 
+  id: 3
+  role_id: 2
+  flags: 1
+  name: Flohtrainer
+  notes: |
+    Einfache Agenten
+  depts:
+    - 1
+    - 2
+    - 3

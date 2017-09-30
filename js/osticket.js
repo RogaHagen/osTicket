@@ -101,7 +101,7 @@ $(document).ready(function(){
         extra.append($('<a>')
           .addClass("action-button show-images pull-right")
           .css({'font-weight':'normal'})
-          .text(' ' + __('Show Images'))
+          .text(' ' + __('Bilder anzeigen'))
           .click(function(ev) {
             imgs.each(function(i, img) {
               showNonLocalImage(img);

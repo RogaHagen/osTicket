@@ -1,0 +1,19 @@
+---
+notes: |
+  Benachrichtigung, die nach einer Aufgaben-Aktivität, z.B. Antwort oder Nachricht, an Beteilige Personen der Aufgabe versendet wird.
+subject: |
+  Aw: %{task.title} [#%{task.number}]
+body: |
+  h3><strong>Hallo %{recipient.name},</strong></h3>
+  <div>
+  <em>%{poster.name}</em> hat gerade eine Nachricht zu einer Aufgabe hinzugefügt, an der Sie beteiligt sind.
+  </div>
+  <br>
+  %{message}
+  <br>
+  <br>
+  <hr>
+  <div style="color: rgb(127, 127, 127); font-size: small; text-align: center;">
+  <em>Sie erhalten diese E-Mail, da Sie an der Aufgabe #%{task.number} beteiligt sind.
+  Um sich weiter daran zu beteiligen, antworten Sie bitte einfach auf diese E-Mail.</em>
+  </div>

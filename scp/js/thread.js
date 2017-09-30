@@ -62,7 +62,7 @@ var thread = {
             extra.append($('<a>')
               .addClass("white button action-button show-images")
               .css({'font-weight':'normal'})
-              .text(' ' + __('Show Images'))
+              .text(' ' + __('Bilder anzeigen'))
               .click(function(ev) {
                 imgs.each(function(i, img) {
                   thread.showExternalImage(img);
