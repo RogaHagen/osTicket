@@ -726,7 +726,7 @@ class TextDomain {
 
             // APC short-circuit (if supported)
             $key = sha1($locale .':lang:'. $subpath);
-            if ($T = Translation::resurrect($key)) {
+            if ($T = Translation::resurrect($key) and APC_CACHE_I18N) {
                 return $this->l10n[$locale] = $T;
             }
 
