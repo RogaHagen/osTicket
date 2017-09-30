@@ -378,11 +378,11 @@ if ($thisstaff->hasPerm(Task::PERM_DELETE, false)) {
             $assinee ='';
             if ($T['staff_id']) {
                 $staff =  new AgentsName($T['staff__firstname'].' '.$T['staff__lastname']);
-                $assignee = sprintf(Misc::icon(ICONAGENT, '', 'Die Aufgabe wurde dem Betreuer '.$staff.' zur Bearbeitung zugewiesen').'<span>%s</span>',
+                $assignee = sprintf(Misc::icon(ICONAGENT, '', __('Assigned to agent:').' '.$staff).'<span>%s</span>',
                     Format::truncate((string) $staff, 40));
             } elseif($T['team_id']) {
                 $team = Team::getLocalById($T['team_id'], 'name', $T['team__name']);
-                $assignee = sprintf(Misc::icon(ICONTEAM, '', 'Die Aufgabe wurde dem Team '.$team.' zur Bearbeitung zugewiesen').'<span>%s</span>',
+                $assignee = sprintf(Misc::icon(ICONTEAM, '', __('Assigned to team:').' '.$team).'<span>%s</span>',
                     Format::truncate($team, 40));
             }
 
@@ -422,9 +422,9 @@ if ($thisstaff->hasPerm(Task::PERM_DELETE, false)) {
                     <a <?php if ($flag) { ?> class="Icon <?php echo $flag; ?>Ticket" title="<?php echo ucfirst($flag); ?> Ticket" <?php } ?>
                     href="tasks.php?id=<?php echo $T['id']; ?>"><?php
                     echo $title; ?></a><span class="pull-right">
-                    <?php echo Misc::icon_annotation($threadcount, $T['attachment_count'], $T['collab_count'], 0, 'Aufgabe');?></span>
+                    <?php echo Misc::icon_annotation($threadcount, $T['attachment_count'], $T['collab_count'], 0);?></span>
                 </td>
-                <td nowrap>&nbsp;<?php echo Misc::icon(ICONDEPARTMENT, '', 'Die Aufgabe gehört zu der Abteilung '.$dept).Format::truncate($dept, 40); ?></td>
+                <td nowrap>&nbsp;<?php echo Misc::icon(ICONDEPARTMENT, '', __('Assigned to department:').' '.$dept).Format::truncate($dept, 40); ?></td>
                 <td nowrap>&nbsp;<?php echo $assignee; ?></td>
             </tr>
             <?php

@@ -196,15 +196,15 @@ if ($total) { ?>
             if ($user) {
                 $dept = Dept::getLocalById($T['dept_id'], 'name', $T['dept__name']); ?>
             <td><span class="tc-department truncate"><?php
-                echo Misc::icon(ICONDEPARTMENT, '', 'Das Ticket gehört zu der Abteilung '.$dept);
+                echo Misc::icon(ICONDEPARTMENT, '', __('Assigned to department:').' '.$dept);
                 echo Format::htmlchars($dept); ?></span></td>
             <td><span class="tc-agent truncate"><?php
                 if ($T['staff_id']){
-                    echo Misc::icon(ICONAGENT, '', 'Das Ticket wurde dem Betreuer '.$assigned.' zur Bearbeitung zugewiesen');
+                    echo Misc::icon(ICONAGENT, '', __('Assigned to agent:').' '.$assigned);
                 }elseif ($T['team_id']){
-                    echo Misc::icon(ICONTEAM, '', 'Das Ticket wurde dem Team '.$assigned.' zur Bearbeitung zugewiesen');
+                    echo Misc::icon(ICONTEAM, '', __('Assigned to team:').' '.$assigned);
                 }else {
-                    echo Misc::icon(ICONUNSIGNED, 'icon-center icon-red', 'Das Ticket wurde bisher nicht zugewiesen');
+                    echo Misc::icon(ICONUNSIGNED, 'icon-center icon-red', __('Ticket not assigned'));
                     $assigned = "nicht zugewiesen";
                 }
                echo Format::htmlchars($assigned); ?></span></td>
@@ -212,7 +212,7 @@ if ($total) { ?>
             } else { ?>
             <td><a class="tc-user truncate" href="users.php?id=<?php echo $T['user_id']; ?>">
                 <?php 
-                echo Misc::icon(ICONMAIL, '', 'Eingereicht von '.$T['user__name'].' ('.$T['user__default_email__address'].')');
+                echo Misc::icon(ICONMAIL, '', __('Ticket submitted by:').' '.$T['user__name'].' ('.$T['user__default_email__address'].')');
                 echo Format::htmlchars($T['user__name']);
                 ?></a>
             </td>

@@ -587,7 +587,7 @@ return false;">
                         <a href="users.php?id=<?php echo $T['user__id']; ?>">
                         <?php
                         $un = new UsersName($T['user__name']);
-                        echo Misc::icon(ICONMAIL, '', 'Eingereicht von '.$un.' ('.$T['user__default_email__address'].')');
+                        echo Misc::icon(ICONMAIL, '', __('Ticket submitted by:').' '.$un.' ('.$T['user__default_email__address'].')');
                         echo Format::htmlchars($un);
                     ?></a></span></div></td>
                 <?php
@@ -601,7 +601,7 @@ return false;">
                 <td class="priority nohover"
                     style="background-color:<?php echo $T['cdata__:priority__priority_color']; ?>;">
                     <?php
-                    echo Misc::icon($T['cdata__:priority__priority_icon'], '', 'Das Ticket wurde mit der Priorität '.$T['cdata__:priority__priority_desc'].' eingestuft');
+                    echo Misc::icon($T['cdata__:priority__priority_icon'], '', __('Ticket priority:').' '.$T['cdata__:priority__priority_desc']);
                     echo $T['cdata__:priority__priority_desc'];
                     ?></td>
                 <?php
@@ -611,25 +611,25 @@ return false;">
                 <td class="agent"><span class="tc-agent truncate"><?php
                     if ($showassigned) {
                         if ($status == 'open'){
-                            $tooltip = 'Das Ticket wurde dem Betreuer '.$lc.' zur Bearbeitung zugewiesen';
+                            $tooltip = __('Assigned to agent:').' '.$lc;
                         }else{
-                            $tooltip = 'Das Ticket wurde vom Betreuer '.$lc.' geschlossen';
+                            $tooltip = __('Closed by agent:').' '.$lc;
                         }
                         if ($T['staff_id'])
                             echo Misc::icon(ICONAGENT, '', $tooltip);
                         elseif ($T['team_id'])
-                            echo Misc::icon(ICONTEAM, '', 'Das Ticket wurde dem Team '.$lc.' zur Bearbeitung zugewiesen');
+                            echo Misc::icon(ICONTEAM, '', __('Assigned to team:').' '.$lc);
                         else {
                             if (!strcasecmp($status,'closed')) {
-                                echo Misc::icon(ICONSYSTEM, '', 'Das Ticket wurde durch das System geschlossen');
+                                echo Misc::icon(ICONSYSTEM, '', __('Closed by System'));
                                 $lc =  __('System');
                             }else{
-                                echo Misc::icon(ICONUNSIGNED, 'icon-center icon-red', 'Das Ticket wurde bisher nicht zugewiesen');
+                                echo Misc::icon(ICONUNSIGNED, 'icon-center icon-red', __('Ticket not assigned'));
                                 $lc = "nicht zugewiesen";
                             }
                         }
                     }else{
-                        echo Misc::icon(ICONDEPARTMENT, '', 'Das Ticket gehört zu der Abteilung '.$lc);
+                        echo Misc::icon(ICONDEPARTMENT, '', __('Assigned to department:').' '.$lc);
                     }
                     echo Format::htmlchars($lc); ?></span></td>
             </tr>

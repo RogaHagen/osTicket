@@ -66,41 +66,41 @@ class Misc {
     
     function icon_userstate($status){
         if ($status == USERGUEST){
-            $var = Misc::icon(ICONOPEN, '', 'Der Benutzer ist als Gast tätig');
+            $var = Misc::icon(ICONOPEN, '', __('User marked as guest'));
         }elseif ($status == USERREGISTERED){
-            $var = Misc::icon(ICONSOLVED, '', 'Der Benutzer ist registriert');
+            $var = Misc::icon(ICONSOLVED, '', __('User marked as registered'));
         }elseif ($status == USERLOCKED){
-            $var = Misc::icon(ICONLOCKED, 'icon-center icon-red', 'Das Benutzer ist momentan gesperrt');
+            $var = Misc::icon(ICONLOCKED, 'icon-center icon-red', __('User marked as locked'));
         }else{
-            $var = Misc::icon(ICONUNKNOWN, '', 'Der Status des Benutzers ist unbekannt');       
+            $var = Misc::icon(ICONUNKNOWN, '', __('User marked as unknown'));       
         }
         return $var;
     }
 
     function icon_closestate($status){
         if (!strcasecmp($status,'offen')){
-            $var = Misc::icon(ICONOPEN, '', 'Das Ticket ist offen');
+            $var = Misc::icon(ICONOPEN, '', __('Ticket marked as open'));
         }elseif (!strcasecmp($status,'gelöst')){
-            $var = Misc::icon(ICONSOLVED, '', 'Das Ticket ist gelöst');
+            $var = Misc::icon(ICONSOLVED, '', __('Ticket marked as solved'));
         }elseif (!strcasecmp($status,'geschlossen')){
-            $var = Misc::icon(ICONCLOSED, '', 'Das Ticket ist geschlossen');
+            $var = Misc::icon(ICONCLOSED, '', __('Ticket marked as closed'));
         }else{
-            $var = Misc::icon(ICONUNKNOWN, '', 'Der Ticketstatus ist unbekannt');       
+            $var = Misc::icon(ICONUNKNOWN, '', __('Ticket marked as unknown'));       
         }
         return $var;
     }
 
     function icon_openstate($state){
         if ($state == 'overdue'){
-            $var = Misc::icon(ICONOVERDUE, 'icon-center icon-red', 'Das Ticket ist überfällig');
+            $var = Misc::icon(ICONOVERDUE, 'icon-center icon-red', __('Ticket marked as overdue!'));
         }elseif ($state == 'locked'){
-            $var = Misc::icon(ICONLOCKED, 'icon-center icon-red', 'Das Ticket ist momentan gesperrt');
+            $var = Misc::icon(ICONLOCKED, 'icon-center icon-red', __('Ticket marked as locked!'));
         }elseif ($state == 'opened') {
-            $var = Misc::icon(ICONUNANSWERED, '', 'Das Ticket ist offen und unbeantwortet');
+            $var = Misc::icon(ICONUNANSWERED, '', __('Ticket marked as unanswered'));
         }elseif ($state== 'closed') {
-            $var = Misc::icon(ICONANSWERED, '', 'Das Ticket ist offen und beantwortet');
+            $var = Misc::icon(ICONANSWERED, '', __('Ticket marked as answered'));
         }elseif ($state== 'done') {
-            $var = Misc::icon(ICONDONE, '', 'Das Ticket ist fertig und abgearbeitet');
+            $var = Misc::icon(ICONDONE, '', __('Ticket marked as finished'));
         }
         return $var;
     }
@@ -108,36 +108,30 @@ class Misc {
     function icon_annotation($thread, $attachment, $collab, $tasks, $source = 'Ticket'){
         $var = '<span class="pull-right">';
         if ($thread > 1)
-            $var = $var.Misc::icon(ICONTHREAD, '', 'Das '.$source.' enthält '.$thread.' Vorgänge');
-        if ($tasks > 1)
-            $var = $var.Misc::icon(ICONTASK, '', 'Das '.$source.' enthält '.$tasks.' Aufgaben');
-        if ($tasks == 1)
-            $var = $var.Misc::icon(ICONTASK, '', 'Das '.$source.' enthält '.$tasks.' Aufgabe');
-        if ($attachment > 1)
-            $var = $var.Misc::icon(ICONATTACHMENT, '', 'Das '.$source.' enthält '.$attachment.' Dateianhänge');
-        if ($attachment == 1)
-            $var = $var.Misc::icon(ICONATTACHMENT, '', 'Das '.$source.' enthält '.$attachment.' Dateianhang');
-        if ($collab > 1)
-            $var = $var.Misc::icon(ICONGROUP, '', 'An dem '.$source.' sind '.$collab.' weitere Personen beteiligt');
-        if ($collab == 1)
-            $var = $var.Misc::icon(ICONUSER, '', 'An dem '.$source.' ist '.$collab.' weitere Person beteiligt');
+            $var = $var.Misc::icon(ICONTHREAD, '', __('Included threads:').' '.$thread);
+        if ($tasks)
+            $var = $var.Misc::icon(ICONTASK, '', __('Included tasks:').' '.$tasks);
+        if ($attachment)
+            $var = $var.Misc::icon(ICONATTACHMENT, '', __('Included files:').' '.$attachment);
+        if ($collab)
+            $var = $var.Misc::icon(ICONGROUP, '', __('Involved persons:').' '.$collab);
         $var = $var.'</span>';
         return $var;
     }
     
     function icon_source($ticket_source){
         if (!strcasecmp($ticket_source,'web')) {
-            $var = Misc::icon(ICONWEB, '', 'Das Ticket wurde über die Website eingeliefert');
+            $var = Misc::icon(ICONWEB, '', __('Ticket supplied by web'));
         }elseif (!strcasecmp($ticket_source,'email')) {
-            $var = Misc::icon(ICONMAIL, '', 'Das Ticket wurde per E-Mail eingeliefert');
+            $var = Misc::icon(ICONMAIL, '', __('Ticket supplied by mail'));
         }elseif (!strcasecmp($ticket_source,'phone')) {
-            $var =  Misc::icon(ICONPHONE, '', 'Das Ticket wurde nach einem Telefonat erfasst');
+            $var =  Misc::icon(ICONPHONE, '', __('Ticket supplied by phone'));
         }elseif (!strcasecmp($ticket_source,'api')) {
-            $var =  Misc::icon(ICONSYSTEM, '', 'Das Ticket wurde durch die API eingeliefert');
+            $var =  Misc::icon(ICONSYSTEM, '', __('Ticket supplied by API'));
         }elseif (!strcasecmp($ticket_source,'other')) {
-            $var =  Misc::icon(ICONMISC, '', 'Das Ticket wurde durch eine andere Quelle eingerichtet');
+            $var =  Misc::icon(ICONMISC, '', __('Ticket supplied by unknown'));
         }else {
-            $var =  Misc::icon(ICONMISC, '', 'Das Ticket wurde durch eine andere Quelle eingerichtet');
+            $var =  Misc::icon(ICONMISC, '', __('Ticket supplied by unknown'));
         }
         return $var;
         
