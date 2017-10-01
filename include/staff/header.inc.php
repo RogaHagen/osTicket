@@ -28,6 +28,8 @@ if ($lang) {
     </style>
     <![endif]-->
     <script type="text/javascript" src="<?php echo ROOT_PATH; ?>js/jquery-1.11.2.min.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo ROOT_PATH; ?>favicon.ico?v=2" />
+    <link rel="icon" type="image/x-icon" href="<?php echo ROOT_PATH; ?>favicon.ico?v=2" />
     <link rel="stylesheet" href="<?php echo ROOT_PATH ?>css/thread.css" media="all">
     <link rel="stylesheet" href="<?php echo ROOT_PATH ?>scp/css/scp.css" media="all">
     <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>css/redactor.css" media="screen">

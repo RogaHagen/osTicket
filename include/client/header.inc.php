@@ -29,7 +29,9 @@ if ($lang) {
     <meta name="description" content="customer support platform">
     <meta name="keywords" content="osTicket, Customer support system, support ticket system">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="<?php echo ROOT_PATH; ?>css/osticket.css" media="screen">
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo ROOT_PATH; ?>favicon.ico?v=2" />
+    <link rel="icon" type="image/x-icon" href="<?php echo ROOT_PATH; ?>favicon.ico?v=2" />
+    <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>css/osticket.css" media="screen">
     <link rel="stylesheet" href="<?php echo ASSETS_PATH; ?>css/theme.css" media="screen">
     <link rel="stylesheet" href="<?php echo ASSETS_PATH; ?>css/print.css" media="print">
     <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>scp/css/typeahead.css"
