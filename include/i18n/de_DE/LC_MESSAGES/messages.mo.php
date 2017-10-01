@@ -570,7 +570,7 @@ POT-Creation-Date:
   'Below is a summary of the database patches to be applied.' => 'Es folgt eine Übersicht der anzuwendenden Datenbank-Patches.',
   'Below, you\'ll find some useful links regarding your installation.' => 'Unten finden Sie einige nützliche Links zu Ihrer Installation.',
   'Between' => 'Zwischen',
-  'Bind Agent Session to IP' => 'Sitzung des Betreuerns an IP-Adresse binden',
+  'Bind Agent Session to IP' => 'Sitzung des Betreuers an IP-Adresse binden',
   'Bring Forward' => 'Eine Ebene nach vorne',
   'Bro, not sure how you got here!' => 'Alter, bin mir nicht sicher wie du hierhin gekommen bist!',
   'Built' => 'Erstellt',
