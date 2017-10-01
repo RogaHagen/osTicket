@@ -62,7 +62,7 @@ POT-Creation-Date:
   'Assigned to agent:' => 'Zugewiesen an den Betreuer:',
   'Assigned to team:' => 'Zugewiesen an das Team:',
   'Closed by agent:' => 'Geschlossen vom Betreuer:',
-  'Closed by system' => 'Geschlossen durch das System',
+  'Closed by System' => 'Geschlossen durch das System',
   'Ticket not assigned' => 'Das Ticket wurde bisher nicht zugewiesen',
   'Ticket priority:' => 'Ticket Priorität:',
   'All Rights Reserved' => 'Alle Rechte vorbehalten',
