@@ -6,7 +6,9 @@
         <?php echo __('All Rights Reserved') ;?>.<br> 
         <?php echo __('Powered by'); ?> <a href="http://www.osticket.com" target="_blank">osTicket</a>.
         Version <a href="https://github.com/ropaha/helpdesk"><?php echo THIS_VERSION ?></a>.
-        <?php echo __('Portions Powered by'); ?> Roga Hagen (<a href="mailto:roga@hagen.me">roga@hagen.me</a>)
+        <?php echo __('Portions Powered by'); ?> 
+        Roga Hagen (<a href="mailto:roga@hagen.me">roga@hagen.me</a>),
+        Lars Knickrehm (<a href="mailto:mail@lars-sh.de">mail@lars-sh.de</a>).
     </div>
 <?php
 if(is_object($thisstaff) && $thisstaff->isStaff()) { ?>
