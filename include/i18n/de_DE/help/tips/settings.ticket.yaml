@@ -46,7 +46,7 @@ human_verification:
 claim_tickets:
   title: Tickets mit Antwort übernehmen
   content: >
-    Aktivieren Sie diese Funktion, damit den Agenten beim Beantworten eines Tickets automatisch dieses Ticket zugewiesen wird. <br><br> Wieder geöffnete Ticket werden immer dem letzten "Beantworter" zugewiesen.
+    Aktivieren Sie diese Funktion, damit den Betreuer beim Beantworten eines Tickets automatisch dieses Ticket zugewiesen wird. <br><br> Wieder geöffnete Ticket werden immer dem letzten "Beantworter" zugewiesen.
 assigned_tickets:
   title: Zugewiesene Tickets
   content: >

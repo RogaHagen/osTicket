@@ -8,9 +8,9 @@ new_ticket:
       title: Vorlage für Auto-Antwort bei neuem Ticket
       href: /scp/templates.php?default_for=ticket.autoresp
 new_ticket_by_staff:
-  title: Neues Ticket von Agent
+  title: Neues Ticket von Betreuern
   content: >
-    Benachrichtigung, die versendet wird, wenn ein Agent im Namen eines Benutzers ein Ticket eröffnet.<em>Der Agent kann bei der Eröffnung eines neuen Tickets diese Einstellung überschreiben.</em>
+    Benachrichtigung, die versendet wird, wenn ein Betreuer im Namen eines Benutzers ein Ticket eröffnet.<em>Der Betreuer kann bei der Eröffnung eines neuen Tickets diese Einstellung überschreiben.</em>
   links:
     - 
       title: Vorlage für Benachrichtigung bei neuem Ticket

@@ -6,7 +6,7 @@ knowledge_base_settings:
 knowledge_base_status:
   title: Wissendatenbank-Status
   content: >
-    Aktivieren Sie diese Einstellung, um Benutzern den Zugang zu Ihren öffentlichen Wissensdatenbank-Artikeln zu ermöglichen. <br><br> Wissensdatenbank-Kategorien und FAQs können so eingestellt werden, dass sie nur intern sichtbar sind (für die Agenten).
+    Aktivieren Sie diese Einstellung, um Benutzern den Zugang zu Ihren öffentlichen Wissensdatenbank-Artikeln zu ermöglichen. <br><br> Wissensdatenbank-Kategorien und FAQs können so eingestellt werden, dass sie nur intern sichtbar sind (für die Betreuer).
   links:
     - 
       title: Wissensdatenbank verwalten
@@ -22,7 +22,7 @@ restrict_kb:
 canned_responses:
   title: Vordefinierte Antworten
   content: >
-    Aktivieren Sie diese Einstellung, um Agenten die Verwendung von <span class="doc-desc-title">Vordefinierte Antworten</span> zu erlauben, wenn Sie auf Tickets antworten.
+    Aktivieren Sie diese Einstellung, um Betreuer die Verwendung von <span class="doc-desc-title">Vordefinierte Antworten</span> zu erlauben, wenn Sie auf Tickets antworten.
   links:
     - 
       title: Vordefinierte Antworten verwalten

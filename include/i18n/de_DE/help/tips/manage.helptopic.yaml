@@ -14,7 +14,7 @@ status:
 type:
   title: Typ
   content: >
-    Wenn ein <span class="doc-desc-title">Hilfethema</span> als Privat eingestuft wird, ist es nur für Agenten zugänglich, wenn ein Agent ein neues Ticket über den Agenten-Bereich eröffnet.
+    Wenn ein <span class="doc-desc-title">Hilfethema</span> als Privat eingestuft wird, ist es nur für Betreuer zugänglich, wenn ein Betreuer ein neues Ticket über den Betreuer-Bereich eröffnet.
 parent_topic:
   title: Übergeordnetes Thema
   content: >
@@ -58,10 +58,10 @@ thank_you_page:
 auto_assign_to:
   title: Neue Tickets automatisch zuweisen
   content: >
-    Wählen Sie optional einen Agenten oder ein Team, welcher/welches automatisch dem Ticket zugewiesen wird, wenn es mit diesem <span class="doc-desc-title">Hilfethema</span> eröffnet wurde. Ticket-Filter können diese Zuweisung überschreiben.
+    Wählen Sie optional einen Betreuer oder ein Team, welcher/welches automatisch dem Ticket zugewiesen wird, wenn es mit diesem <span class="doc-desc-title">Hilfethema</span> eröffnet wurde. Ticket-Filter können diese Zuweisung überschreiben.
   links:
     - 
-      title: Agenten und Teams verwalten
+      title: Betreuer und Teams verwalten
       href: /scp/staff.php
 ticket_auto_response:
   title: Ticket Auto-Antwort

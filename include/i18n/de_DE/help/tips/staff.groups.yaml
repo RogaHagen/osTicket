@@ -2,11 +2,11 @@
 groups:
   title: Gruppen
   content: >
-    Gruppen werden verwendet, um die Berechtigungen eines Agenten im Helpdesk festzulegen. Gruppen können auch den Zugang zu anderen Abteilungen als der primären Abteilung des Agenten gewähren.
+    Gruppen werden verwendet, um die Berechtigungen eines Betreuers im Helpdesk festzulegen. Gruppen können auch den Zugang zu anderen Abteilungen als der primären Abteilung des Betreuers gewähren.
 status:
   title: Status
   content: >
-    Wenn <span class="doc-desc-opt">Deaktiviert</span>, können Agenten, die dieser Gruppe zugewiesen sind, sich nicht anmelden und werden auch keine Benachrichtigungen der Abteilung erhalten.
+    Wenn <span class="doc-desc-opt">Deaktiviert</span>, können Betreuer, die dieser Gruppe zugewiesen sind, sich nicht anmelden und werden auch keine Benachrichtigungen der Abteilung erhalten.
 department_access:
   title: Abteilungszugang
   content: >

@@ -2,7 +2,7 @@
 helpdesk_status:
   title: Helpdesk Status
   content: >
-    Wenn der Status zu <span class="doc-desc-opt">Offline</span> geändert wird, ist das Benutzerportal deaktiviert.  Dies betrifft jedoch keine normale Agenten-Interaktion mit dem Agenten-Bereich.
+    Wenn der Status zu <span class="doc-desc-opt">Offline</span> geändert wird, ist das Benutzerportal deaktiviert.  Dies betrifft jedoch keine normale Betreuer-Interaktion mit dem Betreuer-Bereich.
 helpdesk_url:
   title: Helpdesk URL
   content: >
@@ -18,7 +18,7 @@ default_department:
 default_page_size:
   title: Standard-Seitengröße
   content: >
-    Wählen Sie die Anzahl der Elemente pro Seite, die in den Ticket-Übersichtsseiten im Agenten-Bereich angezeigt werden sollen. Jeder Agent kann diese Anzahl unter <span class="doc-desc-title">Meine Einstellungen</span> selbst anpassen.
+    Wählen Sie die Anzahl der Elemente pro Seite, die in den Ticket-Übersichtsseiten im Betreuer-Bereich angezeigt werden sollen. Jeder Betreuer kann diese Anzahl unter <span class="doc-desc-title">Meine Einstellungen</span> selbst anpassen.
 default_log_level:
   title: Standard-Log-Level
   content: >
@@ -30,11 +30,11 @@ purge_logs:
 enable_richtext:
   title: Rich Text aktivieren
   content: >
-    Wenn aktiviert, wird dies die Verwendung von Rich-Text-Formatierungen zwischen Benutzern und Agenten erlauben.
+    Wenn aktiviert, wird dies die Verwendung von Rich-Text-Formatierungen zwischen Benutzern und Betreuern erlauben.
 enable_avatars:
   title: Avatare in der Vorgangsansicht aktivieren
   content: >
-    Aktivieren Sie diese Option, um <span class="doc-desc-title">Avatare</span> in der Vorgangsansicht anzuzeigen. <br><br>Die <span class="doc-desc-title">Avatarquelle</span> kann in den Einstellungsseiten der Agenten und Benutzer festgelegt werden.
+    Aktivieren Sie diese Option, um <span class="doc-desc-title">Avatare</span> in der Vorgangsansicht anzuzeigen. <br><br>Die <span class="doc-desc-title">Avatarquelle</span> kann in den Einstellungsseiten der Betreuer und Benutzer festgelegt werden.
   links:
     - 
       title: Agenteneinstellungen
@@ -43,9 +43,9 @@ enable_avatars:
       title: Benutzereinstellungen
       href: /scp/settings.php?t=users
 collision_avoidance:
-  title: Agenten-Kollisionsvermeidung
+  title: Betreuer-Kollisionsvermeidung
   content: >
-    Geben Sie an, wie lange ein Ticket oder eine Aufgabe durch einen Agent maximal gesperrt sein darf, ohne dass irgendeine Aktivität erfolgt ist. <br><br> Geben Sie <span class="doc-desc-opt">0</span> ein, um die Bearbeitungssperre zu deaktivieren.
+    Geben Sie an, wie lange ein Ticket oder eine Aufgabe durch einen Betreuer maximal gesperrt sein darf, ohne dass irgendeine Aktivität erfolgt ist. <br><br> Geben Sie <span class="doc-desc-opt">0</span> ein, um die Bearbeitungssperre zu deaktivieren.
 date_time_options:
   title: Datums- und Zeitoptionen
   content: >
@@ -57,15 +57,15 @@ date_time_options:
 languages:
   title: Systemsprachen
   content: >
-    Wählen Sie eine primäre Systemsprache und optional sekundäre Sprachen, um die Benutzeroberfläche lokalisiert für Ihre Agenten und Benutzer zur Verfügung zu stellen.
+    Wählen Sie eine primäre Systemsprache und optional sekundäre Sprachen, um die Benutzeroberfläche lokalisiert für Ihre Betreuer und Benutzer zur Verfügung zu stellen.
 primary_language:
   title: Primäre Systemsprache
   content: >
-    Inhalte dieser Sprache werden den Agenten und Endbenutzern angezeigt, wenn Ihre jeweilige Spracheinstellung aktuell nicht verfügbar ist. Dies schließt die Inhalte der Benutzeroberfläche, wie auch anpassbare Inhalte, wie die Danke-Schön-Seiten und E-Mail-Vorlagen ein. <br/><br/> Das ist die Sprache, in der die nicht übersetzten Versionen Ihrer Inhalte geschrieben werden sollen.
+    Inhalte dieser Sprache werden den Betreuer und Endbenutzern angezeigt, wenn Ihre jeweilige Spracheinstellung aktuell nicht verfügbar ist. Dies schließt die Inhalte der Benutzeroberfläche, wie auch anpassbare Inhalte, wie die Danke-Schön-Seiten und E-Mail-Vorlagen ein. <br/><br/> Das ist die Sprache, in der die nicht übersetzten Versionen Ihrer Inhalte geschrieben werden sollen.
 secondary_language:
   title: Zweit Sprachen
   content: >
-    Wählen Sie eine bevorzugte Sprache für Ihre Agenten und Endbenutzer. Die Benutzeroberfläche wird in diesen Sprachen verfügbar sein, so auch der anpassbare Inhalte, wie die Danke-Schön-Seiten und Hilfethemen, werden in diesen Sprachen übersetzbar sein.
+    Wählen Sie eine bevorzugte Sprache für Ihre Betreuer und Endbenutzer. Die Benutzeroberfläche wird in diesen Sprachen verfügbar sein, so auch der anpassbare Inhalte, wie die Danke-Schön-Seiten und Hilfethemen, werden in diesen Sprachen übersetzbar sein.
 attachments:
   title: Speicherort und Einstellungen für Anhänge
   content: >
@@ -77,7 +77,7 @@ default_storage_bk:
 max_file_size:
   title: Maximale Dateigröße
   content: >
-    Wählen Sie eine maximale Dateigröße für Anhänge, die von Agenten hochgeladen werden können. Das schließt vordefinierte Anhänge, Artikel der Wissensdatenbank und Anhänge zu Ticket- und Aufgaben-Antworten mit ein. Die Obergrenze wird von der PHP <code>upload_max_filesize</code>-Einstellung gesteuert.
+    Wählen Sie eine maximale Dateigröße für Anhänge, die von Betreuern hochgeladen werden können. Das schließt vordefinierte Anhänge, Artikel der Wissensdatenbank und Anhänge zu Ticket- und Aufgaben-Antworten mit ein. Die Obergrenze wird von der PHP <code>upload_max_filesize</code>-Einstellung gesteuert.
   links:
     - 
       title: php.ini-Einstellungen

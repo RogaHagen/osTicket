@@ -34,4 +34,4 @@ log_date:
 ip_address:
   title: IP-Adresse
   content: >
-    Dies ist entweder die <span class="doc-desc-title">IP-Adresse</span> des Agenten oder des Benutzers, der osTicket zu der Zeit verwendet hat, als das Log erstellt wurde.
+    Dies ist entweder die <span class="doc-desc-title">IP-Adresse</span> des Betreuers oder des Benutzers, der osTicket zu der Zeit verwendet hat, als das Log erstellt wurde.

@@ -18,7 +18,7 @@ default_system_email:
 default_alert_email:
   title: Standard-E-Mail-Adresse für Benachrichtigungen
   content: >
-    Wählen Sie eine E-Mail-Adresse aus, von der <span class="doc-desc-title">Benachrichtigungen</span> an Agenten versendet werden.
+    Wählen Sie eine E-Mail-Adresse aus, von der <span class="doc-desc-title">Benachrichtigungen</span> an Betreuer versendet werden.
   links:
     - 
       title: E-Mail-Adressen verwalten
@@ -42,7 +42,7 @@ email_fetching:
 enable_autocron_fetch:
   title: Abrufen von E-Mails mit auto-cron
   content: >
-    Erlaubt das periodische Abrufen von E-Mails über einen internen Taskmanager, welcher durch Aktivität der Agenten getriggert wird. <br><br> Bitte beachten Sie, dass keine E-Mails abgerufen werden, wenn niemand im Agenten-Bereich angemeldet ist. Es wird dringend empfohlen einen externen Aufgabenplaner einzusetzen, damit die E-Mail-Abrufintervalle prognostizierbar sind.
+    Erlaubt das periodische Abrufen von E-Mails über einen internen Taskmanager, welcher durch Aktivität der Betreuer getriggert wird. <br><br> Bitte beachten Sie, dass keine E-Mails abgerufen werden, wenn niemand im Betreuer-Bereich angemeldet ist. Es wird dringend empfohlen einen externen Aufgabenplaner einzusetzen, damit die E-Mail-Abrufintervalle prognostizierbar sind.
   links:
     - 
       title: Externen Aufgabenplaner benutzen
@@ -70,7 +70,7 @@ accept_all_emails:
 accept_email_collaborators:
   title: Beteiligte Personen (CC) zulassen
   content: >
-    Fügt die in den E-Mails enthaltenen Adressen des <code><strong>Empfänger-</strong></code> und <code><strong>CC-</strong></code>Feldes als "Beteiligte Personen" hinzu.<br /><br /> <em>Beteiligte Personen können immer manuell von Agenten in der Ansicht des Tickets hinzugefügt werden.</em>
+    Fügt die in den E-Mails enthaltenen Adressen des <code><strong>Empfänger-</strong></code> und <code><strong>CC-</strong></code>Feldes als "Beteiligte Personen" hinzu.<br /><br /> <em>Beteiligte Personen können immer manuell von Betreuern in der Ansicht des Tickets hinzugefügt werden.</em>
 default_mta:
   title: Standard-MTA
   content: >
@@ -78,7 +78,7 @@ default_mta:
 ticket_response_files:
   title: Ticket-Antwortdateien
   content: >
-    Wenn aktiviert, werden alle Anhänge, die ein Agent an ein Ticket anhängt, auch in der E-Mail an den Benutzer enthalten sein.
+    Wenn aktiviert, werden alle Anhänge, die ein Betreuer an ein Ticket anhängt, auch in der E-Mail an den Benutzer enthalten sein.
 verify_email_addrs:
   title: E-Mail-Adressen verifizieren
   content: >

@@ -2,7 +2,7 @@
 ticket_activity:
   title: Ticket-Aktivität
   content: >
-    Wählen Sie einen Zeitraum, um das Diagramm und die Tabelle (vgl. <span class="doc-desc-title"> Statistik</span>) für die gewählte Zeitspanne anzuzeigen. Die Grafik unten spiegelt immer einen umfassenden Überblick über die gesamten System-Daten (d. h. auch die Menge) wider. Jedoch können Sie durch die <span class="doc-desc-title">Statistik</span>-Tabelle navigieren, um Ihre spezielle Auswahl (z.B. Abteilung, Themen oder Agenten) zu treffen. Darüber hinaus können Sie alle Daten exportieren, die derzeit in der <span class="doc-desc-title">Statistik</span>-Tabelle angezeigt werden.
+    Wählen Sie einen Zeitraum, um das Diagramm und die Tabelle (vgl. <span class="doc-desc-title"> Statistik</span>) für die gewählte Zeitspanne anzuzeigen. Die Grafik unten spiegelt immer einen umfassenden Überblick über die gesamten System-Daten (d. h. auch die Menge) wider. Jedoch können Sie durch die <span class="doc-desc-title">Statistik</span>-Tabelle navigieren, um Ihre spezielle Auswahl (z.B. Abteilung, Themen oder Betreuer) zu treffen. Darüber hinaus können Sie alle Daten exportieren, die derzeit in der <span class="doc-desc-title">Statistik</span>-Tabelle angezeigt werden.
 report_timeframe:
   title: Berichtszeitraum
   content: >
@@ -14,11 +14,11 @@ statistics:
 opened:
   title: Geöffnet
   content: >
-    Dies entspricht den Tickets, die von Agenten eröffnet wurden (d. h., intern eröffnet wurden) und nicht von Benutzern.
+    Dies entspricht den Tickets, die von Betreuern eröffnet wurden (d. h., intern eröffnet wurden) und nicht von Benutzern.
 assigned:
   title: Zugewiesen
   content: >
-    Das System verfolgt jedes Ereignis, durch das ein Ticket automatisch oder manuell einer bestimmten Abteilung oder einem bestimmten Agent zugewiesen wurde. Automatische Zuweisungen hängen von den im Admin-Bereich eingerichteten <span class="doc-desc-title">Hilfethemen</span> und <span class="doc-desc-title">E-Mail-Filtern</span> ab.
+    Das System verfolgt jedes Ereignis, durch das ein Ticket automatisch oder manuell einer bestimmten Abteilung oder einem bestimmten Betreuer zugewiesen wurde. Automatische Zuweisungen hängen von den im Admin-Bereich eingerichteten <span class="doc-desc-title">Hilfethemen</span> und <span class="doc-desc-title">E-Mail-Filtern</span> ab.
 overdue:
   title: Überfällig
   content: >
@@ -30,7 +30,7 @@ closed:
 reopened:
   title: Wieder geöffnet
   content: >
-    Dies ist die Anzahl der Tickets, die entweder durch einen Agenten oder von einem Benutzer wieder eröffnet wurden, als er/sie darauf geantwortet hatte, während das Ticket Geschlossen war.
+    Dies ist die Anzahl der Tickets, die entweder durch einen Betreuer oder von einem Benutzer wieder eröffnet wurden, als er/sie darauf geantwortet hatte, während das Ticket Geschlossen war.
 service_time:
   title: Servicezeit
   content: >
@@ -38,4 +38,4 @@ service_time:
 response_time:
   title: Reaktionszeit
   content: >
-    <span class="doc-desc-title">Reaktionszeit</span> ist eine Zeitspanne, die mit jeder Benutzer-Korrespondenz beginnt und endet, wenn ein Agent eine Antwort erstellt. Diese Zeitmessung bezieht sich nicht ausschliesslich auf die Benutzer-Korrespondenz bei der initialen Eröffnung des Tickets. Diese bezieht sich auf jede Gesprächshandlung, die auf einen Benutzer zurückgeht.
+    <span class="doc-desc-title">Reaktionszeit</span> ist eine Zeitspanne, die mit jeder Benutzer-Korrespondenz beginnt und endet, wenn ein Betreuer eine Antwort erstellt. Diese Zeitmessung bezieht sich nicht ausschliesslich auf die Benutzer-Korrespondenz bei der initialen Eröffnung des Tickets. Diese bezieht sich auf jede Gesprächshandlung, die auf einen Benutzer zurückgeht.

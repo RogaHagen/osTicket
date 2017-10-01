@@ -1,17 +1,17 @@
 ---
 signature:
-  title: Agenten Signaturblock
+  title: Betreuer Signaturblock
   content: |
-    Erstellt eine Agenten-Signatur für das Beantworten von Tickets. Die Signatur kann bei der Beantwortung von Tickets ausgewählt werden
+    Erstellt eine Betreuer-Signatur für das Beantworten von Tickets. Die Signatur kann bei der Beantwortung von Tickets ausgewählt werden
 type:
   title: Kontotyp
   content: |
-    Administratoren haben die Berechtigung auf den Admin-Bereich zuzugreifen. Agenten haben nur Zugang auf die Verwaltung Ihrer Tickets und auf die Wissensdatenbank
+    Administratoren haben die Berechtigung auf den Admin-Bereich zuzugreifen. Betreuer haben nur Zugang auf die Verwaltung Ihrer Tickets und auf die Wissensdatenbank
 group:
   title: Zugewiesene Gruppe
   content: |
-    Die Gruppenzugehörigkeit legt fest, welche Rolle die Agenten im System haben. Besuchen Sie die Gruppenverwaltungsseite, um festzulegen welche Berechtigungen diese Agenten im Helpdesk erhalten
+    Die Gruppenzugehörigkeit legt fest, welche Rolle die Betreuer im System haben. Besuchen Sie die Gruppenverwaltungsseite, um festzulegen welche Berechtigungen diese Betreuer im Helpdesk erhalten
 notes:
   title: Interne Notizen
   content: |
-    Hinterlegen Sie interne Notizen (bezogen auf den Agenten); diese Notizen sind nur für Agenten mit einem Administrator-Konto sichtbar.
+    Hinterlegen Sie interne Notizen (bezogen auf den Betreuer); diese Notizen sind nur für Betreuer mit einem Administrator-Konto sichtbar.

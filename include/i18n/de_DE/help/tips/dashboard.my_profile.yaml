@@ -6,7 +6,7 @@ contact_information:
 username:
   title: Benutzername
   content: >
-    Ausschließlich Agenten mit Admin-Status können einen Benutzernamen ändern. Wenn Sie ein Agent mit Admin-Rechten sind, können Sie diese Änderung durch Auswahl des zu bearbeitenden Agenten aus der <span class="doc-desc-title">Agenten</span>-Tabelle erreichen.
+    Ausschließlich Betreuer mit Admin-Status können einen Benutzernamen ändern. Wenn Sie ein Betreuer mit Admin-Rechten sind, können Sie diese Änderung durch Auswahl des zu bearbeitenden Betreuers aus der <span class="doc-desc-title">Betreuer</span>-Tabelle erreichen.
   links:
     - 
       title: Als Administrator den Benutzernamen ändern

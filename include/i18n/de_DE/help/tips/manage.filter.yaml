@@ -60,10 +60,10 @@ sla_plan:
 auto_assign:
   title: Auto-Zuweisung
   content: >
-    Wählen Sie einen Agenten oder ein aus Team aus, dem das Ticket zugewiesen wird, wenn der <span class="doc-desc-title">Ticket-Filter</span> zutrifft.
+    Wählen Sie einen Betreuer oder ein aus Team aus, dem das Ticket zugewiesen wird, wenn der <span class="doc-desc-title">Ticket-Filter</span> zutrifft.
   links:
     - 
-      title: Agenten verwalten
+      title: Betreuer verwalten
       href: /scp/staff.php
     - 
       title: Teams verwalten

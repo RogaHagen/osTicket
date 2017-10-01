@@ -2,7 +2,7 @@
 company_information:
   title: Helpdeskinformationen
   content: >
-    Dies bezieht sich auf die Firma oder Organisation, welche die osTicket Software einsetzt. Die Informationen hier werden in E-Mail-Signaturen erscheinen, wenn Tickets von den Agenten beantwortet werden.
+    Dies bezieht sich auf die Firma oder Organisation, welche die osTicket Software einsetzt. Die Informationen hier werden in E-Mail-Signaturen erscheinen, wenn Tickets von den Betreuern beantwortet werden.
   links:
     - 
       title: Formular für die Helpdeskinformationen
@@ -30,7 +30,7 @@ upload_a_new_logo:
 backdrops:
   title: Hintergründe
   content: >
-    Sie können den <span class="doc-desc-title">Hintergrund</span> anpassen, der auf der Anmelde-Seite für Agenten angezeigt wird.
+    Sie können den <span class="doc-desc-title">Hintergrund</span> anpassen, der auf der Anmelde-Seite für Betreuer angezeigt wird.
 upload_a_new_backdrop:
   title: Einen neuen Hintergrund hochladen
   content: >

@@ -6,5 +6,5 @@ type:
 dept_manager:
   title: Abteilungsleiter
   content: >
-    Sie können einen Agenten als Abteilungsleiter festlegen, damit er Benachrichtigungen für Tickets dieser Abteilungen empfängt.
-  0: Agenten müssen nicht Mitglieder einer Abteilung sein, um Leiter der Abteilung werden zu können.
+    Sie können einen Betreuer als Abteilungsleiter festlegen, damit er Benachrichtigungen für Tickets dieser Abteilungen empfängt.
+  0: Betreuer müssen nicht Mitglieder einer Abteilung sein, um Leiter der Abteilung werden zu können.

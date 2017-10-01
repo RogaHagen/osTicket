@@ -26,11 +26,11 @@ task_attachment_settings:
 page_title:
   title: Benachrichtigungen
   content: >
-    Benachrichtigungen sind automatisierte E-Mail-Benachrichtigungen, die an Agenten versendet werden, wenn verschiedene Aufgaben-Ereignisse ausgelöst werden.
+    Benachrichtigungen sind automatisierte E-Mail-Benachrichtigungen, die an Betreuer versendet werden, wenn verschiedene Aufgaben-Ereignisse ausgelöst werden.
 task_alert:
   title: Benachrichtigung bei neuer Aufgabe
   content: >
-    <p>Benachrichtigung, die an Agenten versendet wird, wenn eine neue Aufgabe erstellt wird.</p><p class="info-banner"><i class="icon-info-sign"></i> Diese Benachrichtigung wird nicht versendet, wenn die Aufgabe automatisch zugewiesen wird.</p>
+    <p>Benachrichtigung, die an Betreuer versendet wird, wenn eine neue Aufgabe erstellt wird.</p><p class="info-banner"><i class="icon-info-sign"></i> Diese Benachrichtigung wird nicht versendet, wenn die Aufgabe automatisch zugewiesen wird.</p>
   links:
     - 
       title: Standardvorlage zur Benachrichtigung bei neuen Aufgaben
@@ -38,7 +38,7 @@ task_alert:
 activity_alert:
   title: Benachrichtigung bei neuer Aktivität
   content: >
-    Benachrichtigung, die an Agenten versendet wird, wenn eine neue Nachricht zu einer bestehenden Aufgabe eingegangen ist.
+    Benachrichtigung, die an Betreuer versendet wird, wenn eine neue Nachricht zu einer bestehenden Aufgabe eingegangen ist.
   links:
     - 
       title: Standardvorlage zur Benachrichtigung bei neuer Aktivität
@@ -46,7 +46,7 @@ activity_alert:
 assignment_alert:
   title: Benachrichtigung bei Aufgaben-Zuweisung
   content: >
-    Benachrichtigung, die an Agenten versendet wird, wenn Ihnen eine Aufgabe zugewiesen wird.
+    Benachrichtigung, die an Betreuer versendet wird, wenn Ihnen eine Aufgabe zugewiesen wird.
   links:
     - 
       title: Standardvorlage zur Benachrichtigung bei Aufgaben-Zuweisungen
@@ -54,7 +54,7 @@ assignment_alert:
 transfer_alert:
   title: Benachrichtigung bei Aufgaben-Transfer
   content: >
-    Benachrichtigung, die an Agenten versendet wird, wenn eine Aufgabe zwischen Abteilungen transferiert wird.
+    Benachrichtigung, die an Betreuer versendet wird, wenn eine Aufgabe zwischen Abteilungen transferiert wird.
   links:
     - 
       title: Standardvorlage zur Benachrichtigung über Aufgaben-Transfer
@@ -62,7 +62,7 @@ transfer_alert:
 overdue_alert:
   title: Benachrichtigung bei überfälliger Aufgabe
   content: >
-    Benachrichtigung, die an Agenten versendet wird, wenn eine Aufgabe überfällig wird auf der Grundlage von SLA oder Fälligkeitsdatum.
+    Benachrichtigung, die an Betreuer versendet wird, wenn eine Aufgabe überfällig wird auf der Grundlage von SLA oder Fälligkeitsdatum.
   links:
     - 
       title: Standardvorlage zur Benachrichtigung bei veralteten Aufgaben

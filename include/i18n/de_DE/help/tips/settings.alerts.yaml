@@ -2,11 +2,11 @@
 page_title:
   title: Benachrichtigungen
   content: >
-    Benachrichtigungen sind automatisierte E-Mail-Benachrichtigungen, die an Agenten versendet werden, wenn verschiedene Ticket-Ereignisse ausgelöst werden.
+    Benachrichtigungen sind automatisierte E-Mail-Benachrichtigungen, die an Betreuer versendet werden, wenn verschiedene Ticket-Ereignisse ausgelöst werden.
 ticket_alert:
   title: Neues Ticket
   content: >
-    <p>Benachrichtigung, die an Agenten versendet wird, wenn ein neues Ticket eröffnet wird.</p><p class="info-banner"><i class="icon-info-sign"></i> Diese Benachrichtigung wird nicht versendet, wenn das Ticket über einen Ticket-Filter oder ein Hilfethema automatisch zugewiesen wird.</p>
+    <p>Benachrichtigung, die an Betreuer versendet wird, wenn ein neues Ticket eröffnet wird.</p><p class="info-banner"><i class="icon-info-sign"></i> Diese Benachrichtigung wird nicht versendet, wenn das Ticket über einen Ticket-Filter oder ein Hilfethema automatisch zugewiesen wird.</p>
   links:
     - 
       title: Standardvorlage zur Benachrichtigung bei neuen Tickets
@@ -14,7 +14,7 @@ ticket_alert:
 message_alert:
   title: Neue Nachricht
   content: >
-    Benachrichtigung, die an Agenten versendet wird, wenn eine neue Nachricht von einem Benutzer zu einem bestehenden Ticket eingegangen ist.
+    Benachrichtigung, die an Betreuer versendet wird, wenn eine neue Nachricht von einem Benutzer zu einem bestehenden Ticket eingegangen ist.
   links:
     - 
       title: Standardvorlage zur Benachrichtigung bei neuen Nachrichten
@@ -22,7 +22,7 @@ message_alert:
 internal_note_alert:
   title: Benachrichtigung bei neuer interner Aktivität
   content: >
-    Benachrichtigung, die an Agenten versendet wird, wenn eine interne Aktivität wie etwa eine interne Notiz oder eine Antwort eines Agenten an ein Ticket angefügt wird.
+    Benachrichtigung, die an Betreuer versendet wird, wenn eine interne Aktivität wie etwa eine interne Notiz oder eine Antwort eines Betreuers an ein Ticket angefügt wird.
   links:
     - 
       title: Standardvorlage für Ticket-Aktivitäten
@@ -30,7 +30,7 @@ internal_note_alert:
 assignment_alert:
   title: Benachrichtigung bei Ticket-Zuweisung
   content: >
-    Benachrichtigung, die an Agenten versendet wird, wenn Ihnen ein Ticket zugewiesen wird.
+    Benachrichtigung, die an Betreuer versendet wird, wenn Ihnen ein Ticket zugewiesen wird.
   links:
     - 
       title: Standardvorlage zur Benachrichtigung bei Ticket-Zuweisungen
@@ -38,7 +38,7 @@ assignment_alert:
 transfer_alert:
   title: Benachrichtigung bei Ticket-Transfer
   content: >
-    Benachrichtigung, die an Agenten versendet wird, wenn ein Ticket zwischen Abteilungen transferiert wird.
+    Benachrichtigung, die an Betreuer versendet wird, wenn ein Ticket zwischen Abteilungen transferiert wird.
   links:
     - 
       title: Standardvorlage zur Benachrichtigung über Ticket-Transfer
@@ -46,7 +46,7 @@ transfer_alert:
 overdue_alert:
   title: Benachrichtigung bei überfälligem Ticket
   content: >
-    Benachrichtigung, die an Agenten versendet wird, wenn ein Ticket überfällig wird auf der Grundlage von SLA oder Fälligkeitsdatum.
+    Benachrichtigung, die an Betreuer versendet wird, wenn ein Ticket überfällig wird auf der Grundlage von SLA oder Fälligkeitsdatum.
   links:
     - 
       title: Standardvorlage zur Benachrichtigung bei veralteten Tickets

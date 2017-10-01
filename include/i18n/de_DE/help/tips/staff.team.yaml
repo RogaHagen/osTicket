@@ -2,7 +2,7 @@
 teams:
   title: Teams
   content: >
-    Teams bestehen aus einem oder mehreren Agenten zum Zweck der Ticket-Zuweisung. Die Teammitgliedschaft kann sich über die Abteilungsgrenzen hinweg erstrecken.
+    Teams bestehen aus einem oder mehreren Betreuer zum Zweck der Ticket-Zuweisung. Die Teammitgliedschaft kann sich über die Abteilungsgrenzen hinweg erstrecken.
 status:
   title: Status
   content: >
@@ -29,5 +29,5 @@ members:
     Die Teammitgliedschaft wird über das Agentenprofil konfiguriert.
   links:
     - 
-      title: Agenten verwalten
+      title: Betreuer verwalten
       href: /scp/staff.php

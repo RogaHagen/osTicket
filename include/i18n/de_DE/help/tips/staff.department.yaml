@@ -6,7 +6,7 @@ type:
 email:
   title: Email
   content: >
-    Diese E-Mail-Adresse wird beim Versenden von Antworten an Benutzer verwendet, wenn Agenten Tickets beantworten.
+    Diese E-Mail-Adresse wird beim Versenden von Antworten an Benutzer verwendet, wenn Betreuer Tickets beantworten.
 template:
   title: Vorlagensatz
   content: >
@@ -46,7 +46,7 @@ sandboxing:
 disable_auto_claim:
   title: Auto-Übernahme deaktivieren
   content: >
-    Setzen Sie den Haken, um die Auto-Übernahme mit Antwort/Auto-Antwort für diese Abteilung zu <strong>deaktivieren</strong>. <br><br> Agenten können weiterhin manuell unzugewiesene Tickets übernehmen
+    Setzen Sie den Haken, um die Auto-Übernahme mit Antwort/Auto-Antwort für diese Abteilung zu <strong>deaktivieren</strong>. <br><br> Betreuer können weiterhin manuell unzugewiesene Tickets übernehmen
 auto_response_settings:
   title: Einstellungen für Auto-Antworten
   content: >
@@ -66,8 +66,8 @@ auto_response_email:
 department_access:
   title: Gruppenzugang
   content: >
-    Erlaube Agenten anderer Abteilungen den Zugang zu Tickets dieser Abteilung.
+    Erlaube Betreuer anderer Abteilungen den Zugang zu Tickets dieser Abteilung.
 department_signature:
   title: Abteilungssignatur
   content: >
-    Die Signatur kann in <span class="doc-desc-opt">Öffentlichen</span> Abteilungen bei Antworten von Agenten optional ausgewählt werden.
+    Die Signatur kann in <span class="doc-desc-opt">Öffentlichen</span> Abteilungen bei Antworten von Betreuern optional ausgewählt werden.
