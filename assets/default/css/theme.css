@@ -402,7 +402,7 @@ body {
   color: #333;
 }
 #footer p {
-  margin: 10px 0 0 0;
+  margin: 10px 0 10px 0;
 }
 #footer #poweredBy {
   display: none;

@@ -20,6 +20,9 @@ POT-Creation-Date:
   // Nachträge Übersetzungen (Anfang)
   'last answer by agent' => 'letzte Antwort vom Betreuer',
   'last answer by user' => 'letzte Antwort von Ihnen',
+  'ticket is solved' => 'Das Ticket ist gelöst',
+  'ticket can\'t be reopened' => 'kann nicht wieder geöffnet werden',
+  'ticket can be reopened' => 'kann durch eine Antwort wieder geöffnet werden',
   'source email' => 'über Email',
   'source web' => 'über Internetseite',
   'source phone' => 'über Telefon (durch Betreuer)',

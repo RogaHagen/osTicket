@@ -75,7 +75,7 @@ if ($settings['status'])
         $results_type = __('All Tickets');
         break;
 }
-
+$list = $status;
 // Add visibility constraints — use a union query to use multiple indexes,
 // use UNION without "ALL" (false as second parameter to union()) to imply
 // unique values
@@ -252,16 +252,20 @@ if ($allTickets) {?>
             );
             $status = TicketStatus::getLocalById($T['status_id'], 'value', $T['status__name']);
             $created = Format::datetime($T['created']);
-            if ($T['status__state'] == 'open') $status = '<b>'.$status.'</b>';
+            //if ($T['status__state'] == 'open') $status = '<b>'.$status.'</b>';
             if (false) // XXX: Reimplement attachment count support
                 $subject.='  &nbsp;&nbsp;<span class="Icon file"></span>';
             $ticketNumber=$T['number'];
-	    $folder = '<i class="icon-folder-close-alt icon-center icon-fixed-width"></i>';
+	        $folder = '<i class="icon-flag-checkered icon-center icon-fixed-width"></i>';
             if($T['isanswered'] && !strcasecmp($T['status__state'], 'open')) {
+                $status = "<b>$status</b>";
                 $subject = "<b>$subject</b>";
                 $ticketNumber = "<b>$ticketNumber</b>";
                 $created = "<b>$created</b>";
+                $dept = "<b>$dept</b>";
                 $folder = '<i class="icon-folder-open-alt icon-center icon-fixed-width"></i>';
+            }elseif (!strcasecmp($T['status__state'], 'open')) {
+                $folder = '<i class="icon-folder-close-alt icon-center icon-fixed-width"></i>';
             }
             ?>
             <tr id="<?php echo $T['ticket_id']; ?>">
@@ -273,8 +277,7 @@ if ($allTickets) {?>
                 </td>
                 <td><?php 
                     echo $folder.$created; ?></td>
-                <td><i class="<?php echo 'icon-ost-'.$T['status__name']; ?> icon-center icon-fixed-width"></i>
-                    <?php echo $status; ?></td>
+                <td><i class="<?php echo 'icon-ost-'.$T['status__name']; ?> icon-center icon-fixed-width"></i><?php echo $status; ?></td>
                 <td>
                     <div style="max-height: 1.2em; max-width: 320px;" class="link truncate" href="tickets.php?id=<?php echo $T['ticket_id']; ?>"><?php echo $subject; ?></div>
                 </td>
@@ -291,14 +294,29 @@ if ($allTickets) {?>
 </table>
 <?php
 if ($total) {
-    echo '<div>&nbsp;'.__('Page').':'.$pageNav->getPageLinks().'&nbsp;<div><br>
-    <div align="center">
-    <i class="icon-folder-open-alt icon-fixed-width"></i>'.__('last answer by agent').' 
-    &nbsp;|&nbsp;<i class="icon-folder-close-alt icon-fixed-width"></i>'.__('last answer by user').'<br> 
-    <i class="icon-ost-email icon-fixed-width"></i>'.__('source email').'
+    echo '<div>&nbsp;'.__('Page').':'.$pageNav->getPageLinks().'&nbsp;<div><br>';
+    echo '<div style="font-size: 13px; color: #888; line-height: 1.7em; text-align: center;">';
+    if($list == 'open'){
+        echo '<i class="icon-folder-open-alt icon-fixed-width"></i>'.__('last answer by agent').' 
+        &nbsp;|&nbsp;<i class="icon-folder-close-alt icon-fixed-width"></i>'.__('last answer by user').'<br>';
+    }
+    elseif($list == 'all'){
+        echo '<i class="icon-folder-open-alt icon-fixed-width"></i>'.__('last answer by agent').' 
+        &nbsp;|&nbsp;<i class="icon-folder-close-alt icon-fixed-width"></i>'.__('last answer by user').'
+        &nbsp;|&nbsp;<i class="icon-flag-checkered icon-center icon-fixed-width"></i>'.__('ticket is solved').'<br>
+        <i class="icon-ost-Geschlossen icon-fixed-width"></i>'.__('ticket can\'t be reopened').' 
+        &nbsp;|&nbsp;<i class="icon-ost-Gelöst icon-fixed-width"></i>'.__('ticket can be reopened').'<br>';
+    }
+    elseif($list == 'closed'){
+        echo '<i class="icon-flag-checkered icon-center icon-fixed-width"></i>'.__('ticket is solved').'
+        &nbsp;|&nbsp;<i class="icon-ost-Geschlossen icon-fixed-width"></i>'.__('ticket can\'t be reopened').' 
+        &nbsp;|&nbsp;<i class="icon-ost-Gelöst icon-fixed-width"></i>'.__('ticket can be reopened').'<br>';
+    }    
+    echo '<i class="icon-ost-email icon-fixed-width"></i>'.__('source email').'
     &nbsp;|&nbsp;<i class="icon-ost-web icon-fixed-width"></i>'.__('source web').'
     &nbsp;|&nbsp;<i class="icon-ost-phone icon-fixed-width"></i>'.__('source phone').' 
     &nbsp;|&nbsp;<i class="icon-ost-other icon-fixed-width"></i>'.__('source other').'
     </div>';
 }
 ?>
+</div></div>
