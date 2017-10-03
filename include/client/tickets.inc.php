@@ -216,23 +216,27 @@ if ($allTickets) {?>
     <caption><?php echo $showing; ?></caption>
     <thead>
         <tr>
-            <th width="80" nowrap>
+            <th width="70px" nowrap>
                 <a href="tickets.php?sort=ID&order=<?php echo $negorder; ?><?php echo $qstr; ?>" 
                 title="<?php echo __('Sort By Ticket ID'); ?>"><?php echo __('Ticket #');?></a>
             </th>
-            <th width="130">
+            <th width="95px">
                 <a href="tickets.php?sort=date&order=<?php echo $negorder; ?><?php echo $qstr; ?>" 
-                title="<?php echo __('Sort By Date'); ?>"><?php echo __('Create Date');?></a>
+                title="<?php echo __('Sort By Date'); ?>"><?php echo __('Date');?></a>
             </th>
-            <th width="110">
-                <a href="tickets.php?sort=status&order=<?php echo $negorder; ?><?php echo $qstr; ?>" 
-                title="<?php echo __('Sort By Status'); ?>"><?php echo __('Status');?></a>
-            </th>
-            <th width="320">
+            <th width="auto">
                 <a href="tickets.php?sort=subj&order=<?php echo $negorder; ?><?php echo $qstr; ?>" 
                 title="<?php echo __('Sort By Subject'); ?>"><?php echo __('Subject');?></a>
             </th>
-            <th width="80">
+            <th width="45px">
+                <a href="tickets.php?sort=count&order=<?php echo $negorder; ?><?php echo $qstr; ?>" 
+                title="<?php echo __('Sort By Count'); ?>"><?php echo __('Count');?></a>
+            </th>
+            <th width="105px">
+                <a href="tickets.php?sort=status&order=<?php echo $negorder; ?><?php echo $qstr; ?>" 
+                title="<?php echo __('Sort By Status'); ?>"><?php echo __('Status');?></a>
+            </th>
+            <th width="60px">
                 <a href="tickets.php?sort=dept&order=<?php echo $negorder; ?><?php echo $qstr; ?>" 
                 title="<?php echo __('Sort By Department'); ?>"><?php echo __('Department');?></a>
             </th>
@@ -251,11 +255,19 @@ if ($allTickets) {?>
                 $subject_field->to_php($T['cdata__subject']) ?: $T['cdata__subject']
             );
             $status = TicketStatus::getLocalById($T['status_id'], 'value', $T['status__name']);
-            $created = Format::datetime($T['created']);
-            //if ($T['status__state'] == 'open') $status = '<b>'.$status.'</b>';
+            $created = Format::date($T['created']);
             if (false) // XXX: Reimplement attachment count support
                 $subject.='  &nbsp;&nbsp;<span class="Icon file"></span>';
             $ticketNumber=$T['number'];
+            $ticketid = $T['ticket_id'];
+            $sql = "select count(ost_thread_entry.id) 
+                    from ost_ticket, ost_thread, ost_thread_entry 
+                    where ost_ticket.ticket_id = ost_thread.object_id 
+                    and ost_thread.id = ost_thread_entry.thread_id
+                    and ost_thread.object_type = 'T'
+                    and ost_thread_entry.`type`in ('M','R')
+                    and ost_ticket.ticket_id = $ticketid;";
+            $thread_count = db_count($sql);
 	        $folder = '<i class="icon-flag-checkered icon-center icon-fixed-width"></i>';
             if($T['isanswered'] && !strcasecmp($T['status__state'], 'open')) {
                 $status = "<b>$status</b>";
@@ -263,6 +275,7 @@ if ($allTickets) {?>
                 $ticketNumber = "<b>$ticketNumber</b>";
                 $created = "<b>$created</b>";
                 $dept = "<b>$dept</b>";
+                $thread_count = "<b>$thread_count</b>";
                 $folder = '<i class="icon-folder-open-alt icon-center icon-fixed-width"></i>';
             }elseif (!strcasecmp($T['status__state'], 'open')) {
                 $folder = '<i class="icon-folder-close-alt icon-center icon-fixed-width"></i>';
@@ -270,18 +283,26 @@ if ($allTickets) {?>
             ?>
             <tr id="<?php echo $T['ticket_id']; ?>">
                 <td>
-                <a title="<?php echo $T['user__default_email__address']; ?>"
+                    <a title="<?php echo $T['user__default_email__address']; ?>"
                     href="tickets.php?id=<?php echo $T['ticket_id']; ?>">
-                    <i class="<?php echo 'icon-ost-'.strtolower($T['source']); ?> icon-center icon-fixed-width"></i>
-                    <?php echo $ticketNumber; ?></a>
+                    <i class="<?php echo 'icon-ost-'.strtolower($T['source']); ?> icon-center icon-fixed-width">
+                    </i><?php echo $ticketNumber; ?></a>
                 </td>
                 <td><?php 
-                    echo $folder.$created; ?></td>
-                <td><i class="<?php echo 'icon-ost-'.$T['status__name']; ?> icon-center icon-fixed-width"></i><?php echo $status; ?></td>
-                <td>
-                    <div style="max-height: 1.2em; max-width: 320px;" class="link truncate" href="tickets.php?id=<?php echo $T['ticket_id']; ?>"><?php echo $subject; ?></div>
+                    echo $folder.$created; ?>
                 </td>
-                <td><span class="truncate"><?php echo $dept; ?></span></td>
+                <td>
+                    <div style="max-height: 1.2em; max-width: 360px;" class="link truncate" href="tickets.php?id=<?php echo $T['ticket_id']; ?>"><?php echo $subject; ?></div>
+                </td>
+                <td align="right">
+                    <?php echo $thread_count.' '; ?><i class="icon-comments-alt icon-fixed-width"></i>
+                </td>
+                <td><i class="<?php echo 'icon-ost-'.$T['status__name']; ?> icon-center icon-fixed-width">
+                    </i><?php echo $status; ?>
+                </td>
+                <td><span class="truncate">
+                    <?php echo $dept; ?></span>
+                </td>
             </tr>
         <?php
         }
@@ -294,7 +315,7 @@ if ($allTickets) {?>
 </table>
 <?php
 if ($total) {
-    echo '<div>&nbsp;'.__('Page').':'.$pageNav->getPageLinks().'&nbsp;<div><br>';
+    echo '<div style="padding-top: 5px;">&nbsp;'.__('Page').':'.$pageNav->getPageLinks().'&nbsp;<div><br>';
     echo '<div style="font-size: 13px; color: #888; line-height: 1.7em; text-align: center;">';
     if($list == 'open'){
         echo '<i class="icon-folder-open-alt icon-fixed-width"></i>'.__('last answer by agent').' 

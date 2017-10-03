@@ -18,13 +18,14 @@ PO-Revision-Date: 2017-01-13 11:01-0500
 POT-Creation-Date: 
 ',
   // Nachträge Übersetzungen (Anfang)
+  'Count' => 'Anz.',
   'last answer by agent' => 'letzte Antwort vom Betreuer',
   'last answer by user' => 'letzte Antwort von Ihnen',
   'ticket is solved' => 'Das Ticket ist gelöst',
   'ticket can\'t be reopened' => 'kann nicht wieder geöffnet werden',
   'ticket can be reopened' => 'kann durch eine Antwort wieder geöffnet werden',
   'source email' => 'über Email',
-  'source web' => 'über Internetseite',
+  'source web' => 'über Internet',
   'source phone' => 'über Telefon (durch Betreuer)',
   'source other' => 'sonstige Quelle (durch Betreuer)',
   'Sort By Ticket ID' => 'nach Ticket ID sortieren',
