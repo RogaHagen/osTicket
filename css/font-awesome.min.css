@@ -60,7 +60,7 @@ a .icon-rotate-90:before,a .icon-rotate-180:before,a .icon-rotate-270:before,a .
 .icon-signal:before{content:"\f012";}
 .icon-ost-email-settings:before,.icon-ost-api:before,.icon-ost-preferences:before,.icon-gear:before,.icon-cog:before{content:"\f013";}
 .icon-trash:before{content:"\f014";}
-.icon-home:before{content:"\f015";}
+.icon-ost-home:before,.icon-home:before{content:"\f015";}
 .icon-file-alt:before{content:"\f016";}
 .icon-ost-sla:before,.icon-time:before{content:"\f017";}
 .icon-road:before{content:"\f018";}
@@ -71,8 +71,8 @@ a .icon-rotate-90:before,a .icon-rotate-180:before,a .icon-rotate-270:before,a .
 .icon-play-circle:before{content:"\f01d";}
 .icon-rotate-right:before,.icon-repeat:before{content:"\f01e";}
 .icon-refresh:before{content:"\f021";}
-.icon-ost-ticket-settings:before,.icon-list-alt:before{content:"\f022";}
-.icon-lock:before{content:"\f023";}
+.icon-ost-tickets:before,.icon-ost-ticket-settings:before,.icon-list-alt:before{content:"\f022";}
+.icon-ost-Geschlossen:before,.icon-lock:before{content:"\f023";}
 .icon-flag:before{content:"\f024";}
 .icon-headphones:before{content:"\f025";}
 .icon-volume-off:before{content:"\f026";}
@@ -80,7 +80,7 @@ a .icon-rotate-90:before,a .icon-rotate-180:before,a .icon-rotate-270:before,a .
 .icon-volume-up:before{content:"\f028";}
 .icon-qrcode:before{content:"\f029";}
 .icon-barcode:before{content:"\f02a";}
-.icon-tag:before{content:"\f02b";}
+.icon-ost-other:before,.icon-tag:before{content:"\f02b";}
 .icon-tags:before{content:"\f02c";}
 .icon-book:before{content:"\f02d";}
 .icon-bookmark:before{content:"\f02e";}
@@ -106,7 +106,7 @@ a .icon-rotate-90:before,a .icon-rotate-180:before,a .icon-rotate-270:before,a .
 .icon-tint:before{content:"\f043";}
 .icon-edit:before{content:"\f044";}
 .icon-share:before{content:"\f045";}
-.icon-check:before{content:"\f046";}
+.icon-ost-Gelöst:before,.icon-check:before{content:"\f046";}
 .icon-move:before{content:"\f047";}
 .icon-step-backward:before{content:"\f048";}
 .icon-fast-backward:before{content:"\f049";}
@@ -120,7 +120,7 @@ a .icon-rotate-90:before,a .icon-rotate-180:before,a .icon-rotate-270:before,a .
 .icon-eject:before{content:"\f052";}
 .icon-chevron-left:before{content:"\f053";}
 .icon-chevron-right:before{content:"\f054";}
-.icon-plus-sign:before{content:"\f055";}
+.icon-ost-new:before,.icon-plus-sign:before{content:"\f055";}
 .icon-ost-emailDiagnostic:before,.icon-minus-sign:before{content:"\f056";}
 .icon-remove-sign:before{content:"\f057";}
 .icon-ok-sign:before{content:"\f058";}
@@ -180,8 +180,8 @@ a .icon-rotate-90:before,a .icon-rotate-180:before,a .icon-rotate-270:before,a .
 .icon-github-sign:before{content:"\f092";}
 .icon-upload-alt:before{content:"\f093";}
 .icon-lemon:before{content:"\f094";}
-.icon-phone:before{content:"\f095";}
-.icon-unchecked:before,.icon-check-empty:before{content:"\f096";}
+.icon-ost-phone:before,.icon-phone:before{content:"\f095";}
+.icon-ost-Offen:before,.icon-unchecked:before,.icon-check-empty:before{content:"\f096";}
 .icon-bookmark-empty:before{content:"\f097";}
 .icon-phone-sign:before{content:"\f098";}
 .icon-twitter:before{content:"\f099";}
@@ -202,7 +202,7 @@ a .icon-rotate-90:before,a .icon-rotate-180:before,a .icon-rotate-270:before,a .
 .icon-circle-arrow-right:before{content:"\f0a9";}
 .icon-circle-arrow-up:before{content:"\f0aa";}
 .icon-circle-arrow-down:before{content:"\f0ab";}
-.icon-globe:before{content:"\f0ac";}
+.icon-ost-web:before,.icon-globe:before{content:"\f0ac";}
 .icon-wrench:before{content:"\f0ad";}
 .icon-tasks:before{content:"\f0ae";}
 .icon-ost-ticketFilters:before,.icon-filter:before{content:"\f0b0";}
@@ -238,7 +238,7 @@ a .icon-rotate-90:before,a .icon-rotate-180:before,a .icon-rotate-270:before,a .
 .icon-sort:before{content:"\f0dc";}
 .icon-sort-down:before{content:"\f0dd";}
 .icon-sort-up:before{content:"\f0de";}
-.icon-ost-emailSettings:before,.icon-envelope:before{content:"\f0e0";}
+.icon-ost-email:before,.icon-ost-emailSettings:before,.icon-envelope:before{content:"\f0e0";}
 .icon-linkedin:before{content:"\f0e1";}
 .icon-rotate-left:before,.icon-undo:before{content:"\f0e2";}
 .icon-legal:before{content:"\f0e3";}
@@ -401,3 +401,5 @@ a .icon-rotate-90:before,a .icon-rotate-180:before,a .icon-rotate-270:before,a .
 .icon-vk:before{content:"\f189";}
 .icon-weibo:before{content:"\f18a";}
 .icon-renren:before{content:"\f18b";}
+
+.icon-center{text-align:center !important;}

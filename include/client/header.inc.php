@@ -87,21 +87,27 @@ if ($lang) {
              <?php
                 if ($thisclient && is_object($thisclient) && $thisclient->isValid()
                     && !$thisclient->isGuest()) {
-                 echo Format::htmlchars($thisclient->getName()).'&nbsp;|';
+                 echo sprintf(__('Welcome, %s.'),format::htmlchars($thisclient->getName())).'&nbsp;|';
                  ?>
-                <a href="<?php echo ROOT_PATH; ?>profile.php"><?php echo __('Profile'); ?></a> |
-                <a href="<?php echo ROOT_PATH; ?>tickets.php"><?php echo sprintf(__('Tickets <b>(%d)</b>'), $thisclient->getNumTickets()); ?></a> -
-                <a href="<?php echo $signout_url; ?>"><?php echo __('Sign Out'); ?></a>
+                <a href="<?php echo ROOT_PATH; ?>profile.php">
+                    <i class="icon-user icon-fixed-width"></i>
+                    <?php echo __('Profile'); ?></a> |
+                <a href="<?php echo ROOT_PATH; ?>tickets.php">
+                    <i class="icon-list-alt icon-fixed-width"></i>
+                    <?php echo sprintf(__('Tickets <b>(%d)</b>'), $thisclient->getNumTickets()); ?></a> |
+                <a href="<?php echo $signout_url; ?>">
+                    <i class="icon-signout icon-fixed-width">
+                    </i><?php echo __('Sign Out'); ?></a>
             <?php
             } elseif($nav) {
                 if ($cfg->getClientRegistrationMode() == 'public') { ?>
                     <?php echo __('Guest User'); ?> | <?php
                 }
                 if ($thisclient && $thisclient->isValid() && $thisclient->isGuest()) { ?>
-                    <a href="<?php echo $signout_url; ?>"><?php echo __('Sign Out'); ?></a><?php
+                    <a href="<?php echo $signout_url; ?>"><i class="icon-signout icon-fixed-width"></i><?php echo __('Sign Out'); ?></a><?php
                 }
                 elseif ($cfg->getClientRegistrationMode() != 'disabled') { ?>
-                    <a href="<?php echo $signin_url; ?>"><?php echo __('Sign In'); ?></a>
+                    <a href="<?php echo $signin_url; ?>"><i class="icon-signin icon-fixed-width"></i><?php echo __('Sign In'); ?></a>
 <?php
                 }
             } ?>
@@ -138,7 +144,7 @@ if (($all_langs = Internationalization::getConfiguredSystemLanguages())
             <?php
             if($nav && ($navs=$nav->getNavLinks()) && is_array($navs)){
                 foreach($navs as $name =>$nav) {
-                    echo sprintf('<li><a class="%s %s" href="%s">%s</a></li>%s',$nav['active']?'active':'',$name,(ROOT_PATH.$nav['href']),$nav['desc'],"\n");
+                    echo sprintf('<li><a class="%s" href="%s"><i class="icon-ost-%s icon-fixed-width"></i>%s</a></li>%s',$nav['active']?'active':'',(ROOT_PATH.$nav['href']),$name,$nav['desc'],"\n");
                 }
             } ?>
         </ul>

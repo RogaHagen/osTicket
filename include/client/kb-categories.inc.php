@@ -13,19 +13,19 @@
         <ul id="kb">
 <?php
         foreach ($categories as $C) { ?>
-            <li><i></i>
+            <li><i class="icon-folder-open icon-2x"></i>
             <div style="margin-left:45px">
-            <h4><?php echo sprintf('<a href="faq.php?cid=%d">%s (%d)</a>',
-                $C->getId(), Format::htmlchars($C->getLocalName()), $C->faq_count); ?></h4>
+            <h2><?php echo sprintf('<a href="faq.php?cid=%d">%s (%d)</a>',
+                $C->getId(), Format::htmlchars($C->getLocalName()), $C->faq_count); ?></h2>
             <div class="faded" style="margin:10px 0">
                 <?php echo Format::safe_html($C->getLocalDescriptionWithImages()); ?>
             </div>
 <?php       foreach ($C->faqs
                     ->exclude(array('ispublished'=>FAQ::VISIBILITY_PRIVATE))
                     ->limit(5) as $F) { ?>
-                <div class="popular-faq"><i class="icon-file-alt"></i>
+                <div class="popular-faq">
                 <a href="faq.php?id=<?php echo $F->getId(); ?>">
-                <?php echo $F->getLocalQuestion() ?: $F->getQuestion(); ?>
+                <i class="icon-file-alt"></i> <?php echo $F->getLocalQuestion() ?: $F->getQuestion(); ?>
                 </a></div>
 <?php       } ?>
             </div>

@@ -31,6 +31,7 @@ else {
     $openTickets = $thisclient->getNumOpenTickets($org_tickets);
     $closedTickets = $thisclient->getNumClosedTickets($org_tickets);
 }
+$allTickets = $closedTickets + $openTickets;
 
 $tickets = Ticket::objects();
 
@@ -67,8 +68,11 @@ if ($settings['status'])
         $status = 'open';
     case 'open':
     case 'closed':
-		$results_type = ($status == 'closed') ? __('Closed Tickets') : __('Open Tickets');
+	$results_type = ($status == 'closed') ? __('Closed Tickets') : __('Open Tickets');
         $basic_filter->filter(array('status__state' => $status));
+        break;
+    case 'all':
+        $results_type = __('All Tickets');
         break;
 }
 
@@ -173,24 +177,36 @@ foreach (Topic::getHelpTopics(true) as $id=>$name) {
     </a>
 
 <div class="pull-right states">
-    <small>
+   <small>
 <?php if ($openTickets) { ?>
-    <i class="icon-file-alt"></i>
     <a class="state <?php if ($status == 'open') echo 'active'; ?>"
         href="?<?php echo Http::build_query(array('a' => 'search', 'status' => 'open')); ?>">
+    <i class="icon-check-empty"></i>
     <?php echo _P('ticket-status', 'Open'); if ($openTickets > 0) echo sprintf(' (%d)', $openTickets); ?>
     </a>
-    <?php if ($closedTickets) { ?>
+    <?php if ($closedTickets or $allTickets) { ?>
     &nbsp;
-    <span style="color:lightgray">|</span>
+    <span>|</span>
     <?php }
 }
 if ($closedTickets) {?>
     &nbsp;
-    <i class="icon-file-text"></i>
     <a class="state <?php if ($status == 'closed') echo 'active'; ?>"
         href="?<?php echo Http::build_query(array('a' => 'search', 'status' => 'closed')); ?>">
+    <i class="icon-check"></i>
     <?php echo __('Closed'); if ($closedTickets > 0) echo sprintf(' (%d)', $closedTickets); ?>
+    </a>
+    <?php if ($allTickets) { ?>
+    &nbsp;
+    <span>|</span>
+    <?php }
+}
+if ($allTickets) {?>
+    &nbsp;
+    <a class="state <?php if ($status == 'all') echo 'active'; ?>"
+        href="?<?php echo Http::build_query(array('a' => 'search', 'status' => 'all')); ?>">
+    <i class="icon-list-alt"></i>
+    <?php echo __('All'); if ($allTickets > 0) echo sprintf(' (%d)', $allTickets); ?>
     </a>
 <?php } ?>
     </small>
@@ -200,20 +216,25 @@ if ($closedTickets) {?>
     <caption><?php echo $showing; ?></caption>
     <thead>
         <tr>
-            <th nowrap>
-                <a href="tickets.php?sort=ID&order=<?php echo $negorder; ?><?php echo $qstr; ?>" title="Sort By Ticket ID"><?php echo __('Ticket #');?></a>
+            <th width="80" nowrap>
+                <a href="tickets.php?sort=ID&order=<?php echo $negorder; ?><?php echo $qstr; ?>" 
+                title="<?php echo __('Sort By Ticket ID'); ?>"><?php echo __('Ticket #');?></a>
             </th>
-            <th width="120">
-                <a href="tickets.php?sort=date&order=<?php echo $negorder; ?><?php echo $qstr; ?>" title="Sort By Date"><?php echo __('Create Date');?></a>
+            <th width="130">
+                <a href="tickets.php?sort=date&order=<?php echo $negorder; ?><?php echo $qstr; ?>" 
+                title="<?php echo __('Sort By Date'); ?>"><?php echo __('Create Date');?></a>
             </th>
-            <th width="100">
-                <a href="tickets.php?sort=status&order=<?php echo $negorder; ?><?php echo $qstr; ?>" title="Sort By Status"><?php echo __('Status');?></a>
+            <th width="110">
+                <a href="tickets.php?sort=status&order=<?php echo $negorder; ?><?php echo $qstr; ?>" 
+                title="<?php echo __('Sort By Status'); ?>"><?php echo __('Status');?></a>
             </th>
             <th width="320">
-                <a href="tickets.php?sort=subj&order=<?php echo $negorder; ?><?php echo $qstr; ?>" title="Sort By Subject"><?php echo __('Subject');?></a>
+                <a href="tickets.php?sort=subj&order=<?php echo $negorder; ?><?php echo $qstr; ?>" 
+                title="<?php echo __('Sort By Subject'); ?>"><?php echo __('Subject');?></a>
             </th>
-            <th width="120">
-                <a href="tickets.php?sort=dept&order=<?php echo $negorder; ?><?php echo $qstr; ?>" title="Sort By Department"><?php echo __('Department');?></a>
+            <th width="80">
+                <a href="tickets.php?sort=dept&order=<?php echo $negorder; ?><?php echo $qstr; ?>" 
+                title="<?php echo __('Sort By Department'); ?>"><?php echo __('Department');?></a>
             </th>
         </tr>
     </thead>
@@ -230,22 +251,30 @@ if ($closedTickets) {?>
                 $subject_field->to_php($T['cdata__subject']) ?: $T['cdata__subject']
             );
             $status = TicketStatus::getLocalById($T['status_id'], 'value', $T['status__name']);
+            $created = Format::datetime($T['created']);
+            if ($T['status__state'] == 'open') $status = '<b>'.$status.'</b>';
             if (false) // XXX: Reimplement attachment count support
                 $subject.='  &nbsp;&nbsp;<span class="Icon file"></span>';
-
             $ticketNumber=$T['number'];
+	    $folder = '<i class="icon-folder-close-alt icon-center icon-fixed-width"></i>';
             if($T['isanswered'] && !strcasecmp($T['status__state'], 'open')) {
-                $subject="<b>$subject</b>";
-                $ticketNumber="<b>$ticketNumber</b>";
+                $subject = "<b>$subject</b>";
+                $ticketNumber = "<b>$ticketNumber</b>";
+                $created = "<b>$created</b>";
+                $folder = '<i class="icon-folder-open-alt icon-center icon-fixed-width"></i>';
             }
             ?>
             <tr id="<?php echo $T['ticket_id']; ?>">
                 <td>
-                <a class="Icon <?php echo strtolower($T['source']); ?>Ticket" title="<?php echo $T['user__default_email__address']; ?>"
-                    href="tickets.php?id=<?php echo $T['ticket_id']; ?>"><?php echo $ticketNumber; ?></a>
+                <a title="<?php echo $T['user__default_email__address']; ?>"
+                    href="tickets.php?id=<?php echo $T['ticket_id']; ?>">
+                    <i class="<?php echo 'icon-ost-'.strtolower($T['source']); ?> icon-center icon-fixed-width"></i>
+                    <?php echo $ticketNumber; ?></a>
                 </td>
-                <td><?php echo Format::date($T['created']); ?></td>
-                <td><?php echo $status; ?></td>
+                <td><?php 
+                    echo $folder.$created; ?></td>
+                <td><i class="<?php echo 'icon-ost-'.$T['status__name']; ?> icon-center icon-fixed-width"></i>
+                    <?php echo $status; ?></td>
                 <td>
                     <div style="max-height: 1.2em; max-width: 320px;" class="link truncate" href="tickets.php?id=<?php echo $T['ticket_id']; ?>"><?php echo $subject; ?></div>
                 </td>
@@ -262,6 +291,14 @@ if ($closedTickets) {?>
 </table>
 <?php
 if ($total) {
-    echo '<div>&nbsp;'.__('Page').':'.$pageNav->getPageLinks().'&nbsp;</div>';
+    echo '<div>&nbsp;'.__('Page').':'.$pageNav->getPageLinks().'&nbsp;<div><br>
+    <div align="center">
+    <i class="icon-folder-open-alt icon-fixed-width"></i>'.__('last answer by agent').' 
+    &nbsp;|&nbsp;<i class="icon-folder-close-alt icon-fixed-width"></i>'.__('last answer by user').'<br> 
+    <i class="icon-ost-email icon-fixed-width"></i>'.__('source email').'
+    &nbsp;|&nbsp;<i class="icon-ost-web icon-fixed-width"></i>'.__('source web').'
+    &nbsp;|&nbsp;<i class="icon-ost-phone icon-fixed-width"></i>'.__('source phone').' 
+    &nbsp;|&nbsp;<i class="icon-ost-other icon-fixed-width"></i>'.__('source other').'
+    </div>';
 }
 ?>

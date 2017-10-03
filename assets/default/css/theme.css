@@ -318,7 +318,7 @@ body {
     vertical-align: middle;
 }
 #header p {
-  width: 400px;
+  width: 550px;
   margin: 0;
   padding: 10px 0 0;
 }
@@ -345,7 +345,7 @@ body {
   height: 20px;
   line-height: 20px;
   text-align: center;
-  padding: 0 10px 0 32px;
+  padding: 0 10px 0 10px;
   margin-left: 10px;
   color: #333;
   border-radius: 20px;
@@ -391,7 +391,7 @@ body {
   margin: 0 20px;
   height: auto !important;
   height: 350px;
-  min-height: 350px;
+  min-height: 250px;
 }
 #footer {
   text-align: center;
@@ -405,7 +405,7 @@ body {
   margin: 10px 0 0 0;
 }
 #footer #poweredBy {
-  display: block;
+  display: none;
   width: 126px;
   height: 23px;
   outline: none;
@@ -461,8 +461,8 @@ body {
   margin: 0;
   border-bottom: 1px solid #ddd;
   line-height: 16px;
-  padding-left: 24px;
-  background: url('../images/icons/page.png') 0 50% no-repeat;
+  padding-left: 0px;
+  /* background: url('../images/icons/page.png') 0 50% no-repeat; */
 }
 #faq ol li a:hover {
   background-color: #e9f5ff;
@@ -497,7 +497,8 @@ body {
   height: 32px;
   float: left;
   margin-right: 6px;
-  background: url(../images/kb_large_folder.png) top left no-repeat;
+  color: #0072bc;
+  /* background: url(../images/kb_large_folder.png) top left no-repeat; */
 }
 .featured-category {
     margin-top: 10px;

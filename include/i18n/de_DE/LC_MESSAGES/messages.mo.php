@@ -18,6 +18,18 @@ PO-Revision-Date: 2017-01-13 11:01-0500
 POT-Creation-Date: 
 ',
   // Nachträge Übersetzungen (Anfang)
+  'last answer by agent' => 'letzte Antwort vom Betreuer',
+  'last answer by user' => 'letzte Antwort von Ihnen',
+  'source email' => 'über Email',
+  'source web' => 'über Internetseite',
+  'source phone' => 'über Telefon (durch Betreuer)',
+  'source other' => 'sonstige Quelle (durch Betreuer)',
+  'Sort By Ticket ID' => 'nach Ticket ID sortieren',
+  'Sort By Date' => 'nach Datum sortieren',
+  'Sort By Status' => 'nach Status sortieren',
+  'Sort By Subject' => 'nach Betreff sortieren',
+  'Sort By Department' => 'nach Abteilung sortieren',
+  'Browse by Topic' => 'Nach Themen suchen',
   'by' => 'von',
   'Edit and Resend' => 'Bearbeiten und neu senden',
   'View History' => 'Versionen anzeigen',
@@ -67,6 +79,7 @@ POT-Creation-Date:
   'Ticket priority:' => 'Ticket Priorität:',
   'All Rights Reserved' => 'Alle Rechte vorbehalten',
   'Portions Powered by' => 'Teile mit Unterstützung von',
+  '%s is marked as closed and cannot be reopened.' => '%s wurde als geschlossen markiert und kann nicht wieder eröffnet werden.',
   // Nachträge Übersetzungen (Ende)
   '"1" is recommended if AJAX is not working' => '"1" wird empfohlen, wenn AJAX nicht funktioniert',
   '%1$d - %2$d of %3$d' => '%1$d - %2$d von %3$d',

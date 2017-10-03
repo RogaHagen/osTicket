@@ -5,7 +5,8 @@ if(!defined('OSTCLIENTINC') || !$category || !$category->isPublic()) die('Access
 <div class="row">
 <div class="span8">
     <h1><?php echo __('Frequently Asked Questions');?></h1>
-    <h2><strong><?php echo $category->getLocalName() ?></strong></h2>
+    <hr>
+    <h2><i class="icon-folder-open icon-fixed-width"></i><strong><?php echo $category->getLocalName() ?></strong></h2>
 <p>
 <?php echo Format::safe_html($category->getLocalDescriptionWithImages()); ?>
 </p>
@@ -22,13 +23,13 @@ $faqs = FAQ::objects()
 
 if ($faqs->exists(true)) {
     echo '
-         <h2>'.__('Further Articles').'</h2>
+         <h2><i class="icon-list-ul icon-fixed-width"></i>'.__('Further Articles').'</h2>
          <div id="faq">
             <ol>';
 foreach ($faqs as $F) {
         $attachments=$F->has_attachments?'<span class="Icon file"></span>':'';
         echo sprintf('
-            <li><a href="faq.php?id=%d" >%s &nbsp;%s</a></li>',
+            <li><a href="faq.php?id=%d" ><i class="icon-file-alt icon-fixed-width"></i>%s &nbsp;%s</a></li>',
             $F->getId(),Format::htmlchars($F->question), $attachments);
     }
     echo '  </ol>
