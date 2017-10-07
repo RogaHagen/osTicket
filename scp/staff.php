@@ -72,7 +72,7 @@ if($_POST){
                         $num = $members->update(array('isactive' => 1));
                         if ($num) {
                             if($num==$count)
-                                $msg = sprintf('Successfully activated %s',
+                                $msg = sprintf(__('Successfully activated %s'),
                                     _N('selected agent', 'selected agents', $count));
                             else
                                 $warn = sprintf(__('%1$d of %2$d %3$s activated'), $num, $count,
@@ -87,7 +87,7 @@ if($_POST){
                         $num = $members->update(array('isactive' => 0));
                         if ($num) {
                             if($num==$count)
-                                $msg = sprintf('Successfully disabled %s',
+                                $msg = sprintf(__('Successfully disabled %s'),
                                     _N('selected agent', 'selected agents', $count));
                             else
                                 $warn = sprintf(__('%1$d of %2$d %3$s disabled'), $num, $count,

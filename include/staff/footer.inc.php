@@ -1,13 +1,13 @@
 </div>
 </div>
 <?php if (!isset($_SERVER['HTTP_X_PJAX'])) { ?>
-    <div id="footer">
+    <div class="kgfooter" id="kgfooter">
         <i class="icon-code-fork icon-fixed-width"></i><a href="https://github.com/ropaha/helpdesk"><?php echo THIS_VERSION ?></a>
-        <i class="icon-beaker icon-fixed-width"></i><a href="http://www.osticket.com" target="_blank">osTicket</a>
-        <i class="icon-code icon-fixed-width"></i><a href="mailto:roga@hagen.me">Roga Hagem</a>
-        <i class="icon-code icon-fixed-width"></i><a href="mailto:mail@lars-sh.de">Lars Knickrehm</a>.	
-        Copyright &copy; <?php echo date('Y').' '; echo (string) $ost->company ?: 'osTicket.com'; ?>.
-        <?php echo __('All Rights Reserved') ;?>.
+        | <i class="icon-beaker icon-fixed-width"></i><a href="http://www.osticket.com" target="_blank">osTicket</a>
+        | <i class="icon-code icon-fixed-width"></i><a href="mailto:roga@hagen.me">Roga Hagen</a>
+        | <i class="icon-code icon-fixed-width"></i><a href="mailto:mail@lars-sh.de">Lars Knickrehm</a>.	
+        <span style="float: right;">Copyright &copy; <?php echo date('Y').' '; echo (string) $ost->company ?: 'osTicket.com'; ?>.
+        <?php echo __('All Rights Reserved') ;?>.</span>
     </div>
 <?php
 if(is_object($thisstaff) && $thisstaff->isStaff()) { ?>

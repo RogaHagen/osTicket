@@ -2940,6 +2940,18 @@ a.attachment {
 
 /* formating of data tables like tasks, tickets, users, staff, companies */
 
+.kgfooter {
+    background-color: #333333;
+    bottom: 0;
+    color: #cacaca;
+    font-size: 80%;
+    left: 0;
+    margin: 0 -570px;
+    padding: 5px 50%;
+    position: fixed;
+    right: 0;
+}
+.kgfooter a{color:#cacaca;}
 th.checkbox {
     text-align: center !important;
     width: 25px; /* 3% */

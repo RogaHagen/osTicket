@@ -18,6 +18,9 @@ PO-Revision-Date: 2017-01-13 11:01-0500
 POT-Creation-Date: 
 ',
   // Nachträge Übersetzungen (Anfang)
+  'Successfully %1$s %2$s.' => 'Erfolgreich %1$s %2$s.',
+  'Check all help topics related to %s.' => 'Wählen Sie alle zutreffenden Hilfethemen für %s aus.',
+  'Successfully' => 'Erfolgreich',
   'Count' => 'Anz.',
   'last answer by agent' => 'letzte Antwort vom Betreuer',
   'last answer by user' => 'letzte Antwort von Ihnen',
