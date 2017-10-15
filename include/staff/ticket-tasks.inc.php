@@ -12,6 +12,9 @@ $tasks->filter(array(
             'object_type' => 'T'));
 
 $count = $tasks->count();
+$ticket_id = $ticket->getId();
+$tasks_open = db_count("select count(id) from ost_task where object_type = 'T' and object_id = $ticket_id and flags = 1");
+$tasks_closed = $count - $tasks_open;
 $pageNav = new Pagenate($count,1, 100000); //TODO: support ajax based pages
 $showing = $pageNav->showing().' '._N('task', 'tasks', $count);
 
@@ -194,7 +197,8 @@ $(function() {
         return false;
     });
 
-    $('#ticket-tasks-count').html(<?php echo $count; ?>);
+    $('#ticket-tasks-count').html(<?php echo $tasks_closed; ?>);
+    $('#ticket-tasks-open').html(<?php echo $tasks_open; ?>);
     $('[data-toggle=tooltip]').tooltip();
 });
 </script>

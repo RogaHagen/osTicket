@@ -526,6 +526,9 @@ return false;">
                 }
                 $ticket_id = $T['ticket_id'];
                 $task_count = db_count("select count(id) from ost_task where object_type = 'T' and object_id = $ticket_id");
+                if($task_count){
+                    $task_open = db_count("select count(id) from ost_task where object_type = 'T' and object_id = $ticket_id and flags = 1");
+                }
                 $tid = $T['number'];
                 $subject = $subject_field->display($subject_field->to_php($T['cdata__subject']));
                 $threadcount = $T['thread_count'];
@@ -578,7 +581,7 @@ return false;">
                     href="tickets.php?id=<?php echo $T['ticket_id']; ?>">
                     <?php echo $subject; ?>
                     </div>
-                    <?php echo Misc::icon_annotation($threadcount, $T['attachment_count'], $T['collab_count'], $task_count);?>
+                    <?php echo Misc::icon_annotation($threadcount, $T['attachment_count'], $T['collab_count'], $task_count, $task_open);?>
                 </td>
                 <!-- User######################################################################### -->
                 <td class="user"><div>

@@ -482,18 +482,26 @@ echo $v;
 <?php
 $tcount = $ticket->getThreadEntries($types)->count();
 ?>
-<ul  class="tabs clean threads" id="ticket_tabs" >
+<ul class="tabs clean threads" id="ticket_tabs" >
     <li class="active"><a id="ticket-thread-tab" href="#ticket_thread"><?php
         echo '<i class="icon-comments icon-fixed-width"></i>';
         echo sprintf(__('Ticket Thread (%d)'), $tcount); ?></a></li>
     <li><a id="ticket-tasks-tab" href="#tasks"
-            data-url="<?php
-        echo sprintf('#tickets/%d/tasks', $ticket->getId()); ?>"><?php
+            data-url="<?php echo sprintf('#tickets/%d/tasks', $ticket->getId()); ?>">
+        <?php
         echo '<i class="icon-check-sign icon-fixed-width"></i>';
         echo __('Tasks');
-        if ($ticket->getNumTasks())
-            echo sprintf('&nbsp;(<span id="ticket-tasks-count">%d</span>)', $ticket->getNumTasks());
-        ?></a></li>
+        if ($ticket->getNumTasks()){
+            $ticket_id = $ticket->getId();
+            $task_open = db_count("select count(id) from ost_task where object_type = 'T' and object_id = $ticket_id and flags = 1");
+            if($task_open){
+                echo sprintf('&nbsp;(<span id="ticket-tasks-count">%d</span> %s / <span class="task-open"><span id="ticket-tasks-open">%d</span> %s</span>)', $ticket->getNumTasks() - $task_open, __('Closed'), $task_open, __('Open'));
+            }else{
+                echo sprintf('&nbsp;(<span id="off-ticket-tasks-count">%d</span> %s', $ticket->getNumTasks(), __('Closed'));
+            }
+        }
+        ?>
+    </a></li>
 </ul>
 
 <div id="ticket_tabs_container">

@@ -669,8 +669,14 @@ $(function() {
         .fail(function() { });
      });
     <?php
-    if ($ticket) { ?>
-    $('#ticket-tasks-count').html(<?php echo $ticket->getNumTasks(); ?>);
+    if ($ticket) {
+        $ticket_id = $ticket->getId();
+        $tasks_count = $ticket->getNumTasks();
+        $tasks_open = db_count("select count(id) from ost_task where object_type = 'T' and object_id = $ticket_id and flags = 1");
+        $tasks_closed = $tasks_count - $tasks_open;
+    ?>
+    $('#ticket-tasks-count').html(<?php echo $tasks_closed; ?>);
+    $('#ticket-tasks-open').html(<?php echo $tasks_open; ?>);
    <?php
     } ?>
 });

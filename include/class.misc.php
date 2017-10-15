@@ -105,12 +105,12 @@ class Misc {
         return $var;
     }
  
-    function icon_annotation($thread, $attachment, $collab, $tasks, $source = 'Ticket'){
+    function icon_annotation($thread, $attachment, $collab, $tasks, $task_open){
         $var = '<span class="pull-right">';
         if ($thread > 1)
             $var = $var.Misc::icon(ICONTHREAD, '', __('Included threads:').' '.$thread);
         if ($tasks)
-            $var = $var.Misc::icon(ICONTASK, '', __('Included tasks:').' '.$tasks);
+            $var = $var.Misc::icon(ICONTASK, '', __('Included tasks:').' '.$tasks.' ('.$task_open.' '.__('Open').')');
         if ($attachment)
             $var = $var.Misc::icon(ICONATTACHMENT, '', __('Included files:').' '.$attachment);
         if ($collab)

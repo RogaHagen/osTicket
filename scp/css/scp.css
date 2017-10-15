@@ -3035,6 +3035,7 @@ td.mobile {text-align: left; white-space:nowrap}
 .icon-red{color:red;}
 .icon-blue{color:#184E81;}
 .ost-icon-blue{color:#184E81;}
+.task-open{color:red;}
 .ticket-overdue{
     color:red;
     font-weight:bold;
