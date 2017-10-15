@@ -497,7 +497,7 @@ $tcount = $ticket->getThreadEntries($types)->count();
             if($task_open){
                 echo sprintf('&nbsp;(<span id="ticket-tasks-count">%d</span> %s / <span class="task-open"><span id="ticket-tasks-open">%d</span> %s</span>)', $ticket->getNumTasks() - $task_open, __('Closed'), $task_open, __('Open'));
             }else{
-                echo sprintf('&nbsp;(<span id="off-ticket-tasks-count">%d</span> %s', $ticket->getNumTasks(), __('Closed'));
+                echo sprintf('&nbsp;(<span id="ticket-tasks-count">%d</span> %s)', $ticket->getNumTasks(), __('Closed'));
             }
         }
         ?>
