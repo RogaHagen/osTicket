@@ -137,7 +137,7 @@ if ($total) { ?>
     foreach($tickets as $T) {
         $flag=null;
         $flag = $T['isanswered']?'closed':'opened';
-        if ($T['status__name'] <> 'Offen') $flag = 'done';
+        if ($T['status__state'] <> 'open') $flag = 'done';
         if ($T['lock__lock_id'] && $T['lock__staff_id'] != $thisstaff->getId())
             $flag='locked';
         elseif ($T['isoverdue'])
@@ -157,7 +157,7 @@ if ($total) { ?>
         $ticket_source = $T['source'];
         $status = TicketStatus::getLocalById($T['status_id'], 'value', $T['status__name']);
         $displaystatus = $status;
-        if (!strcasecmp($status,'offen'))$displaystatus="<b>$status</b>";        
+        if (!strcasecmp($T['status__state'],'open'))$displaystatus="<b>$status</b>";        
         $tid = $T['number'];
         if(!strcasecmp($T['status__state'],'open') && !$T['isanswered'] && !$T['lock__staff_id']) {
             $tid=sprintf('<b>%s</b>',$tid);
