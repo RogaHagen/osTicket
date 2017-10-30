@@ -508,7 +508,7 @@ return false;">
                 $tag = $T['staff_id']?'assigned':'openticket';
                 $flag = null;
                 $flag = $T['isanswered']?'closed':'opened';
-                if ($T['status__name'] <> 'Offen') $flag = 'done';
+                if ($T['status__state'] <> 'open') $flag = 'done';
                 if ($T['lock__staff_id'] && $T['lock__staff_id'] != $thisstaff->getId())
                     $flag = 'locked';
                 elseif ($T['isoverdue'])
