@@ -597,7 +597,7 @@ return false;">
                 if($search && !$status){
                     echo "<td>";
                     echo Misc::icon_closestate($displaystatus);
-                    if (!strcasecmp($displaystatus,'offen'))$displaystatus="<b>$displaystatus</b>";
+                    if ($T['status__state']=='open')$displaystatus="<b>$displaystatus</b>";
                     echo "$displaystatus</td>";
                 } else { ?>
                 <!-- Proirity######################################################################### -->
