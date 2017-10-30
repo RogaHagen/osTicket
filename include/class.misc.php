@@ -28,6 +28,7 @@ const ICONOVERDUE       = 'icon-warning-sign';
 const ICONUNSIGNED      = 'icon-warning-sign';
 const ICONANSWERED      = 'icon-folder-open';
 const ICONUNANSWERED    = 'icon-folder-close';
+const ICONLONGRUN       = 'icon-road';
 const ICONLOCKED        = 'icon-key';
 const ICONTHREAD        = 'icon-comments';
 const ICONGROUP         = 'icon-group';
@@ -98,6 +99,8 @@ class Misc {
             $var = Misc::icon(ICONOVERDUE, 'icon-center icon-red', __('Ticket marked as overdue!'));
         }elseif ($state == 'locked'){
             $var = Misc::icon(ICONLOCKED, 'icon-center icon-red', __('Ticket marked as locked!'));
+        }elseif ($state == 'longrun') {
+            $var = Misc::icon(ICONLONGRUN, '', __('Ticket marked as longrun!'));
         }elseif ($state == 'opened') {
             $var = Misc::icon(ICONUNANSWERED, '', __('Ticket marked as unanswered'));
         }elseif ($state== 'closed') {
