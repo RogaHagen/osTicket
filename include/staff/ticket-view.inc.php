@@ -30,10 +30,7 @@ elseif ($ticket->isAssigned()
         && (($staff && $staff->getId()!=$thisstaff->getId())
             || ($team && !$team->hasMember($thisstaff))
         ))
-    $warn.= sprintf('&nbsp;&nbsp;<span class="Icon assignedTicket">%s</span>',
-            sprintf(__('Ticket is assigned to %s'),
-                implode('/', $ticket->getAssignees())
-                ));
+    $warn.= '&nbsp;&nbsp;' . MISC::icon(ICONUSER, '', '') . sprintf(__('Ticket is assigned to %s'),implode('/', $ticket->getAssignees()));
 
 if (!$errors['err']) {
 
@@ -50,7 +47,7 @@ if (!$errors['err']) {
 $unbannable=($emailBanned) ? BanList::includes($ticket->getEmail()) : false;
 
 if($ticket->isOverdue())
-    $warn.='&nbsp;&nbsp;<span class="Icon overdueTicket">'.__('Marked overdue!').'</span>';
+    $warn.='&nbsp;&nbsp;' . Misc::icon(ICONOVERDUE, '', '') . __('Marked overdue!');
 
 ?>
 <div>
@@ -237,7 +234,7 @@ if($ticket->isOverdue())
 <table class="ticket_info" cellspacing="0" cellpadding="0" width="940" border="0">
     <tr>
         <td width="50%">
-            <table border="0" cellspacing="" cellpadding="4" width="100%">
+            <table border="0" cellspacing="0" cellpadding="4" width="100%">
                 <tr>
                     <th width="100"><?php echo __('Status');?>:</th>
                     <td><?php echo ($S = $ticket->getStatus()) ? $S->display() : ''; ?></td>
@@ -257,7 +254,7 @@ if($ticket->isOverdue())
             </table>
         </td>
         <td width="50%" style="vertical-align:top">
-            <table border="0" cellspacing="" cellpadding="4" width="100%">
+            <table border="0" cellspacing="0" cellpadding="4" width="100%">
                 <tr>
                     <th width="100"><?php echo __('User'); ?>:</th>
                     <td><a href="#tickets/<?php echo $ticket->getId(); ?>/user"
@@ -364,7 +361,6 @@ if($ticket->isOverdue())
         </td>
     </tr>
 </table>
-<br>
 <table class="ticket_info" cellspacing="0" cellpadding="0" width="940" border="0">
     <tr>
         <td width="50%">
@@ -436,7 +432,6 @@ if($ticket->isOverdue())
         </td>
     </tr>
 </table>
-<br>
 <?php
 foreach (DynamicFormEntry::forTicket($ticket->getId()) as $form) {
     // Skip core fields shown earlier in the ticket view
@@ -468,7 +463,7 @@ foreach (DynamicFormEntry::forTicket($ticket->getId()) as $form) {
         <tr>
             <td width="200"><?php
 echo Format::htmlchars($label);
-            ?>:</th>
+            ?>:</td>
             <td><?php
 echo $v;
             ?></td>

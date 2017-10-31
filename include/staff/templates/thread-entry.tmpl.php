@@ -8,6 +8,7 @@ if ($thisstaff && !strcasecmp($thisstaff->datetime_format, 'relative')) {
 }
 
 $entryTypes = array('M'=>'message', 'R'=>'response', 'N'=>'note');
+$fromMsg = array('M'=>__('message from'), 'R'=>__('response from'), 'N'=>__('note from'));
 $user = $entry->getUser() ?: $entry->getStaff();
 $name = $user ? $user->getName() : $entry->poster;
 $avatar = '';
@@ -59,7 +60,7 @@ if ($user && $cfg->isAvatarsEnabled())
         </span>
         </div>
 <?php
-        echo sprintf(__('<b>%s</b> posted %s'), $name,
+        echo __($fromMsg[$entry->type]) . ' ' . sprintf(__('<b>%s</b> posted %s'), $name,
             sprintf('<a name="entry-%d" href="#entry-%1$s"><time %s
                 datetime="%s" data-toggle="tooltip" title="%s">%s</time></a>',
                 $entry->id,
