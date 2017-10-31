@@ -646,12 +646,21 @@ return false;">
     <tfoot>
      <tr>
         <td colspan="7">
-            <?php if($total && $thisstaff->canManageTickets()){ ?>
-                <?php echo Misc::item_select(); ?>
-            <?php }else{
+            <?php if($total && $thisstaff->canManageTickets()){
+                echo Misc::item_select();
+            }else{
                 echo '<i>';
                 echo $ferror?Format::htmlchars($ferror):__('Query returned 0 results.');
                 echo '</i>';
+            }
+            if ($total){
+                echo '<span class="pull-right">';
+                echo Misc::icon(ICONEXPORT, '', '') . sprintf('<a class="export-csv no-pjax" href="?%s">%s</a>',
+                    Http::build_query(array(
+                        'a' => 'export', 'h' => $hash,
+                        'status' => $_REQUEST['status'])),
+                        __('Export'));
+                echo '</span>';
             } ?>
         </td>
      </tr>
@@ -662,13 +671,7 @@ return false;">
 ?>      <div>
             <span class="faded pull-right"><?php echo $pageNav->showing(); ?></span>
 <?php
-        echo __('Page').':'.$pageNav->getPageLinks().'&nbsp;';
-        echo sprintf('<a class="export-csv no-pjax" href="?%s">%s</a>',
-                Http::build_query(array(
-                        'a' => 'export', 'h' => $hash,
-                        'status' => $_REQUEST['status'])),
-                __('Export'));
-        echo '&nbsp;<i class="help-tip icon-question-sign" href="#export"></i></div>';
+        echo __('Page').':'.$pageNav->getPageLinks().'</div>';
     } ?>
     </form>
 </div>

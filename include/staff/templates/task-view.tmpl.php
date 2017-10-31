@@ -87,7 +87,7 @@ if ($role->hasPerm(Task::PERM_DELETE)) {
 $info=($_POST && $errors)?Format::input($_POST):array();
 
 if ($task->isOverdue())
-    $warn.='&nbsp;&nbsp;<span class="Icon overdueTicket">'.__('Marked overdue!').'</span>';
+    $warn.='&nbsp;&nbsp;'.__('Marked overdue!');
 
 ?>
 <div>

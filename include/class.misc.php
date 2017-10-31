@@ -41,6 +41,7 @@ const ICONATTACHMENT    = 'icon-file';
 const ICONTASK          = 'icon-list';
 const ICONTICKET        = 'icon-list-alt';
 const ICONTOGGLE        = 'icon-retweet';
+const ICONEXPORT        = 'icon-upload-alt';
 const ICONUNKNOWN       = 'icon-question-sign';
 
 const TICKETOPEN        = 1;

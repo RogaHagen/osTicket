@@ -14,7 +14,7 @@ if($lock && $lock->getStaffId()==$thisstaff->getId())
     $warn.='&nbsp;<span class="Icon lockedTicket">'
     .sprintf(__('Ticket is locked by %s'), $lock->getStaffName()).'</span>';
 elseif($ticket->isOverdue())
-    $warn.='&nbsp;<span class="Icon overdueTicket">'.__('Marked overdue!').'</span>';
+    $warn.='&nbsp;' . __('Marked overdue!');
 
 echo sprintf(
         '<div style="width:600px; padding: 2px 2px 0 5px;" id="t%s">
