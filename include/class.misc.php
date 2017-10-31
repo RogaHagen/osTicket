@@ -63,10 +63,10 @@ const USERLOCKED        = 3;
 class Misc {
 
     function item_select(){
-        $var = __('Select').'&nbsp;';
-        $var .= '<a id="selectAll" href="#ckb">' . Misc::icon(ICONSOLVED, '','') . __('All') . '</a>&nbsp;&nbsp;';
-        $var .= '<a id="selectNone" href="#ckb">' . Misc::icon(ICONOPEN, '', '') . __('None') . '</a>&nbsp;&nbsp;';
-        $var .= '<a id="selectToggle" href="#ckb">' . Misc::icon(ICONTOGGLE, '', '') . __('Toggle') . '</a>&nbsp;&nbsp;';
+        $var = __('Select').':&nbsp;';
+        $var .= '<a id="selectAll" href="#ckb">' . Misc::icon(ICONSOLVED, '','') . __('All') . '</a>&nbsp;|&nbsp;';
+        $var .= '<a id="selectNone" href="#ckb">' . Misc::icon(ICONOPEN, '', '') . __('None') . '</a>&nbsp;|&nbsp;';
+        $var .= '<a id="selectToggle" href="#ckb">' . Misc::icon(ICONTOGGLE, '', '') . __('Toggle') . '</a>';
         return $var;
     }
 
