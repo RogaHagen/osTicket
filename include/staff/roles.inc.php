@@ -82,12 +82,9 @@ csrf_token(); ?>
     <tfoot>
      <tr>
         <td colspan="5">
-            <?php if($count){ ?>
-            <?php echo __('Select'); ?>:&nbsp;
-            <a id="selectAll" href="#ckb"><?php echo __('All'); ?></a>&nbsp;&nbsp;
-            <a id="selectNone" href="#ckb"><?php echo __('None'); ?></a>&nbsp;&nbsp;
-            <a id="selectToggle" href="#ckb"><?php echo __('Toggle'); ?></a>&nbsp;&nbsp;
-            <?php } else {
+            <?php if($count){
+                echo Misc::item_select();
+            } else {
                 echo sprintf(__('No roles defined yet &mdash; %s add one %s!'),
                     '<a href="roles.php?a=add">','</a>');
             } ?>

@@ -152,12 +152,9 @@ else
     <tfoot>
      <tr>
         <td colspan="7">
-            <?php if ($total) { ?>
-            <?php echo __('Select');?>:&nbsp;
-            <a id="selectAll" href="#ckb"><?php echo __('All');?></a>&nbsp;&nbsp;
-            <a id="selectNone" href="#ckb"><?php echo __('None');?></a>&nbsp;&nbsp;
-            <a id="selectToggle" href="#ckb"><?php echo __('Toggle');?></a>&nbsp;&nbsp;
-            <?php }else{
+            <?php if ($total) {
+                echo Misc::item_select();
+            }else{
                 echo '<i>';
                 echo __('Query returned 0 results.');
                 echo '</i>';

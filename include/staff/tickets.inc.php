@@ -647,10 +647,7 @@ return false;">
      <tr>
         <td colspan="7">
             <?php if($total && $thisstaff->canManageTickets()){ ?>
-            <?php echo __('Select');?>:&nbsp;
-            <a id="selectAll" href="#ckb"><?php echo __('All');?></a>&nbsp;&nbsp;
-            <a id="selectNone" href="#ckb"><?php echo __('None');?></a>&nbsp;&nbsp;
-            <a id="selectToggle" href="#ckb"><?php echo __('Toggle');?></a>&nbsp;&nbsp;
+                <?php echo Misc::item_select(); ?>
             <?php }else{
                 echo '<i>';
                 echo $ferror?Format::htmlchars($ferror):__('Query returned 0 results.');

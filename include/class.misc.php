@@ -18,7 +18,8 @@ const ICONWEB           = 'icon-globe';
 const ICONMAIL          = 'icon-envelope';
 const ICONMAIL2         = 'icon-envelope-alt';
 const ICONPHONE         = 'icon-phone';
-const ICONMISC          = 'icon-tag';
+const ICONMISC          = 'icon-pencil';
+const ICONMISC2         = 'icon-tag';
 const ICONSYSTEM        = 'icon-gear';
 const ICONDONE          = 'icon-check-sign';
 const ICONSOLVED        = 'icon-check';
@@ -39,6 +40,7 @@ const ICONDEPARTMENT    = 'icon-briefcase';
 const ICONATTACHMENT    = 'icon-file';
 const ICONTASK          = 'icon-list';
 const ICONTICKET        = 'icon-list-alt';
+const ICONTOGGLE        = 'icon-retweet';
 const ICONUNKNOWN       = 'icon-question-sign';
 
 const TICKETOPEN        = 1;
@@ -59,6 +61,14 @@ const USERREGISTERED    = 1;
 const USERLOCKED        = 3;
 
 class Misc {
+
+    function item_select(){
+        $var = __('Select').'&nbsp;';
+        $var .= '<a id="selectAll" href="#ckb">' . Misc::icon(ICONSOLVED, '','') . __('All') . '</a>&nbsp;&nbsp;';
+        $var .= '<a id="selectNone" href="#ckb">' . Misc::icon(ICONOPEN, '', '') . __('None') . '</a>&nbsp;&nbsp;';
+        $var .= '<a id="selectToggle" href="#ckb">' . Misc::icon(ICONTOGGLE, '', '') . __('Toggle') . '</a>&nbsp;&nbsp;';
+        return $var;
+    }
 
     function icon($icon, $class, $tooltip){
         if ($class == '') $class = 'icon-center icon-faded';

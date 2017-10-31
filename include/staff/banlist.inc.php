@@ -140,12 +140,9 @@ $query="$select $from $where ORDER BY $order_by LIMIT ".$pageNav->getStart().","
         <tfoot>
          <tr>
             <td colspan="5">
-                <?php if($res && $num){ ?>
-                <?php echo __('Select');?>:&nbsp;
-                <a id="selectAll" href="#ckb"><?php echo __('All');?></a>&nbsp;&nbsp;
-                <a id="selectNone" href="#ckb"><?php echo __('None');?></a>&nbsp;&nbsp;
-                <a id="selectToggle" href="#ckb"><?php echo __('Toggle');?></a>&nbsp;&nbsp;
-                <?php }else{
+                <?php if($res && $num){
+                    echo Misc::item_select();
+                }else{
                     echo __('No banned emails found!');
                 } ?>
             </td>

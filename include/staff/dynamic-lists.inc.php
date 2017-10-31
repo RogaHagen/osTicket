@@ -79,12 +79,9 @@ $showing=$pageNav->showing().' '._N('custom list', 'custom lists', $count);
     <tfoot>
      <tr>
         <td colspan="4">
-            <?php if($count){ ?>
-            <?php echo __('Select'); ?>:&nbsp;
-            <a id="selectAll" href="#ckb"><?php echo __('All'); ?></a>&nbsp;&nbsp;
-            <a id="selectNone" href="#ckb"><?php echo __('None'); ?></a>&nbsp;&nbsp;
-            <a id="selectToggle" href="#ckb"><?php echo __('Toggle'); ?></a>&nbsp;&nbsp;
-            <?php } else {
+            <?php if($count){
+                echo Misc::item_select();
+            } else {
                 echo sprintf(__('No custom lists defined yet &mdash; %s add one %s!'),
                     '<a href="lists.php?a=add">','</a>');
             } ?>

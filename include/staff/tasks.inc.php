@@ -436,12 +436,9 @@ if ($thisstaff->hasPerm(Task::PERM_DELETE, false)) {
     <tfoot>
      <tr>
         <td colspan="6">
-            <?php if($total && $thisstaff->canManageTickets()){ ?>
-            <?php echo __('Select');?>:&nbsp;
-            <a id="selectAll" href="#ckb"><?php echo __('All');?></a>&nbsp;&nbsp;
-            <a id="selectNone" href="#ckb"><?php echo __('None');?></a>&nbsp;&nbsp;
-            <a id="selectToggle" href="#ckb"><?php echo __('Toggle');?></a>&nbsp;&nbsp;
-            <?php }else{
+            <?php if($total && $thisstaff->canManageTickets()){
+                echo Misc::item_select();
+            }else{
                 echo '<i>';
                 echo $ferror?Format::htmlchars($ferror):__('Query returned 0 results.');
                 echo '</i>';

@@ -138,12 +138,9 @@ $showing = $pageNav->showing().' '._N('department', 'departments', $count);
      <tr>
         <td colspan="6">
             <?php
-            if ($count) { ?>
-            <?php echo __('Select');?>:&nbsp;
-            <a id="selectAll" href="#ckb"><?php echo __('All');?></a>&nbsp;&nbsp;
-            <a id="selectNone" href="#ckb"><?php echo __('None');?></a>&nbsp;&nbsp;
-            <a id="selectToggle" href="#ckb"><?php echo __('Toggle');?></a>&nbsp;&nbsp;
-            <?php }else{
+            if ($count) {
+                echo Misc::item_select();
+            }else{
                 echo __('No departments found!');
             } ?>
         </td>
