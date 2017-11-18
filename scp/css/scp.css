@@ -3016,28 +3016,17 @@ td.mobile {text-align: left; white-space:nowrap}
 .tc-agent {max-width: 155px; }
 .tc-department {max-width: 155px; }
 
-.icon-faded {
-    /*color: #aaa;*/
-    color:#184E81;
-    color: rgba(0,0,0,0.4);
-    color: rgba(24,78,129,0.4);
-}
-.icon-left{
-    text-align: left !important;
-}
-.icon-center{
-    text-align: center !important;
-}
-.icon-right{
-    text-align: right !important;
-}
-.icon-red{
-    color:red;
-    color:rgba(255,0,0,0.4);
-}
-.icon-blue{color:#184E81;}
-.ost-icon-blue{color:#184E81;}
-.task-open{color:red;}
+.icon-faded {color: rgba(24,78,129,0.5);}
+.icon-faded:hover {color: rgba(24,78,129,1.0);}
+a:hover i.icon-faded {color: rgba(24,78,129,1.0);}
+.icon-left {text-align: left !important;}
+.icon-center {text-align: center !important;}
+.icon-right {text-align: right !important;}
+.icon-red{color:rgba(255,0,0,0.5);}
+.icon-red:hover {color:rgba(255,0,0,1.0);}
+.icon-blue {color:#184E81;}
+.ost-icon-blue {color:#184E81;}
+.task-open {color:red;}
 .ticket-overdue{
     color:red;
     font-weight:bold;

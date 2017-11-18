@@ -603,7 +603,7 @@ return false;">
                 } else { ?>
                 <!-- Proirity######################################################################### -->
                 <td class="priority nohover"
-                    style="background-color:<?php echo $T['cdata__:priority__priority_color']; ?>;">
+                    style="background:<?php echo $T['cdata__:priority__priority_color']; ?>;">
                     <?php
                     echo Misc::icon($T['cdata__:priority__priority_icon'], '', __('Ticket priority:').' '.$T['cdata__:priority__priority_desc']);
                     echo $T['cdata__:priority__priority_desc'];
@@ -655,11 +655,12 @@ return false;">
             }
             if ($total){
                 echo '<span class="pull-right">';
-                echo Misc::icon(ICONEXPORT, '', '') . sprintf('<a class="export-csv no-pjax" href="?%s">%s</a>',
+                echo sprintf('<a class="export-csv no-pjax" href="?%s">%s%s</a>',
                     Http::build_query(array(
                         'a' => 'export', 'h' => $hash,
                         'status' => $_REQUEST['status'])),
-                        __('Export'));
+                    Misc::icon(ICONEXPORT, '', ''),
+                    __('Export'));
                 echo '</span>';
             } ?>
         </td>
