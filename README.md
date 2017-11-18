@@ -1,5 +1,5 @@
-osTicket
-========
+Helpdesk - osTicket
+===================
 <a href="http://osticket.com"><img src="http://osticket.com/sites/default/files/osTicket.jpg"
 align="left" hspace="10" vspace="6"></a>
 
