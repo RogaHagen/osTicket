@@ -2949,6 +2949,7 @@ a.attachment {
     padding: 5px 50%;
     position: fixed;
     right: 0;
+    z-index: 1;
 }
 .kgfooter a{color:#cacaca;}
 th.checkbox {
