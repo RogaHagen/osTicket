@@ -450,7 +450,7 @@ $ost->addExtraHeader('<meta name="tip-namespace" content="tickets.queue" />',
     "$('#content').data('tipNamespace', 'tickets.queue');");
 
 if($ticket) {
-    $ost->setPageTitle(sprintf('#%s: ', $ticket->getNumber(), $ticket->getSubject()));
+    $ost->setPageTitle(sprintf('#%s: %s', $ticket->getNumber(), $ticket->getSubject()));
     $nav->setActiveSubMenu(-1);
     $inc = 'ticket-view.inc.php';
     if ($_REQUEST['a']=='edit'
