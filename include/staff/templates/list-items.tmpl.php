@@ -42,10 +42,10 @@ if ($list->allowAdd()) { ?>
         </span>
         <div id="action-dropdown-more" class="action-dropdown anchor-right">
             <ul>
-                <li><a class="items-action" href="#list/<?php echo $list->getId(); ?>/disable">
+                <li><a class="items-action" href="#list/<?php echo $list->getId(); ?>/disable" style="display: none;">
                     <i class="icon-ban-circle icon-fixed-width"></i>
                     <?php echo __('Disable'); ?></a></li>
-                <li><a class="items-action" href="#list/<?php echo $list->getId(); ?>/enable">
+                <li><a class="items-action" href="#list/<?php echo $list->getId(); ?>/enable" style="display: none;">
                     <i class="icon-ok-sign icon-fixed-width"></i>
                     <?php echo __('Enable'); ?></a></li>
                 <li class="danger"><a class="items-action" href="#list/<?php echo $list->getId(); ?>/delete">
