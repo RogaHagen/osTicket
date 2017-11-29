@@ -20,7 +20,7 @@ POT-Creation-Date:
   // Nachträge Übersetzungen (Anfang)
   'note from' => 'Notiz von',
   'response from' => 'Antwort von',
-  'message from' => 'Nachricht von',
+  'message from' => 'Anfrage von',
   'Successfully %1$s %2$s.' => 'Erfolgreich %1$s %2$s.',
   'Check all help topics related to %s.' => 'Wählen Sie alle zutreffenden Hilfethemen für %s aus.',
   'Successfully' => 'Erfolgreich',

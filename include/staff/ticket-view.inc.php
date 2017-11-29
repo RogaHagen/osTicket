@@ -217,19 +217,13 @@ if($ticket->isOverdue())
                 ?>
            </div>
         <div class="flush-left">
-             <h2><a href="tickets.php?id=<?php echo $ticket->getId(); ?>"
-             title="<?php echo __('Reload'); ?>"><i class="icon-refresh"></i>
-             <?php echo sprintf(__('Ticket #%s: %s'), $ticket->getNumber(), $ticket->getSubject()); ?></a>
+             <h2 class="truncate" style="max-width:700px;"><a href="tickets.php?id=<?php echo $ticket->getId(); ?>"
+             title="<?php echo __('Reload').sprintf(': Ticket #%s: %s', $ticket->getNumber(), $ticket->getSubject()); ?>"><i class="icon-refresh"></i>
+             <?php echo sprintf('Ticket #%s: %s', $ticket->getNumber(), $ticket->getSubject()); ?></a>
             </h2>
         </div>
     </div>
   </div>
-</div>
-<div class="clear tixTitle has_bottom_border">
-    <h3>
-    <?php $subject_field = TicketForm::getInstance()->getField('subject');
-        echo $subject_field->display($ticket->getSubject()); ?>
-    </h3>
 </div>
 <table class="ticket_info" cellspacing="0" cellpadding="0" width="940" border="0">
     <tr>
