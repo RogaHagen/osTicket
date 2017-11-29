@@ -218,7 +218,7 @@ if($ticket->isOverdue())
            </div>
         <div class="flush-left">
              <h2 class="truncate" style="max-width:750px;"><a href="tickets.php?id=<?php echo $ticket->getId(); ?>"
-             title="<?php echo __('Reload'); ?>"><i class="icon-refresh"></i>
+             title="<?php echo __('Reload').sprintf(': Ticket #%s: %s', $ticket->getNumber(), $ticket->getSubject()); ?>"><i class="icon-refresh"></i>
              <?php echo sprintf('Ticket #%s: %s', $ticket->getNumber(), $ticket->getSubject()); ?></a>
             </h2>
         </div>
