@@ -578,9 +578,8 @@ return false;">
                     if ($task_count) $delta += 20;
                     ?>
                     <div style="--delta: <?php echo $delta; ?>px; max-height: 1.2em"
-                    class="<?php echo ($search && !$status) ? 'tc-title-search' : 'tc-title-main'; ?> link truncate"
-                    href="tickets.php?id=<?php echo $T['ticket_id']; ?>">
-                    <?php echo $subject; ?>
+                    class="<?php echo ($search && !$status) ? 'tc-title-search' : 'tc-title-main'; ?> link truncate">
+                    <a title="<?php echo $subject; ?>" href="tickets.php?id=<?php echo $T['ticket_id']; ?>"><?php echo $subject; ?></a>
                     </div>
                     <?php echo Misc::icon_annotation($threadcount, $T['attachment_count'], $T['collab_count'], $task_count, $task_open);?>
                 </td>

@@ -100,6 +100,10 @@ Create your own fork of the project and use
 the feature is published in your fork, send a pull request to begin the
 conversation of integrating your new feature into osTicket.
 
+Hinweis
+--------
+Ticket Status "Geschlossen" über MySql Datenbank deaktiviert in Tabelle ost_ticket_status und Feld state (Suffix _off)
+
 ### Localization
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/osticket-official/localized.png)](http://i18n.osticket.com/project/osticket-official)
 
