@@ -53,6 +53,8 @@ cloned the git repo into)
 
     git pull
     php manage.php deploy -v /var/www/htdocs/osticket/
+    
+Instead use helper script located in the root path from our backend
 
 Upgrading
 ---------
