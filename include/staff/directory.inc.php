@@ -5,6 +5,10 @@ $qs = array();
 $agents = Staff::objects()
     ->select_related('dept');
 
+// Sanitize $_REQUEST Params To Escape XSS
+if ($_REQUEST)
+    $_REQUEST = Format::sanitize($_REQUEST);
+
 if($_REQUEST['q']) {
     $searchTerm=$_REQUEST['q'];
     if($searchTerm){
