@@ -764,7 +764,8 @@ class TicketsAjaxAPI extends AjaxController {
                 $inc = 'delete.tmpl.php';
                 $info[':action'] = "#tickets/mass/priority/{$w}";
                 $verb = __('Update');
-                $info[':title'] = sprintf('Change Priority On %s',
+                $info[':title'] = sprintf(__(
+                            'Change Priority On %s'),
                         _N('selected ticket', 'selected tickets', $count));
     
                 $info[':placeholder'] = sprintf(__(
