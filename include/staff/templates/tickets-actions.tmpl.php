@@ -18,10 +18,13 @@ if ($agent->hasPerm(Ticket::PERM_EDIT, false)) {?>
 
 <div id="action-dropdown-change-priority" class="action-dropdown anchor-right">
   <ul>
-<?php foreach (Priority::getPriorities() as $Pid => $Pname) { ?>
+<?php foreach (Priority::getPriorities() as $Pid => $Pname) { 
+     $Prio = Priority::lookup($Pid);
+     $Icon = $Prio->priority_icon;
+?>
      <li><a class="no-pjax tickets-action"
         href="#tickets/mass/priority/<?php echo $Pid; ?>"><i
-        class="icon-sort"></i> <?php echo $Pname; ?></a>
+        class="<?php echo $Icon ; ?>"></i> <?php echo $Pname; ?></a>
 <?php } ?>
   </ul>
 </div>
