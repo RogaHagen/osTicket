@@ -56,7 +56,7 @@ if ($agent->hasPerm(Ticket::PERM_ASSIGN, false)) {?>
 }
 // Mass Transfer
 if ($agent->hasPerm(Ticket::PERM_TRANSFER, false)) {?>
-<span class="action-button hidden">
+<span class="action-button">
  <a class="tickets-action" id="tickets-transfer" data-placement="bottom"
     data-toggle="tooltip" title="<?php echo __('Transfer'); ?>"
     href="#tickets/mass/transfer"><i class="icon-share"></i></a>
