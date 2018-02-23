@@ -13,7 +13,7 @@ if ($agent->hasPerm(Ticket::PERM_EDIT, false)) {?>
     echo __('Change Priority'); ?>">
     <i class="icon-caret-down pull-right"></i>
     <a class="tickets-action" id="tickets-assign"
-        href="#tickets/mass/priority"><i class="icon-exclamation"></i></a>
+        href="#tickets/mass/priority"><i class="icon-exclamation-sign"></i></a>
 </span>
 
 <div id="action-dropdown-change-priority" class="action-dropdown anchor-right">
@@ -21,7 +21,7 @@ if ($agent->hasPerm(Ticket::PERM_EDIT, false)) {?>
 <?php foreach (Priority::getPriorities() as $Pid => $Pname) { ?>
      <li><a class="no-pjax tickets-action"
         href="#tickets/mass/priority/<?php echo $Pid; ?>"><i
-        class="icon-level-up"></i> <?php echo $Pname; ?></a>
+        class="icon-circle"></i> <?php echo $Pname; ?></a>
 <?php } ?>
   </ul>
 </div>
