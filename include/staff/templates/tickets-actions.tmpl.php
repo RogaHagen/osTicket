@@ -21,7 +21,7 @@ if ($agent->hasPerm(Ticket::PERM_EDIT, false)) {?>
 <?php foreach (Priority::getPriorities() as $Pid => $Pname) { ?>
      <li><a class="no-pjax tickets-action"
         href="#tickets/mass/priority/<?php echo $Pid; ?>"><i
-        class="icon-circle"></i> <?php echo $Pname; ?></a>
+        class="icon-sort"></i> <?php echo $Pname; ?></a>
 <?php } ?>
   </ul>
 </div>
