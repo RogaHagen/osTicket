@@ -214,8 +214,8 @@ if ($_POST)
             </td>
             <td>
                 <select name="slaId">
-                    <option value="-1" selected="selected" >&mdash; <?php echo __('None');?> &mdash;</option>
                     <option value="0">&mdash; <?php echo __('System Default');?> &mdash;</option>
+                    <option value="-1"<?php if ($info['slaId'] == -1) echo ' selected="selected"'; ?>>&mdash; <?php echo __('None');?> &mdash;</option>
                     <?php
                     if($slas=SLA::getSLAs()) {
                         foreach($slas as $id =>$name) {
