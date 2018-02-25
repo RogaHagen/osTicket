@@ -31,7 +31,7 @@ class UsersAjaxAPI extends AjaxController {
 
         $matches = array();
         if (!$_REQUEST['q'])
-            return $this->json_encode($matches);
+            //return $this->json_encode($matches);
 
         $q = $_REQUEST['q'];
         $limit = isset($_REQUEST['limit']) ? (int) $_REQUEST['limit']:25;
@@ -40,7 +40,7 @@ class UsersAjaxAPI extends AjaxController {
         $matches = array();
 
         if (strlen($q) < 3)
-            return $this->encode(array());
+            //return $this->encode(array());
 
         if (!$type || !strcasecmp($type, 'remote')) {
             foreach (AuthenticationBackend::searchUsers($q) as $u) {
