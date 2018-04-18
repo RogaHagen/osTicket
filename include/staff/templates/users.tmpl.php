@@ -1,16 +1,18 @@
 <?php
 $qs = array();
-$select = 'SELECT user.*, email.address as email ';
+$select = 'SELECT user.*, email.address as email, account.status as status, account.id as account_id ';
 
 $from = 'FROM '.USER_TABLE.' user '
-      . 'LEFT JOIN '.USER_EMAIL_TABLE.' email ON (user.id = email.user_id) ';
+      . 'LEFT JOIN '.USER_EMAIL_TABLE.' email ON (user.id = email.user_id) '
+      . 'LEFT JOIN '.USER_ACCOUNT_TABLE.' account ON (user.id = account.user_id) ';
 
 $where = ' WHERE user.org_id='.db_input($org->getId());
 
 $sortOptions = array('name' => 'user.name',
                      'email' => 'email.address',
                      'create' => 'user.created',
-                     'update' => 'user.updated');
+                     'update' => 'user.updated',
+                     'status' => 'account.status');
 $orderWays = array('DESC'=>'DESC','ASC'=>'ASC');
 $sort= ($_REQUEST['sort'] && $sortOptions[strtolower($_REQUEST['sort'])]) ? strtolower($_REQUEST['sort']) : 'name';
 //Sorting options...
@@ -95,18 +97,12 @@ if ($num) { ?>
             while ($row = db_fetch_array($res)) {
 
                 $name = new UsersName($row['name']);
-                $user_id = $row['id'];
-                $user_status = 0;
-                $status = __('Guest');
-                if (db_count("select count(id) from ost_user_account where status = 1 and user_id = $user_id")){
-                    $status = new UserAccountStatus(1);
-                    $user_status = 1;
-                }elseif (db_count("select count(id) from ost_user_account where status = 2 and user_id = $user_id")){
-                    $status = new UserAccountStatus(2);
-                    $user_status = 2;
-                }elseif (db_count("select count(id) from ost_user_account where status = 3 and user_id = $user_id")){
-                    $status = new UserAccountStatus(3);
-                    $user_status = 3;
+                if (!$row['account_id']){
+                    $status = __('Guest');
+                    $user_status = 0;
+                }else{
+                    $status = new UserAccountStatus($row['status']);
+                    $user_status = $row['status'];
                 }
                 $sel=false;
                 if($ids && in_array($row['id'], $ids))
