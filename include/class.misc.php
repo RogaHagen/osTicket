@@ -43,7 +43,7 @@ const ICONTICKET        = 'icon-list-alt';
 const ICONTOGGLE        = 'icon-retweet';
 const ICONEXPORT        = 'icon-upload-alt';
 const ICONUNKNOWN       = 'icon-question-sign';
-const ICONMEETING       = 'icon-calendar-empty';
+const ICONMEETING       = 'icon-group';
 
 const TICKETOPEN        = 1;
 const TICKETSOLVED      = 2;
@@ -115,7 +115,7 @@ class Misc {
         }elseif ($state == 'longrun') {
             $var = Misc::icon(ICONLONGRUN, '', __('Ticket marked as longrun!'));
         }elseif ($state == 'meeting') {
-            $var = Misc::icon(ICONMEETING, 'icon-center icon-green', __('Ticket marked as meeting!'));
+            $var = Misc::icon(ICONMEETING, '', __('Ticket marked as meeting!'));
         }elseif ($state == 'opened') {
             $var = Misc::icon(ICONUNANSWERED, '', __('Ticket marked as unanswered'));
         }elseif ($state== 'closed') {
