@@ -61,6 +61,7 @@ POT-Creation-Date:
   'Select the departments the agent is allowed to access and the corresponding effective role.' => 'Wählen Sie die Abteilungen zu der der Betreuer Zugriff bekommen soll aus und legen Sie seine Zugriffsrechte fest.',
   'Fall back to primary role on assignments' => 'Rückfall auf die Rechte der primären Abteilung bei Zuweisungen',
   'Ticket marked as longrun!' => 'Das Ticket ist offen und als langfristig eingestuft',
+  'Ticket marked as meeting!' => 'Das Ticket ist offen und muss in einer Sitzung beschlossen werden',
   'Ticket marked as overdue!' => 'Das Ticket ist überfällig!',
   'Ticket marked as locked!' => 'Das Ticket ist momentan gesperrt!',
   'Ticket marked as unanswered' => 'Das Ticket ist offen und unbeantwortet',

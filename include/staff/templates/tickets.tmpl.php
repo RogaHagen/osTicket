@@ -139,6 +139,7 @@ if ($total) { ?>
         $flag = $T['isanswered']?'closed':'opened';
         if ($T['status__state'] <> 'open') $flag = 'done';
         if ($T['status_id'] == TICKETOPENLONG) $flag = 'longrun';
+        if ($T['status_id'] == TICKETOPENMEETING) $flag = 'meeting';
         if ($T['lock__lock_id'] && $T['lock__staff_id'] != $thisstaff->getId())
             $flag='locked';
         elseif ($T['isoverdue'])

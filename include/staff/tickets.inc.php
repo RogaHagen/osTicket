@@ -509,6 +509,7 @@ return false;">
                 $flag = null;
                 $flag = $T['isanswered']?'closed':'opened';
                 if ($T['status_id'] == TICKETOPENLONG) $flag = 'longrun';
+                if ($T['status_id'] == TICKETOPENMEETING) $flag = 'meeting';
                 if ($T['status__state'] <> 'open') $flag = 'done';
                 if ($T['lock__staff_id'] && $T['lock__staff_id'] != $thisstaff->getId())
                     $flag = 'locked';
