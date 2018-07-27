@@ -1621,6 +1621,11 @@ class ChoiceField extends FormField {
         return (string) $value;
     }
 
+    function asVar($value, $id=false) {
+        $value = $this->to_php($value);
+        return $this->toString($this->getChoice($value));
+    }
+
     function whatChanged($before, $after) {
         $B = (array) $before;
         $A = (array) $after;
@@ -1822,7 +1827,7 @@ class DatetimeField extends FormField {
     function display($value) {
         global $cfg;
 
-        if (!$value || !($datetime = Format::parseDatetime($value)))
+        if (!$value || !($datetime = Format::parseDateTime($value)))
             return '';
 
         $config = $this->getConfiguration();
@@ -1933,14 +1938,14 @@ class DatetimeField extends FormField {
 
         $config = $this->getConfiguration();
         parent::validateEntry($value);
-        if (!$value || !($datetime = Format::parseDatetime($value)))
+        if (!$value || !($datetime = Format::parseDateTime($value)))
             return;
 
         // Parse value to DateTime object
-        $val = Format::parseDatetime($value);
+        $val = Format::parseDateTime($value);
         // Get configured min/max (if any)
-        $min = $this->getMinDatetime();
-        $max = $this->getMaxDatetime();
+        $min = $this->getMinDateTime();
+        $max = $this->getMaxDateTime();
 
         if (!$val) {
             $this->_errors[] = __('Enter a valid date');
@@ -2297,7 +2302,7 @@ class PriorityField extends ChoiceField {
 }
 FormField::addFieldTypes(/*@trans*/ 'Dynamic Fields', function() {
     return array(
-        'priority' => array(__('Priority Level'), PriorityField),
+        'priority' => array(__('Priority Level'), 'PriorityField'),
     );
 });
 
@@ -2401,7 +2406,7 @@ class DepartmentField extends ChoiceField {
 }
 FormField::addFieldTypes(/*@trans*/ 'Dynamic Fields', function() {
     return array(
-        'department' => array(__('Department'), DepartmentField),
+        'department' => array(__('Department'), 'DepartmentField'),
     );
 });
 
@@ -2522,7 +2527,7 @@ class AssigneeField extends ChoiceField {
 }
 FormField::addFieldTypes(/*@trans*/ 'Dynamic Fields', function() {
     return array(
-        'assignee' => array(__('Assignee'), AssigneeField),
+        'assignee' => array(__('Assignee'), 'AssigneeField'),
     );
 });
 
@@ -2612,7 +2617,7 @@ class TicketStateField extends ChoiceField {
 }
 FormField::addFieldTypes('Dynamic Fields', function() {
     return array(
-        'state' => array('Ticket State', TicketStateField, false),
+        'state' => array('Ticket State', 'TicketStateField', false),
     );
 });
 
@@ -2671,7 +2676,7 @@ class TicketFlagField extends ChoiceField {
 
 FormField::addFieldTypes('Dynamic Fields', function() {
     return array(
-        'flags' => array('Ticket Flags', TicketFlagField, false),
+        'flags' => array('Ticket Flags', 'TicketFlagField', false),
     );
 });
 

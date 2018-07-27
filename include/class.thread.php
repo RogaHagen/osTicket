@@ -1791,8 +1791,8 @@ class ThreadEvents extends InstrumentedList {
             }
             // XXX: Use $user here
             elseif ($thisclient) {
-                if ($thisclient->hasAccount)
-                    $username = $thisclient->getAccount()->getUserName();
+                if ($thisclient->hasAccount())
+                    $username = $thisclient->getFullName();
                 if (!$username)
                     $username = $thisclient->getEmail();
             }
@@ -2191,7 +2191,7 @@ class TextThreadEntryBody extends ThreadEntryBody {
     }
 
     function getClean() {
-        return  Format::stripEmptyLines(parent::getClean());
+        return Format::htmlchars(Format::html_balance(Format::stripEmptyLines(parent::getClean())));
     }
 
     function prepend($what) {
