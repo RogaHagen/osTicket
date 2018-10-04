@@ -85,7 +85,13 @@ if ($count) { ?>
         if ($task->staff)
             $assigned=sprintf(Misc::icon(ICONUSER, '', 'Die Aufgabe wurde dem Betreuer '.$task->staff->getName().' zur Bearbeitung zugewiesen').'<span>%s</span>',
                     Format::truncate($task->staff->getName(),40));
-
+        //if ($task->staff || $task->team) {
+        //    $assigneeType = $task->staff ? 'staff' : 'team';
+        //    $icon = $assigneeType == 'staff' ? 'staffAssigned' : 'teamAssigned';
+        //    $assigned=sprintf('<span class="Icon %s">%s</span>',
+        //            $icon,
+        //            Format::truncate($task->getAssigned(),40));
+        //}
         elseif ($task->getAssigned())
             $assigned=sprintf(Misc::icon(ICONTEAM, '', 'Die Aufgabe wurde dem Team '.$task->getAssigned().' zur Bearbeitung zugewiesen').'<span>%s</span>',
                     Format::truncate($task->getAssigned(),40));
