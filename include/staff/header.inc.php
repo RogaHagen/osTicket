@@ -1,6 +1,6 @@
 <?php
 header("Content-Type: text/html; charset=UTF-8");
-header("X-Frame-Options: SAMEORIGIN");
+header("Content-Security-Policy: frame-ancestors ".$cfg->getAllowIframes().";");
 
 $title = ($ost && ($title=$ost->getPageTitle()))
     ? $title : ('osTicket :: '.__('Staff Control Panel'));
@@ -30,7 +30,7 @@ if ($lang) {
     <![endif]-->
     <link rel="shortcut icon" type="image/x-icon" href="<?php echo ROOT_PATH; ?>favicon.ico?v=2" />
     <link rel="icon" type="image/x-icon" href="<?php echo ROOT_PATH; ?>favicon.ico?v=2" />
-    <script type="text/javascript" src="<?php echo ROOT_PATH; ?>js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="<?php echo ROOT_PATH; ?>js/jquery-3.4.0.min.js"></script>
     <link rel="stylesheet" href="<?php echo ROOT_PATH ?>css/thread.css" media="all">
     <link rel="stylesheet" href="<?php echo ROOT_PATH ?>scp/css/scp.css" media="all">
     <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>css/redactor.css" media="screen">
