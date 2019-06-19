@@ -427,7 +427,7 @@ if ($thisstaff->hasPerm(Task::PERM_DELETE, false)) {
                     <a <?php if ($flag) { ?> class="Icon <?php echo $flag; ?>Ticket" title="<?php echo ucfirst($flag); ?> Ticket" <?php } ?>
                     href="tasks.php?id=<?php echo $T['id']; ?>"><?php
                     echo $title; ?></a><span class="pull-right">
-                    <?php echo Misc::icon_annotation($threadcount, $T['attachment_count'], $T['collab_count'], 0);?></span>
+                    <?php echo Misc::icon_annotation($threadcount, $T['attachment_count'], $T['collab_count'], 0, 'Aufgabe');?></span>
                 </td>
                 <td nowrap>&nbsp;<?php echo Misc::icon(ICONDEPARTMENT, '', __('Assigned to department:').' '.$dept).Format::truncate($dept, 40); ?></td>
                 <td nowrap>&nbsp;<?php echo $assignee; ?></td>
