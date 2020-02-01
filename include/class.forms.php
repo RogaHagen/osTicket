@@ -162,14 +162,14 @@ class Form {
         $this->validators[] = $function;
     }
 
-    function render($staff=true, $title=false, $options=array()) {
-        if ($title)
-            $this->title = $title;
+    function render($options=array()) {
+        if (isset($options['title']))
+            $this->title = $options['title'];
         if (isset($options['instructions']))
             $this->instructions = $options['instructions'];
         $form = $this;
         $template = $options['template'] ?: 'dynamic-form.tmpl.php';
-        if ($staff)
+        if (isset($options['staff']) && $options['staff'])
             include(STAFFINC_DIR . 'templates/' . $template);
         else
             include(CLIENTINC_DIR . 'templates/' . $template);
@@ -1300,7 +1300,8 @@ class TextboxField extends FormField {
         parent::validateEntry($value);
         $config = $this->getConfiguration();
         $validators = array(
-            '' =>       null,
+            '' =>       array(array('Validator', 'is_formula'),
+                __('Content cannot start with the following characters: = - + @')),
             'email' =>  array(array('Validator', 'is_valid_email'),
                 __('Enter a valid email address')),
             'phone' =>  array(array('Validator', 'is_phone'),
@@ -1377,6 +1378,29 @@ class TextareaField extends FormField {
                     'translatable'=>$this->getTranslateTag('placeholder')),
             )),
         );
+    }
+
+    function validateEntry($value) {
+        parent::validateEntry($value);
+        if (!$value)
+            return;
+        $config = $this->getConfiguration();
+        $validators = array(
+            '' =>       array(array('Validator', 'is_formula'),
+                __('Content cannot start with the following characters: = - + @')),
+        );
+        // Support configuration forms, as well as GUI-based form fields
+        if (!($valid = $this->get('validator')) && isset($config['validator']))
+            $valid = $config['validator'];
+        if (!isset($validators[$valid]))
+            return;
+        $func = $validators[$valid];
+        $error = $func[1];
+        if ($config['validator-error'])
+            $error = $this->getLocal('validator-error', $config['validator-error']);
+        if (is_array($func) && is_callable($func[0]))
+            if (!call_user_func($func[0], $value))
+                $this->_errors[] = $error;
     }
 
     function hasSpecialSearch() {
@@ -2781,6 +2805,9 @@ class FileUploadField extends FormField {
         $file = array_shift($files);
         $file['name'] = urldecode($file['name']);
 
+        if (!$this->isValidFile($file))
+            Http::response(413, 'Invalid File');
+
         if (!$bypass && !$this->isValidFileType($file['name'], $file['type']))
             Http::response(415, 'File type is not allowed');
 
@@ -2806,6 +2833,9 @@ class FileUploadField extends FormField {
     function uploadFile($file) {
         if (!$this->isValidFileType($file['name'], $file['type']))
             throw new FileUploadError(__('File type is not allowed'));
+
+        if (!$this->isValidFile($file))
+             throw new FileUploadError(__('Invalid File'));
 
         $config = $this->getConfiguration();
         if ($file['size'] > $config['size'])
@@ -2840,6 +2870,18 @@ class FileUploadField extends FormField {
             throw new FileUploadError(__('Unable to save file'));
 
         return $F;
+    }
+
+    function isValidFile($file) {
+
+        // Check invalid image hacks
+        if ($file['tmp_name']
+                && stripos($file['type'], 'image/') === 0
+                && function_exists('exif_imagetype')
+                && !exif_imagetype($file['tmp_name']))
+            return false;
+
+        return true;
     }
 
     function isValidFileType($name, $type=false) {
@@ -3905,7 +3947,7 @@ class FileUploadWidget extends Widget {
         ),
     );
 
-    function render($options) {
+    function render($options=array()) {
         $config = $this->field->getConfiguration();
         $name = $this->field->getFormName();
         $id = substr(md5(spl_object_hash($this)), 10);
@@ -4363,7 +4405,7 @@ class AssignmentForm extends Form {
         return !$this->errors();
     }
 
-    function render($options) {
+    function render($options=array()) {
 
         switch(strtolower($options['template'])) {
         case 'simple':
@@ -4493,7 +4535,7 @@ class TransferForm extends Form {
         return !$this->errors();
     }
 
-    function render($options) {
+    function render($options=array()) {
 
         switch(strtolower($options['template'])) {
         case 'simple':

@@ -1171,8 +1171,9 @@ class DynamicFormEntry extends VerySimpleModel {
             ->filter(array('object_id'=>$object_id, 'object_type'=>$object_type));
     }
 
-    function render($staff=true, $title=false, $options=array()) {
-        return $this->getForm()->render($staff, $title, $options);
+    function render($options=array()) {
+        $options += array('staff' => true);
+        return $this->getForm()->render($options);
     }
 
     function getChanges() {
@@ -1774,7 +1775,8 @@ class SelectionField extends FormField {
             // Add in the properties for all selected list items in sub
             // labeled by their field id
             foreach ($v as $id=>$L) {
-                if (!($li = DynamicListItem::lookup($id)))
+                if (!($li = DynamicListItem::lookup($id))
+                      || !$li->getListId())
                     continue;
                 foreach ($li->getFilterData() as $prop=>$value) {
                     if (!isset($data[$prop]))
